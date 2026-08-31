@@ -348,16 +348,92 @@
   <div class="wrap py-20 sm:py-28">
     <div class="max-w-3xl">
       <p class="u-caps text-coast-lite reveal">03 — ผลงาน</p>
-      <h2 class="mt-5 text-[length:var(--text-h2)] reveal">หลักฐาน เมื่อได้รับอนุมัติแล้ว</h2>
+      <h2 class="mt-5 text-[length:var(--text-h2)] reveal">เผยแพร่แล้ว และเปิดให้อ่านโค้ดได้</h2>
+      <p class="mt-6 max-w-3xl text-[length:var(--text-lead)] text-dim-d reveal">
+        เครื่องมือโอเพนซอร์สสิบตัวที่วิศวกรผู้อยู่เบื้องหลังเว็บไซต์นี้สร้างและเผยแพร่เอง
+        แต่ละตัวตรวจสิ่งที่มีความเสี่ยงก่อนขึ้นระบบจริง — migration แผนผัง redirect ตาราง cron —
+        และทำงานในเบราว์เซอร์ของคุณเองทั้งหมด ไม่อัปโหลดข้อมูลไปไหน
+        ซอร์สโค้ดเปิดให้ดู คุณจึงตัดสินคุณภาพงานได้เอง ไม่ต้องเชื่อคำพูดเรา
+      </p>
     </div>
 
-    <div class="mt-12 slot reveal">
-      <p class="text-paper">CASE STUDY SLOT — not customer-facing.</p>
-      <p class="mt-3">Mirrors the English slot. Blocked on the same approvals: LT BBQ before
-        image, CafeTC after image, written outcome sign-off, and valid HTTPS on the CafeTC URL.</p>
-      <p class="mt-3">Thai case-study copy must be written and native-reviewed once the English
-        version is approved.</p>
-    </div>
+    <ol class="mt-12 grid gap-px bg-line-d sm:grid-cols-2 lg:grid-cols-3 reveal">
+        <li class="bg-ink p-6 sm:p-7">
+          <p class="u-caps text-dim-d">01</p>
+          <h3 class="mt-3 text-[length:var(--text-h3)]">
+            <a href="https://github.com/uvindev/rls-proof" target="_blank" rel="noopener noreferrer">rls-proof</a>
+          </h3>
+          <p class="mt-3 text-dim-d">ตรวจ migration ของ Supabase หาช่องโหว่สิทธิ์ระดับแถวก่อน merge</p>
+        </li>
+        <li class="bg-ink p-6 sm:p-7">
+          <p class="u-caps text-dim-d">02</p>
+          <h3 class="mt-3 text-[length:var(--text-h3)]">
+            <a href="https://github.com/uvindev/redirect-preflight" target="_blank" rel="noopener noreferrer">redirect-preflight</a>
+          </h3>
+          <p class="mt-3 text-dim-d">หาลูป เชน และการลดระดับ HTTPS ในแผนผัง redirect ก่อนขึ้นเซิร์ฟเวอร์</p>
+        </li>
+        <li class="bg-ink p-6 sm:p-7">
+          <p class="u-caps text-dim-d">03</p>
+          <h3 class="mt-3 text-[length:var(--text-h3)]">
+            <a href="https://github.com/uvindev/env-parity" target="_blank" rel="noopener noreferrer">env-parity</a>
+          </h3>
+          <p class="mt-3 text-dim-d">เทียบตัวแปรสภาพแวดล้อมที่โค้ดเรียกใช้ กับที่แต่ละสภาพแวดล้อมมีจริง</p>
+        </li>
+        <li class="bg-ink p-6 sm:p-7">
+          <p class="u-caps text-dim-d">04</p>
+          <h3 class="mt-3 text-[length:var(--text-h3)]">
+            <a href="https://github.com/uvindev/cron-overlap" target="_blank" rel="noopener noreferrer">cron-overlap</a>
+          </h3>
+          <p class="mt-3 text-dim-d">จำลองตาราง cron ทั้งชุด เพื่อดูงานที่ชนกันในนาทีเดียวกัน</p>
+        </li>
+        <li class="bg-ink p-6 sm:p-7">
+          <p class="u-caps text-dim-d">05</p>
+          <h3 class="mt-3 text-[length:var(--text-h3)]">
+            <a href="https://github.com/uvindev/import-dry-run" target="_blank" rel="noopener noreferrer">import-dry-run</a>
+          </h3>
+          <p class="mt-3 text-dim-d">ตรวจไฟล์ CSV กับสัญญาข้อมูลก่อนไฟล์จะเข้าระบบนำเข้าจริง</p>
+        </li>
+        <li class="bg-ink p-6 sm:p-7">
+          <p class="u-caps text-dim-d">06</p>
+          <h3 class="mt-3 text-[length:var(--text-h3)]">
+            <a href="https://github.com/uvindev/compose-permit" target="_blank" rel="noopener noreferrer">compose-permit</a>
+          </h3>
+          <p class="mt-3 text-dim-d">เทียบไฟล์ Docker Compose หาสิทธิ์พิเศษ การ mount socket และพอร์ตที่เปิดไว้</p>
+        </li>
+        <li class="bg-ink p-6 sm:p-7">
+          <p class="u-caps text-dim-d">07</p>
+          <h3 class="mt-3 text-[length:var(--text-h3)]">
+            <a href="https://github.com/uvindev/turnstile-proof" target="_blank" rel="noopener noreferrer">turnstile-proof</a>
+          </h3>
+          <p class="mt-3 text-dim-d">ตรวจการตั้งค่า Cloudflare Turnstile ว่าขาดการยืนยันฝั่งเซิร์ฟเวอร์หรือไม่</p>
+        </li>
+        <li class="bg-ink p-6 sm:p-7">
+          <p class="u-caps text-dim-d">08</p>
+          <h3 class="mt-3 text-[length:var(--text-h3)]">
+            <a href="https://github.com/uvindev/secret-clock" target="_blank" rel="noopener noreferrer">secret-clock</a>
+          </h3>
+          <p class="mt-3 text-dim-d">เปลี่ยนข้อมูลกำกับความลับเป็นคิวหมุนเวียน โดยไม่อ่านค่าความลับเลย</p>
+        </li>
+        <li class="bg-ink p-6 sm:p-7">
+          <p class="u-caps text-dim-d">09</p>
+          <h3 class="mt-3 text-[length:var(--text-h3)]">
+            <a href="https://github.com/uvindev/lock-scout" target="_blank" rel="noopener noreferrer">lock-scout</a>
+          </h3>
+          <p class="mt-3 text-dim-d">ตรวจการเปลี่ยนแปลง lockfile ของ Terraform โดยไม่ต้องดาวน์โหลดหรือรัน</p>
+        </li>
+        <li class="bg-ink p-6 sm:p-7">
+          <p class="u-caps text-dim-d">10</p>
+          <h3 class="mt-3 text-[length:var(--text-h3)]">
+            <a href="https://github.com/uvindev/aging-desk" target="_blank" rel="noopener noreferrer">aging-desk</a>
+          </h3>
+          <p class="mt-3 text-dim-d">เปลี่ยนไฟล์ CSV ใบแจ้งหนี้ค้างชำระ เป็นบัญชีอายุหนี้และคิวติดตาม</p>
+        </li>
+    </ol>
+
+    <p class="mt-8 text-dim-d reveal">
+      ผลงานของลูกค้าจะยังไม่เผยแพร่ จนกว่าธุรกิจนั้น ๆ จะอนุมัติข้อความ ภาพ
+      และผลลัพธ์เป็นลายลักษณ์อักษร
+    </p>
   </div>
 </section>
 

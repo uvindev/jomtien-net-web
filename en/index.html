@@ -349,21 +349,92 @@
   <div class="wrap py-20 sm:py-28">
     <div class="max-w-3xl">
       <p class="u-caps text-coast-lite reveal">03 — Work</p>
-      <h2 class="mt-5 text-[length:var(--text-h2)] reveal">Evidence, once it is approved.</h2>
+      <h2 class="mt-5 text-[length:var(--text-h2)] reveal">Published, and open to read.</h2>
+      <p class="mt-6 max-w-3xl text-[length:var(--text-lead)] text-dim-d reveal">
+        Ten open-source tools built and published by the engineer behind this site. Each one
+        checks something risky before it ships — a migration, a redirect map, a cron schedule —
+        and each runs entirely in your own browser, uploading nothing. Source is public, so you
+        can judge the work rather than take our word for it.
+      </p>
     </div>
 
-    <!-- BUILD SLOT — must be filled or deleted before launch.
-         scripts/verify-launch.sh fails while any .slot remains in en/ or th/. -->
-    <div class="mt-12 slot reveal">
-      <p class="text-paper">CASE STUDY SLOT — not customer-facing.</p>
-      <p class="mt-3">Blocked on: approved LT BBQ before image, approved CafeTC after image,
-        written owner sign-off on the outcome text, and valid HTTPS on the CafeTC URL
-        (the certificate was expired on inspection, 2026-08-31).</p>
-      <p class="mt-3">Web-application and AI case studies have no source material at all.
-        See assets-inbox/README.md sections 3, 4, and 5.</p>
-      <p class="mt-3 text-paper">No invented dashboard, stock mockup, or unapproved outcome
-        goes in this space.</p>
-    </div>
+    <ol class="mt-12 grid gap-px bg-line-d sm:grid-cols-2 lg:grid-cols-3 reveal">
+        <li class="bg-ink p-6 sm:p-7">
+          <p class="u-caps text-dim-d">01</p>
+          <h3 class="mt-3 text-[length:var(--text-h3)]">
+            <a href="https://github.com/uvindev/rls-proof" target="_blank" rel="noopener noreferrer">rls-proof</a>
+          </h3>
+          <p class="mt-3 text-dim-d">Reviews a Supabase migration for row-level-security holes before you merge it.</p>
+        </li>
+        <li class="bg-ink p-6 sm:p-7">
+          <p class="u-caps text-dim-d">02</p>
+          <h3 class="mt-3 text-[length:var(--text-h3)]">
+            <a href="https://github.com/uvindev/redirect-preflight" target="_blank" rel="noopener noreferrer">redirect-preflight</a>
+          </h3>
+          <p class="mt-3 text-dim-d">Finds loops, chains and HTTPS downgrades in a redirect map before it reaches a server.</p>
+        </li>
+        <li class="bg-ink p-6 sm:p-7">
+          <p class="u-caps text-dim-d">03</p>
+          <h3 class="mt-3 text-[length:var(--text-h3)]">
+            <a href="https://github.com/uvindev/env-parity" target="_blank" rel="noopener noreferrer">env-parity</a>
+          </h3>
+          <p class="mt-3 text-dim-d">Compares the environment variables your code reads against what each environment actually has.</p>
+        </li>
+        <li class="bg-ink p-6 sm:p-7">
+          <p class="u-caps text-dim-d">04</p>
+          <h3 class="mt-3 text-[length:var(--text-h3)]">
+            <a href="https://github.com/uvindev/cron-overlap" target="_blank" rel="noopener noreferrer">cron-overlap</a>
+          </h3>
+          <p class="mt-3 text-dim-d">Simulates a whole cron manifest to show jobs colliding in the same minute.</p>
+        </li>
+        <li class="bg-ink p-6 sm:p-7">
+          <p class="u-caps text-dim-d">05</p>
+          <h3 class="mt-3 text-[length:var(--text-h3)]">
+            <a href="https://github.com/uvindev/import-dry-run" target="_blank" rel="noopener noreferrer">import-dry-run</a>
+          </h3>
+          <p class="mt-3 text-dim-d">Checks a CSV against a typed contract before the file reaches a production importer.</p>
+        </li>
+        <li class="bg-ink p-6 sm:p-7">
+          <p class="u-caps text-dim-d">06</p>
+          <h3 class="mt-3 text-[length:var(--text-h3)]">
+            <a href="https://github.com/uvindev/compose-permit" target="_blank" rel="noopener noreferrer">compose-permit</a>
+          </h3>
+          <p class="mt-3 text-dim-d">Diffs a Docker Compose file for privileged mode, socket mounts and exposed ports.</p>
+        </li>
+        <li class="bg-ink p-6 sm:p-7">
+          <p class="u-caps text-dim-d">07</p>
+          <h3 class="mt-3 text-[length:var(--text-h3)]">
+            <a href="https://github.com/uvindev/turnstile-proof" target="_blank" rel="noopener noreferrer">turnstile-proof</a>
+          </h3>
+          <p class="mt-3 text-dim-d">Checks a Cloudflare Turnstile setup for missing server-side verification.</p>
+        </li>
+        <li class="bg-ink p-6 sm:p-7">
+          <p class="u-caps text-dim-d">08</p>
+          <h3 class="mt-3 text-[length:var(--text-h3)]">
+            <a href="https://github.com/uvindev/secret-clock" target="_blank" rel="noopener noreferrer">secret-clock</a>
+          </h3>
+          <p class="mt-3 text-dim-d">Turns secret metadata into a rotation queue, without ever reading a secret value.</p>
+        </li>
+        <li class="bg-ink p-6 sm:p-7">
+          <p class="u-caps text-dim-d">09</p>
+          <h3 class="mt-3 text-[length:var(--text-h3)]">
+            <a href="https://github.com/uvindev/lock-scout" target="_blank" rel="noopener noreferrer">lock-scout</a>
+          </h3>
+          <p class="mt-3 text-dim-d">Reviews Terraform lockfile changes without downloading or executing them.</p>
+        </li>
+        <li class="bg-ink p-6 sm:p-7">
+          <p class="u-caps text-dim-d">10</p>
+          <h3 class="mt-3 text-[length:var(--text-h3)]">
+            <a href="https://github.com/uvindev/aging-desk" target="_blank" rel="noopener noreferrer">aging-desk</a>
+          </h3>
+          <p class="mt-3 text-dim-d">Turns an open-invoice CSV into an aging ledger and a collection queue.</p>
+        </li>
+    </ol>
+
+    <p class="mt-8 text-dim-d reveal">
+      Client project case studies are held back until the businesses involved approve the copy,
+      the images and the outcomes in writing.
+    </p>
   </div>
 </section>
 
