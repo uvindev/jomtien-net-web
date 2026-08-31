@@ -16,3 +16,5 @@ playwright-report/
 # Client-confidential handoff. Contains unapproved commercial terms, contact
 # values, and an audit of the owner's existing site. Not ours to publish.
 instructions/
+
+deploy/

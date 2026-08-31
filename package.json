@@ -31,7 +31,8 @@
     "test": "vitest run",
     "test:e2e": "playwright test",
     "verify:lighthouse": "node scripts/check-lighthouse.mjs",
-    "verify:modes": "node scripts/check-zoom-contrast-modes.mjs"
+    "verify:modes": "node scripts/check-zoom-contrast-modes.mjs",
+    "deploy:bundle": "bash ./scripts/build-deploy.sh"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",

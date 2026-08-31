@@ -1,0 +1,115 @@
+# Apache configuration — Hostinger and any other shared Apache host.
+#
+# _headers, _redirects and vercel.json are Netlify/Cloudflare/Vercel formats
+# and Apache ignores all three. This file is what actually applies on
+# Hostinger, and it must stay in step with them. tests/site.test.ts asserts
+# that every security header and every legacy redirect appears in both places.
+#
+# Upload this to public_html/ alongside index.html.
+#
+# Built by Uvin Vindula — iamuvin.com
+
+# ── Default document ────────────────────────────────────────────────────────
+DirectoryIndex index.html
+Options -Indexes
+
+ErrorDocument 404 /404.html
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  # ── Force HTTPS ───────────────────────────────────────────────────────────
+  # Hostinger terminates TLS upstream, so test the forwarded header too.
+  RewriteCond %{HTTPS} !=on
+  RewriteCond %{HTTP:X-Forwarded-Proto} !https
+  RewriteRule ^(.*)$ https://%{HTTP_HOST}/$1 [R=301,L]
+
+  # ── Legacy Joomla URLs ────────────────────────────────────────────────────
+  # One hop each, no chains. Mirrors _redirects and vercel.json.
+  RewriteRule ^index\.php/product\.html/?$  /en/#build   [R=301,L,NE]
+  RewriteRule ^index\.php/contact\.html/?$  /en/#contact [R=301,L,NE]
+  RewriteRule ^index\.php/?$                /en/         [R=301,L]
+
+  # Anything else still under /index.php goes to the English home rather than
+  # 404-ing, since the old site served every page from that prefix.
+  RewriteRule ^index\.php/.*$               /en/         [R=301,L]
+</IfModule>
+
+# ── Security headers ────────────────────────────────────────────────────────
+<IfModule mod_headers.c>
+  # The CSP is this tight because the site loads nothing external: no CDN,
+  # no font host, no analytics, no map embed. Adding any of those means
+  # naming the origin here, never relaxing a directive to a wildcard.
+  Header always set Content-Security-Policy "default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'self'; form-action 'self'; frame-ancestors 'none'; base-uri 'none'; object-src 'none'; upgrade-insecure-requests"
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set X-Frame-Options "DENY"
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+  Header always set Permissions-Policy "geolocation=(), camera=(), microphone=(), payment=(), usb=(), interest-cohort=()"
+  Header always set Cross-Origin-Opener-Policy "same-origin"
+  Header always set Cross-Origin-Resource-Policy "same-origin"
+  Header always set X-Built-By "Uvin Vindula — iamuvin.com"
+
+  # Enable ONLY once HTTPS is confirmed on the apex and every subdomain in
+  # use. A cached max-age cannot be withdrawn from a browser that has it.
+  # Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains"
+
+  # Hashed font and image filenames never change contents.
+  <FilesMatch "\.(woff2|woff|ttf|otf)$">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </FilesMatch>
+  <FilesMatch "\.(avif|webp|png|jpg|jpeg|svg|ico)$">
+    Header set Cache-Control "public, max-age=604800"
+  </FilesMatch>
+  <FilesMatch "\.(css|js)$">
+    Header set Cache-Control "public, max-age=3600"
+  </FilesMatch>
+  <FilesMatch "\.html$">
+    Header set Cache-Control "public, max-age=0, must-revalidate"
+  </FilesMatch>
+</IfModule>
+
+# ── MIME types ──────────────────────────────────────────────────────────────
+# Older Apache builds do not know AVIF. Served with the wrong Content-Type the
+# hero artwork silently fails to paint, which is exactly the kind of bug that
+# looks like a CSS problem for an hour.
+<IfModule mod_mime.c>
+  AddType image/avif                     .avif
+  AddType image/webp                     .webp
+  AddType font/woff2                     .woff2
+  AddType font/woff                      .woff
+  AddType text/plain                     .txt
+  AddType application/xml                .xml
+  AddType application/manifest+json      .webmanifest
+  AddCharset UTF-8 .html .css .js .txt .xml
+</IfModule>
+
+# ── Compression ─────────────────────────────────────────────────────────────
+# WOFF2 and AVIF are already compressed; re-compressing wastes CPU.
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/plain text/css text/xml
+  AddOutputFilterByType DEFLATE application/javascript application/x-javascript
+  AddOutputFilterByType DEFLATE application/json application/xml
+  AddOutputFilterByType DEFLATE image/svg+xml
+</IfModule>
+
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType font/woff2      "access plus 1 year"
+  ExpiresByType image/avif      "access plus 1 week"
+  ExpiresByType image/webp      "access plus 1 week"
+  ExpiresByType image/png       "access plus 1 week"
+  ExpiresByType text/css        "access plus 1 hour"
+  ExpiresByType application/javascript "access plus 1 hour"
+  ExpiresByType text/html       "access plus 0 seconds"
+</IfModule>
+
+# ── Do not serve development files ──────────────────────────────────────────
+# Belt and braces: the deploy bundle should not contain any of these, but a
+# hand-dragged upload might.
+<FilesMatch "(^\.|package(-lock)?\.json$|tsconfig\.json$|\.ts$|\.mjs$|\.map$|\.sh$|\.py$)">
+  Require all denied
+</FilesMatch>
+
+<IfModule mod_rewrite.c>
+  RewriteRule ^(node_modules|src|tests|e2e|scripts|docs|assets|assets-inbox|instructions)/ - [F,L]
+</IfModule>

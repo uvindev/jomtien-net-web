@@ -89,12 +89,44 @@ Renders the two social cards and processes anything dropped into
 - **Evidence is never generated.** No case-study screenshots, client logos,
   badges, awards, or headshots. That line is in the prompt sheet too.
 
+## Deploying to Hostinger
+
+```bash
+npm run deploy:bundle
+```
+
+Builds fresh and writes `deploy/` — **upload the contents of that folder into
+`public_html/`, not the folder itself.** 37 files, ~1.3 MB.
+
+The bundle script verifies before it exits: every required file present, no
+`node_modules/` `src/` `tests/` `scripts/` `docs/` or config leaking into a
+public web root, and every `/dist/` and `/public/` reference in the HTML
+resolving inside the bundle.
+
+**The repository is not the deployable artefact.** `dist/` is gitignored build
+output the site cannot run without — uploading a clone gives you an unstyled
+page with no JavaScript. Always deploy from `npm run deploy:bundle`.
+
+After upload:
+
+1. Confirm `.htaccess` uploaded (FTP clients hide dotfiles by default).
+2. Load `/en/`, `/th/`, `/en/estimate/`, and a deliberately wrong URL for the 404.
+3. `curl -sI https://jomtien.net/ | grep -i 'content-security-policy\|x-built-by'`
+4. `curl -sI https://jomtien.net/index.php` — expect `301` to `/en/`.
+5. Only once HTTPS is confirmed on the apex **and every subdomain**, uncomment
+   the HSTS line in `.htaccess`. A cached `max-age` cannot be withdrawn.
+
 ## Security headers
 
-`_headers` (Netlify / Cloudflare Pages), `_redirects`, and `vercel.json` carry
-the same set: a strict CSP, `nosniff`, `DENY` framing, `Referrer-Policy`,
+`.htaccess` (Apache / Hostinger), `_headers` (Netlify / Cloudflare Pages),
+`_redirects`, and `vercel.json` all carry the same set: a strict CSP, `nosniff`, `DENY` framing, `Referrer-Policy`,
 `Permissions-Policy`, COOP/CORP, the `X-Built-By` signature header, cache
 policy, and the three legacy Joomla redirects.
+
+Apache ignores `_headers`, `_redirects` and `vercel.json` completely, so
+`.htaccess` is the only one that applies on Hostinger. Unit tests assert the
+CSP string is byte-identical across them and that every legacy redirect exists
+in both — drift there would ship a site with no security headers at all.
 
 The CSP is `default-src 'self'` with no exceptions because the site genuinely
 loads nothing external — no CDN, no font host, no analytics, no map embed.

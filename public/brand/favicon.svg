@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Jomtien Network">
+  <!-- Coastline mark. Ink ground so it reads against light and dark browser
+       chrome alike. Built by Uvin Vindula — iamuvin.com -->
+  <rect width="64" height="64" fill="#06171f"/>
+  <path d="M6 44c9-2 11-18 22-18s14 12 22 8" fill="none" stroke="#6cc6f2" stroke-width="4.5" stroke-linecap="square"/>
+  <path d="M6 54h52" stroke="#1b3a47" stroke-width="4.5"/>
+  <path d="M6 54h20" stroke="#9edde8" stroke-width="4.5"/>
+  <rect x="39" y="13" width="11" height="11" fill="#f2445b"/>
+</svg>

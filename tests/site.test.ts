@@ -273,4 +273,49 @@ describe("security headers", () => {
   it("HSTS stays commented until HTTPS is proven", () => {
     expect(headers).toMatch(/#\s*Strict-Transport-Security/);
   });
+
+  // Hostinger runs Apache, which ignores _headers, _redirects and vercel.json
+  // entirely. .htaccess is the only one that applies there, so it must carry
+  // the same policy — a drift here ships a site with no security headers.
+  const htaccess = read(".htaccess");
+
+  it.each(REQUIRED)(".htaccess sets %s", (key) => {
+    expect(htaccess).toContain(key);
+  });
+
+  it(".htaccess CSP matches the Netlify/Cloudflare one exactly", () => {
+    const fromHeaders = headers.match(/Content-Security-Policy: ([^\n]+)/)?.[1]?.trim();
+    const fromHtaccess = htaccess
+      .match(/Header always set Content-Security-Policy "([^"]+)"/)?.[1]
+      ?.trim();
+    expect(fromHeaders).toBeTruthy();
+    expect(fromHtaccess).toBe(fromHeaders);
+  });
+
+  it(".htaccess carries every legacy redirect", () => {
+    for (const url of ["index\\.php/product\\.html", "index\\.php/contact\\.html"]) {
+      expect(htaccess, `htaccess missing redirect for ${url}`).toContain(url);
+    }
+    expect(htaccess).toMatch(/RewriteRule \^index\\\.php/);
+  });
+
+  it(".htaccess keeps HSTS commented too", () => {
+    expect(htaccess).toMatch(/#\s*Header always set Strict-Transport-Security/);
+  });
+
+  it(".htaccess declares AVIF and WOFF2 mime types", () => {
+    // Served with the wrong Content-Type these fail silently and look like a
+    // CSS bug. Older Apache builds do not know AVIF.
+    expect(htaccess).toMatch(/AddType\s+image\/avif\s+\.avif/);
+    expect(htaccess).toMatch(/AddType\s+font\/woff2\s+\.woff2/);
+  });
+
+  it("a 404 document exists and is wired up", () => {
+    expect(htaccess).toContain("ErrorDocument 404 /404.html");
+    expect(existsSync("404.html")).toBe(true);
+    const page = read("404.html");
+    expect(page).toContain('href="/en/"');
+    expect(page).toContain('href="/th/"');
+    expect(page).toContain('content="noindex"');
+  });
 });
