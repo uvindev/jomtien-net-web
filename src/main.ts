@@ -27,6 +27,80 @@ function signature(project?: string): void {
   );
 }
 
+
+/* ── Copy ───────────────────────────────────────────────────────────────────
+   Every string this file writes into the page. Keyed by document language, so
+   a Thai visitor is corrected in Thai and gets their scope summary back under
+   Thai headings. Previously all of this rendered in English on the Thai pages,
+   which was the largest parity defect on the site.
+
+   Thai here is developer-written and NOT native-reviewed — see
+   docs/THAI-REVIEW.md. It ships under the same gate as the page copy.
+   ------------------------------------------------------------------------- */
+
+interface Copy {
+  readonly name: string;
+  readonly email: string;
+  readonly projectType: string;
+  readonly message: string;
+  readonly consent: string;
+  readonly needsAttention: (n: number) => string;
+  readonly enquiryNotSent: string;
+  readonly answerThisStep: string;
+  readonly scopeIncomplete: string;
+  readonly scopeNotSent: string;
+  readonly rows: readonly [string, string, string, string, string, string];
+  readonly stepOf: (n: number, total: number, name: string) => string;
+  readonly notAnswered: string;
+  readonly nothingSelected: string;
+}
+
+const COPY: Readonly<Record<"en" | "th", Copy>> = {
+  en: {
+    name: "Enter the name we should reply to.",
+    email: "Enter an email address we can reach you on.",
+    projectType: "Choose the closest project type. We will correct it if it is wrong.",
+    message: "Tell us what the business needs to do — at least a sentence or two.",
+    consent: "We need your agreement before we can store these details to reply.",
+    needsAttention: (n) =>
+      `${n} ${n === 1 ? "field needs" : "fields need"} attention. Nothing you typed has been lost.`,
+    enquiryNotSent:
+      "Message delivery is not connected on this preview yet. Nothing was sent. Please email info@jomtien.net and we will pick it up from there.",
+    answerThisStep: "Answer this one before moving on.",
+    scopeIncomplete:
+      "Name, email, a description, and your agreement are needed before we can reply. Nothing you typed has been lost.",
+    scopeNotSent:
+      "Delivery is not connected on this preview, so nothing was sent. Your summary is below — copy it into an email to info@jomtien.net and we will pick it up.",
+    rows: ["Product", "Today", "Must do", "Content", "Timing", "In your words"],
+    stepOf: (n, total, name) => `Step ${n} of ${total} — ${name}`,
+    notAnswered: "Not answered",
+    nothingSelected: "Nothing selected",
+  },
+  th: {
+    name: "กรอกชื่อที่ให้เราติดต่อกลับ",
+    email: "กรอกอีเมลที่เราติดต่อคุณได้",
+    projectType: "เลือกประเภทงานที่ใกล้เคียงที่สุด ถ้าเลือกผิดเราจะแก้ให้",
+    message: "บอกเราว่าธุรกิจของคุณต้องทำอะไรได้บ้าง อย่างน้อยหนึ่งถึงสองประโยค",
+    consent: "เราต้องได้รับความยินยอมจากคุณก่อน จึงจะเก็บข้อมูลนี้ไว้ติดต่อกลับได้",
+    needsAttention: (n) =>
+      `มี ${n} ช่องที่ต้องแก้ไข ข้อมูลที่คุณกรอกไว้ยังอยู่ครบ`,
+    enquiryNotSent:
+      "ระบบส่งข้อความยังไม่ได้เชื่อมต่อในเวอร์ชันตัวอย่างนี้ ข้อความยังไม่ถูกส่ง กรุณาส่งอีเมลมาที่ info@jomtien.net แล้วเราจะรับเรื่องต่อ",
+    answerThisStep: "ตอบข้อนี้ก่อนไปต่อ",
+    scopeIncomplete:
+      "ต้องมีชื่อ อีเมล คำอธิบาย และความยินยอมของคุณ ก่อนที่เราจะติดต่อกลับได้ ข้อมูลที่คุณกรอกไว้ยังอยู่ครบ",
+    scopeNotSent:
+      "ระบบส่งยังไม่ได้เชื่อมต่อในเวอร์ชันตัวอย่างนี้ ข้อมูลจึงยังไม่ถูกส่ง สรุปของคุณอยู่ด้านล่าง คัดลอกแล้วส่งอีเมลมาที่ info@jomtien.net แล้วเราจะรับเรื่องต่อ",
+    rows: ["ประเภทงาน", "ตอนนี้มีอะไร", "ต้องทำอะไรได้", "เนื้อหา", "กรอบเวลา", "ในคำพูดของคุณ"],
+    stepOf: (n, total, name) => `ข้อ ${n} จาก ${total} — ${name}`,
+    notAnswered: "ไม่ได้ตอบ",
+    nothingSelected: "ไม่ได้เลือก",
+  },
+};
+
+/** Reads the locale off <html lang>. Anything unknown falls back to English. */
+const t: Copy = COPY[document.documentElement.lang === "th" ? "th" : "en"];
+
 /* ── Motion ─────────────────────────────────────────────────────────────── */
 
 const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -107,7 +181,8 @@ function initProgress(): void {
   const update = (): void => {
     queued = false;
     const max = document.documentElement.scrollHeight - window.innerHeight;
-    bar.style.setProperty("--progress", String(max > 0 ? window.scrollY / max : 0));
+    const p = max > 0 ? window.scrollY / max : 0;
+    bar.style.setProperty("--progress", String(Math.min(1, Math.max(0, p))));
   };
   window.addEventListener(
     "scroll",
@@ -213,7 +288,7 @@ function initRail(): void {
   const update = (): void => {
     queued = false;
     const max = document.documentElement.scrollHeight - window.innerHeight;
-    const progress = max > 0 ? window.scrollY / max : 0;
+    const progress = Math.min(1, Math.max(0, max > 0 ? window.scrollY / max : 0));
     const active = Math.floor(progress * marks.length);
     marks.forEach((mark, i) => {
       mark.dataset.on = String(i <= active);
@@ -285,31 +360,31 @@ const RULES: readonly Rule[] = [
   {
     field: "f-name",
     error: "e-name",
-    message: "Enter the name we should reply to.",
+    message: t.name,
     valid: (v) => v.trim().length > 0,
   },
   {
     field: "f-email",
     error: "e-email",
-    message: "Enter an email address we can reach you on.",
+    message: t.email,
     valid: (v) => EMAIL.test(v.trim()),
   },
   {
     field: "f-type",
     error: "e-type",
-    message: "Choose the closest project type. We will correct it if it is wrong.",
+    message: t.projectType,
     valid: (v) => v !== "",
   },
   {
     field: "f-msg",
     error: "e-msg",
-    message: "Tell us what the business needs to do — at least a sentence or two.",
+    message: t.message,
     valid: (v) => v.trim().length >= 20,
   },
   {
     field: "f-consent",
     error: "e-consent",
-    message: "We need your agreement before we can store these details to reply.",
+    message: t.consent,
     valid: (_v, form) => {
       const box = form.querySelector<HTMLInputElement>("#f-consent");
       return box?.checked === true;
@@ -334,25 +409,34 @@ function initEnquiry(): void {
   form.addEventListener("submit", (event) => {
     event.preventDefault();
 
-    // Bots fill every field they find. A filled honeypot is silently dropped.
+    // Bots fill every field they find. A filled honeypot is not delivered —
+    // but it must not look dead either: a password manager can fill it, and a
+    // real person would otherwise get a Send button that does nothing.
     const trap = form.querySelector<HTMLInputElement>("#f-website2");
-    if (trap && trap.value !== "") return;
+    if (trap && trap.value !== "") {
+      status.textContent = t.enquiryNotSent;
+      return;
+    }
 
     const failures: Rule[] = [];
     for (const rule of RULES) {
       const input = form.querySelector<HTMLInputElement | HTMLSelectElement>(
         `#${rule.field}`
       );
-      const ok = rule.valid(input?.value ?? "", form);
+      if (!input) {
+        // Silently unsubmittable is the worst outcome: the visitor would see
+        // "1 field needs attention" with no field marked, forever.
+        console.warn(`enquiry form: missing #${rule.field}`);
+        continue;
+      }
+      const ok = rule.valid(input.value, form);
       showError(rule, form, !ok);
       if (!ok) failures.push(rule);
     }
 
     const first = failures[0];
     if (first) {
-      status.textContent = `${failures.length} ${
-        failures.length === 1 ? "field needs" : "fields need"
-      } attention. Nothing you typed has been lost.`;
+      status.textContent = t.needsAttention(failures.length);
       form.querySelector<HTMLElement>(`#${first.field}`)?.focus();
       return;
     }
@@ -360,8 +444,7 @@ function initEnquiry(): void {
     // No delivery provider is configured. Saying "sent" here would be a lie,
     // so the form reports the real state and hands over a working channel.
     // Wire CONTACT_PROVIDER per ENGINEERING-GUIDE.md, then replace this branch.
-    status.textContent =
-      "Message delivery is not connected on this preview yet. Nothing was sent. Please email info@jomtien.net and we will pick it up from there.";
+    status.textContent = t.enquiryNotSent;
   });
 }
 
@@ -377,14 +460,14 @@ function text(data: FormData, key: string): string {
 function summaryRows(form: HTMLFormElement): readonly (readonly [string, string])[] {
   const data = new FormData(form);
   const needs = data.getAll("needs").filter((v) => typeof v === "string");
-  const or = (key: string): string => text(data, key) || "Not answered";
+  const or = (key: string): string => text(data, key) || t.notAnswered;
   return [
-    ["Product", or("product")],
-    ["Today", or("existing")],
-    ["Must do", needs.length > 0 ? needs.join(", ") : "Nothing selected"],
-    ["Content", or("content")],
-    ["Timing", or("timing")],
-    ["In your words", text(data, "message")],
+    [t.rows[0], or("product")],
+    [t.rows[1], or("existing")],
+    [t.rows[2], needs.length > 0 ? needs.join(", ") : t.nothingSelected],
+    [t.rows[3], or("content")],
+    [t.rows[4], or("timing")],
+    [t.rows[5], text(data, "message")],
   ];
 }
 
@@ -451,21 +534,44 @@ function stepValid(step: HTMLFieldSetElement): boolean {
   return required.every((el) => {
     if (el instanceof HTMLInputElement && el.type === "radio") return true;
     if (el instanceof HTMLInputElement && el.type === "checkbox") return el.checked;
-    return el.value.trim().length >= (Number(el.getAttribute("minlength")) || 1);
+    // `type="email"` never fires on a novalidate form, and #s-email carries no
+    // minlength — so without this branch a single character passed.
+    if (el instanceof HTMLInputElement && el.type === "email") {
+      return EMAIL.test(el.value.trim());
+    }
+    const min = Number(el.getAttribute("minlength"));
+    return el.value.trim().length >= (Number.isFinite(min) && min > 0 ? min : 1);
   });
 }
 
-function renderScope(ui: ScopeUi, at: number): void {
+function renderScope(ui: ScopeUi, at: number, moveFocus = false): void {
   ui.steps.forEach((step, i) => {
     step.hidden = i !== at;
   });
   ui.back.hidden = at === 0;
   ui.next.hidden = at === ui.steps.length - 1;
   ui.send.hidden = at !== ui.steps.length - 1;
+  ui.send.disabled = ui.send.hidden;
   ui.bar.style.width = `${((at + 1) / ui.steps.length) * 100}%`;
+  ui.bar.setAttribute("aria-valuenow", String(at + 1));
   ui.now.textContent = String(at + 1);
-  ui.name.textContent = ui.steps[at]?.dataset.name ?? "";
-  ui.status.textContent = "";
+
+  const step = ui.steps[at];
+  const name = step?.dataset.name ?? "";
+  ui.name.textContent = name;
+
+  // Announce the change. Without this the live region was cleared on every
+  // step and a screen-reader user heard nothing at all after pressing Next.
+  ui.status.textContent = t.stepOf(at + 1, ui.steps.length, name);
+
+  // Move focus into the new step. renderScope hides the button that was just
+  // activated, so without this focus falls to <body> and a keyboard user has
+  // to tab from the top of the document. Focusing the fieldset also reads its
+  // legend, which is the question they are now on.
+  if (moveFocus && step) {
+    step.setAttribute("tabindex", "-1");
+    step.focus({ preventScroll: true });
+  }
 }
 
 function bindScopeNav(ui: ScopeUi, state: { at: number }): void {
@@ -473,12 +579,12 @@ function bindScopeNav(ui: ScopeUi, state: { at: number }): void {
     const step = ui.steps[state.at];
     if (!step) return;
     if (!stepValid(step)) {
-      ui.status.textContent = "Answer this one before moving on.";
+      ui.status.textContent = t.answerThisStep;
       step.querySelector<HTMLElement>("input, textarea")?.focus();
       return;
     }
     state.at = Math.min(state.at + 1, ui.steps.length - 1);
-    renderScope(ui, state.at);
+    renderScope(ui, state.at, true);
     ui.steps[state.at]?.scrollIntoView({
       block: "nearest",
       behavior: reducedMotion.matches ? "auto" : "smooth",
@@ -487,8 +593,50 @@ function bindScopeNav(ui: ScopeUi, state: { at: number }): void {
 
   ui.back.addEventListener("click", () => {
     state.at = Math.max(state.at - 1, 0);
-    renderScope(ui, state.at);
+    renderScope(ui, state.at, true);
   });
+}
+
+/** Step 6 carries real fields, so it gets the same per-field errors the
+ *  enquiry form has. The #s-e-* spans existed in the markup but nothing ever
+ *  wrote to them: a failed submit named four requirements at once with no
+ *  invalid state, no error text and no focus move. */
+const SCOPE_RULES: readonly Rule[] = [
+  { field: "s-name", error: "s-e-name", message: COPY.en.name, valid: (v) => v.trim().length > 0 },
+  { field: "s-email", error: "s-e-email", message: COPY.en.email, valid: (v) => EMAIL.test(v.trim()) },
+  { field: "s-msg", error: "s-e-msg", message: COPY.en.message, valid: (v) => v.trim().length >= 20 },
+  {
+    field: "s-consent",
+    error: "s-e-consent",
+    message: COPY.en.consent,
+    valid: (_v, form) => form.querySelector<HTMLInputElement>("#s-consent")?.checked === true,
+  },
+];
+
+/** Localised at call time so the Thai page shows Thai errors. */
+function scopeRules(): readonly Rule[] {
+  const msg: Record<string, string> = {
+    "s-name": t.name, "s-email": t.email, "s-msg": t.message, "s-consent": t.consent,
+  };
+  return SCOPE_RULES.map((r) => ({ ...r, message: msg[r.field] ?? r.message }));
+}
+
+/** Runs the final step's per-field validation. Returns false once it has
+ *  rendered the errors, marked the fields invalid and moved focus. */
+function scopeFieldsValid(ui: ScopeUi): boolean {
+  const failed: Rule[] = [];
+  for (const rule of scopeRules()) {
+    const input = ui.form.querySelector<HTMLInputElement>(`#${rule.field}`);
+    if (!input) continue;
+    const ok = rule.valid(input.value, ui.form);
+    showError(rule, ui.form, !ok);
+    if (!ok) failed.push(rule);
+  }
+  const first = failed[0];
+  if (!first) return true;
+  ui.status.textContent = t.needsAttention(failed.length);
+  ui.form.querySelector<HTMLElement>(`#${first.field}`)?.focus();
+  return false;
 }
 
 function bindScopeSubmit(ui: ScopeUi, state: { at: number }): void {
@@ -496,12 +644,28 @@ function bindScopeSubmit(ui: ScopeUi, state: { at: number }): void {
     event.preventDefault();
 
     const trap = ui.form.querySelector<HTMLInputElement>("#s-trap");
-    if (trap && trap.value !== "") return;
+    if (trap && trap.value !== "") {
+      ui.status.textContent = t.scopeNotSent;
+      return;
+    }
 
-    const step = ui.steps[state.at];
-    if (step && !stepValid(step)) {
+    // `hidden` does not suppress implicit submission: Enter on any control
+    // fired this from step 1, and only step 1 was checked.
+    if (state.at !== ui.steps.length - 1) {
+      ui.status.textContent = t.answerThisStep;
+      return;
+    }
+
+    // Field-level errors on the final step, matching the enquiry form.
+    if (!scopeFieldsValid(ui)) return;
+
+    const firstBad = ui.steps.findIndex((step) => !stepValid(step));
+    if (firstBad !== -1) {
+      state.at = firstBad;
+      renderScope(ui, firstBad, true);
       ui.status.textContent =
-        "Name, email, a description, and your agreement are needed before we can reply. Nothing you typed has been lost.";
+        firstBad === ui.steps.length - 1 ? t.scopeIncomplete : t.answerThisStep;
+      ui.steps[firstBad]?.querySelector<HTMLElement>("input, textarea")?.focus();
       return;
     }
 
@@ -512,8 +676,7 @@ function bindScopeSubmit(ui: ScopeUi, state: { at: number }): void {
     }
 
     // No delivery provider configured — see ENGINEERING-GUIDE.md line 124.
-    ui.status.textContent =
-      "Delivery is not connected on this preview, so nothing was sent. Your summary is below — copy it into an email to info@jomtien.net and we will pick it up.";
+    ui.status.textContent = t.scopeNotSent;
     ui.summary?.scrollIntoView({
       block: "start",
       behavior: reducedMotion.matches ? "auto" : "smooth",

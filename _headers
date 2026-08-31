@@ -16,7 +16,7 @@
   Permissions-Policy: geolocation=(), camera=(), microphone=(), payment=(), usb=(), interest-cohort=()
   Cross-Origin-Opener-Policy: same-origin
   Cross-Origin-Resource-Policy: same-origin
-  X-Built-By: Uvin Vindula — iamuvin.com
+  X-Built-By: Uvin Vindula - iamuvin.com
 
 # Enable only once HTTPS is confirmed working on the apex and every subdomain
 # in use. Turning this on before that locks visitors out of anything still

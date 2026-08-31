@@ -49,6 +49,7 @@ describe("assets referenced actually exist", () => {
 
   it("every artwork layer resolves to a built file", () => {
     const images = all(css, /url\("(\/public\/images\/[^"]+)"\)/g);
+    expect(images.length, "no image references matched — has the CSS changed?").toBeGreaterThan(0);
     for (const i of images) expect(existsSync(`.${i}`), `missing ${i}`).toBe(true);
   });
 
@@ -63,12 +64,26 @@ describe("assets referenced actually exist", () => {
 
 describe("locale parity", () => {
   it.each(LOCALE_PAIRS)("%s and %s expose the same sections", (a, b) => {
+    // Compare ids where they exist and raw count everywhere — comparing ids
+    // alone let the estimate pair pass on [] === [], since those pages carry
+    // no section ids at all.
     const ids = (p: string) => all(read(p), /<section id="([^"]+)"/g).sort();
+    const count = (p: string) => (read(p).match(/<section\b/g) ?? []).length;
+
+    expect(count(a), `${a} has no sections`).toBeGreaterThan(0);
+    expect(count(b)).toBe(count(a));
     expect(ids(b)).toEqual(ids(a));
   });
 
+  it("the landing pages carry addressable section ids", () => {
+    const ids = (p: string) => all(read(p), /<section id="([^"]+)"/g).sort();
+    expect(ids("en/index.html").length).toBe(8);
+    expect(ids("th/index.html")).toEqual(ids("en/index.html"));
+  });
+
   it("the enquiry form offers identical project-type values", () => {
-    const values = (p: string) => all(read(p), /<option value="([^"]+)">/g).sort();
+    const values = (p: string) => all(read(p), /<option value="([^"]+)"/g).sort();
+    expect(values("en/index.html").length).toBeGreaterThanOrEqual(9);
     expect(values("th/index.html")).toEqual(values("en/index.html"));
   });
 
@@ -153,7 +168,7 @@ describe("search metadata", () => {
       const src = read(page);
       if (src.includes('content="noindex"')) continue;
       if (!src.includes("og:type")) continue;
-      expect(src, `${page} has og tags but no og:image`).toContain("og:image");
+      expect(src, `${page} has og tags but no og:image`).toMatch(/property="og:image" content=/);
     }
   });
 });
@@ -199,7 +214,10 @@ describe("IAMUVIN signature", () => {
   it("the attribution line uses an em dash, never a hyphen", () => {
     for (const page of [...PAGES, "humans.txt", "README.md"]) {
       const src = read(page);
-      expect(src, `${page} uses a hyphen in the credit`).not.toMatch(/Built by Uvin Vindula\s*-\s/);
+      const text = src.replace(/<[^>]+>/g, "");
+      expect(text, `${page} uses a hyphen or en dash in the credit`).not.toMatch(
+        /Built by\s+Uvin Vindula\s*[-–]/
+      );
     }
   });
 
@@ -220,7 +238,7 @@ describe("content honesty", () => {
   it.each(PAGES)("%s renders no THB figure", (page) => {
     // Strip comments — developer notes may reference the unapproved price.
     const body = read(page).replace(/<!--[\s\S]*?-->/g, "");
-    expect(body).not.toMatch(/\d[\d,]*\s*(THB|บาท)/);
+    expect(body).not.toMatch(/฿|\bbaht\b|\d[\d,]*\s*(THB|บาท)/i);
   });
 
   it.each(PAGES)("%s carries no unverified marker in rendered text", (page) => {

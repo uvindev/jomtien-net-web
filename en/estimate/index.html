@@ -100,10 +100,10 @@
         <p id="stepName" class="u-caps text-dim-l">Product</p>
       </div>
       <div class="mt-3 h-1 w-full bg-line-l" role="presentation">
-        <div id="stepBar" class="h-1 bg-signal-bright transition-[width] duration-300" style="width:16.6%"></div>
+        <div id="stepBar" class="step-bar h-1 bg-signal-bright transition-[width] duration-300 motion-reduce:transition-none" role="progressbar" aria-label="Scoping questions progress" aria-valuemin="1" aria-valuemax="6" aria-valuenow="1"></div>
       </div>
 
-      <form id="scope" class="mt-12" novalidate>
+      <form id="scope" class="mt-12" method="post" novalidate>
 
         <!-- ── 1 ────────────────────────────────────────────────────────── -->
         <fieldset class="scope-step" data-step="1" data-name="Product">
@@ -188,12 +188,12 @@
             <div class="grid gap-5 sm:grid-cols-2">
               <p class="grid gap-2">
                 <label for="s-name" class="u-caps text-dim-l">Name <span class="text-signal" aria-hidden="true">*</span></label>
-                <input class="field" id="s-name" name="name" type="text" required maxlength="120" autocomplete="name" />
+                <input class="field" id="s-name" name="name" type="text" required maxlength="120" autocomplete="name" aria-describedby="s-e-name" />
                 <span id="s-e-name" class="text-sm text-signal" hidden></span>
               </p>
               <p class="grid gap-2">
                 <label for="s-email" class="u-caps text-dim-l">Email <span class="text-signal" aria-hidden="true">*</span></label>
-                <input class="field" id="s-email" name="email" type="email" required maxlength="180" autocomplete="email" />
+                <input class="field" id="s-email" name="email" type="email" required maxlength="180" autocomplete="email" aria-describedby="s-e-email" />
                 <span id="s-e-email" class="text-sm text-signal" hidden></span>
               </p>
             </div>
@@ -203,7 +203,7 @@
             </p>
             <p class="grid gap-2">
               <label for="s-msg" class="u-caps text-dim-l">What is the problem? <span class="text-signal" aria-hidden="true">*</span></label>
-              <textarea class="field" id="s-msg" name="message" rows="5" required minlength="20" maxlength="4000"></textarea>
+              <textarea class="field" id="s-msg" name="message" rows="5" required minlength="20" maxlength="4000" aria-describedby="s-e-msg"></textarea>
               <span id="s-e-msg" class="text-sm text-signal" hidden></span>
             </p>
 
@@ -213,7 +213,7 @@
             </p>
 
             <p class="flex items-start gap-3">
-              <input class="mt-1 size-5 shrink-0" id="s-consent" name="consent" type="checkbox" required />
+              <input class="mt-1 size-5 shrink-0" id="s-consent" name="consent" type="checkbox" required aria-describedby="s-e-consent" />
               <label for="s-consent" class="text-sm text-dim-l">
                 I agree that Jomtien Network may use these details to reply.
                 <a href="/en/privacy/">Privacy notice</a>.

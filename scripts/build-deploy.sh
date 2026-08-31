@@ -32,6 +32,11 @@ echo "  copied pages, dist, public, root files, .htaccess"
 # 3. Nothing that is not runtime.
 find "$OUT" -name ".DS_Store" -delete
 find "$OUT" -name "*.map" -delete          # source maps are for local debugging
+# The map is gone but the comment pointing at it is not, so DevTools requests
+# it and gets a 403 from the .map FilesMatch rule.
+if [ -f "$OUT/dist/main.js" ]; then
+  sed -i "" "/^\/\/# sourceMappingURL=/d" "$OUT/dist/main.js"
+fi
 rm -rf "$OUT/public/fonts/README.txt"      # internal note; licence stays
 echo "  stripped source maps and dev files"
 

@@ -115,16 +115,25 @@ test.describe("enquiry form", () => {
     await expect(status).not.toContainText(/thank you|we'll be in touch|successfully/i);
   });
 
-  test("a filled honeypot is silently dropped", async ({ page }) => {
+  test("a filled honeypot short-circuits before validation, without going dead", async ({ page }) => {
+    // Deliberately leave #f-email empty. If the honeypot check ever moved
+    // below the RULES loop, validation would run first and mark the email
+    // field invalid — so this asserts the ordering, not just the outcome.
     await page.locator("#f-name").fill("Bot");
-    await page.locator("#f-email").fill("bot@example.com");
-    await page.locator("#f-type").selectOption("new-website");
     await page.locator("#f-msg").fill("Buy cheap watches from our excellent website today.");
-    await page.locator("#f-consent").check();
     await page.locator("#f-website2").fill("http://spam.example");
     await page.locator('#enquiry button[type="submit"]').click();
 
-    await expect(page.locator("#formStatus")).toHaveText("");
+    await expect(page.locator("#f-email")).not.toHaveAttribute("aria-invalid", "true");
+    await expect(page.locator("#e-email")).toBeHidden();
+
+    // A password manager can fill the trap. A real person must not be left
+    // with a Send button that does nothing and says nothing.
+    const status = page.locator("#formStatus");
+    await expect(status).not.toHaveText("");
+    await expect(status).toContainText("info@jomtien.net");
+    // And it must never tell a bot why it was rejected.
+    await expect(status).not.toContainText(/spam|bot|honeypot|blocked/i);
   });
 });
 
@@ -215,7 +224,7 @@ test.describe("content honesty", () => {
       expect(body).not.toContain("unverified");
       expect(body).not.toContain("lorem ipsum");
       // No THB figure may appear until the package terms are approved.
-      expect(body).not.toMatch(/\d[\d,]*\s*(thb|บาท)/);
+      expect(body).not.toMatch(/฿|\bbaht\b|\d[\d,]*\s*(thb|บาท)/);
     });
   }
 

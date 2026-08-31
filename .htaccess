@@ -15,8 +15,21 @@ Options -Indexes
 
 ErrorDocument 404 /404.html
 
+# Hostinger terminates TLS upstream. Without this, mod_dir's trailing-slash
+# redirect builds a plaintext URL and /en 301s to http:// before the force
+# rule below can catch it — two extra hops, one of them in the clear.
+<IfModule mod_setenvif.c>
+  SetEnvIf X-Forwarded-Proto "^https$" HTTPS=on
+</IfModule>
+
 <IfModule mod_rewrite.c>
   RewriteEngine On
+
+  # ── www to apex ───────────────────────────────────────────────────────────
+  # Every canonical, hreflang and og:url in the site points at the apex, and
+  # the sitemap is apex-only. cPanel creates the www alias by default.
+  RewriteCond %{HTTP_HOST} ^www\.(.+)$ [NC]
+  RewriteRule ^(.*)$ https://%1/$1 [R=301,L]
 
   # ── Force HTTPS ───────────────────────────────────────────────────────────
   # Hostinger terminates TLS upstream, so test the forwarded header too.
@@ -26,13 +39,13 @@ ErrorDocument 404 /404.html
 
   # ── Legacy Joomla URLs ────────────────────────────────────────────────────
   # One hop each, no chains. Mirrors _redirects and vercel.json.
-  RewriteRule ^index\.php/product\.html/?$  /en/#build   [R=301,L,NE]
-  RewriteRule ^index\.php/contact\.html/?$  /en/#contact [R=301,L,NE]
-  RewriteRule ^index\.php/?$                /en/         [R=301,L]
+  RewriteRule ^index\.php/product\.html/?$  /en/#build   [R=301,L,NE,NC]
+  RewriteRule ^index\.php/contact\.html/?$  /en/#contact [R=301,L,NE,NC]
+  RewriteRule ^index\.php/?$                /en/         [R=301,L,NC]
 
   # Anything else still under /index.php goes to the English home rather than
   # 404-ing, since the old site served every page from that prefix.
-  RewriteRule ^index\.php/.*$               /en/         [R=301,L]
+  RewriteRule ^index\.php/.*$               /en/         [R=301,L,NC]
 </IfModule>
 
 # ── Security headers ────────────────────────────────────────────────────────
@@ -47,7 +60,7 @@ ErrorDocument 404 /404.html
   Header always set Permissions-Policy "geolocation=(), camera=(), microphone=(), payment=(), usb=(), interest-cohort=()"
   Header always set Cross-Origin-Opener-Policy "same-origin"
   Header always set Cross-Origin-Resource-Policy "same-origin"
-  Header always set X-Built-By "Uvin Vindula — iamuvin.com"
+  Header always set X-Built-By "Uvin Vindula - iamuvin.com"
 
   # Enable ONLY once HTTPS is confirmed on the apex and every subdomain in
   # use. A cached max-age cannot be withdrawn from a browser that has it.
@@ -87,7 +100,7 @@ ErrorDocument 404 /404.html
 # WOFF2 and AVIF are already compressed; re-compressing wastes CPU.
 <IfModule mod_deflate.c>
   AddOutputFilterByType DEFLATE text/html text/plain text/css text/xml
-  AddOutputFilterByType DEFLATE application/javascript application/x-javascript
+  AddOutputFilterByType DEFLATE application/javascript application/x-javascript text/javascript
   AddOutputFilterByType DEFLATE application/json application/xml
   AddOutputFilterByType DEFLATE image/svg+xml
 </IfModule>
@@ -100,6 +113,7 @@ ErrorDocument 404 /404.html
   ExpiresByType image/png       "access plus 1 week"
   ExpiresByType text/css        "access plus 1 hour"
   ExpiresByType application/javascript "access plus 1 hour"
+  ExpiresByType text/javascript "access plus 1 hour"
   ExpiresByType text/html       "access plus 0 seconds"
 </IfModule>
 
@@ -112,4 +126,13 @@ ErrorDocument 404 /404.html
 
 <IfModule mod_rewrite.c>
   RewriteRule ^(node_modules|src|tests|e2e|scripts|docs|assets|assets-inbox|instructions)/ - [F,L]
+  RewriteRule ^(deploy|lighthouse-reports|playwright-report|test-results)/ - [F,L]
 </IfModule>
+
+# FilesMatch above matches the BASENAME only, so /.git/config reads as
+# "config" and passes. Match on the path instead. ACME challenge paths under
+# /.well-known/ must keep working, so they are not in this list.
+<IfModule mod_alias.c>
+  RedirectMatch 404 (?i)/\.(git|svn|hg|env|idea|vscode|claude|github)(/|$)
+</IfModule>
+

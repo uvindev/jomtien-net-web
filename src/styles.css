@@ -438,6 +438,20 @@
     height: 7px;
     background: var(--color-water);
   }
+  /* Positions live here, not in a style attribute: the CSP is
+     `style-src 'self'` with no 'unsafe-inline', so style attributes are
+     blocked and the markers would collapse into a stack in production —
+     while working perfectly on any local server that sends no CSP. */
+  .rail-mark:nth-of-type(1) { inset-block-start: 22%; }
+  .rail-mark:nth-of-type(2) { inset-block-start: 44%; }
+  .rail-mark:nth-of-type(3) { inset-block-start: 66%; }
+  .rail-mark:nth-of-type(4) { inset-block-start: 88%; }
+
+  /* Same reason. renderScope() then drives it via CSSOM, which CSP allows. */
+  .step-bar {
+    width: 16.6%;
+  }
+
   .rail-mark[data-on="true"] {
     background: var(--color-signal-bright);
     box-shadow: 0 0 0 4px
