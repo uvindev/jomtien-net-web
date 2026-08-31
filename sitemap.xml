@@ -1,20 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Privacy pages are deliberately absent: they carry <meta name="robots"
+  content="noindex">, and listing a noindex URL in a sitemap is a contradiction
+  search engines report as an error.
+-->
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://jomtien.net/en/</loc>
+    <lastmod>2026-08-31</lastmod>
+    <priority>1.0</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://jomtien.net/en/"/>
     <xhtml:link rel="alternate" hreflang="th" href="https://jomtien.net/th/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://jomtien.net/en/"/>
   </url>
   <url>
     <loc>https://jomtien.net/th/</loc>
+    <lastmod>2026-08-31</lastmod>
+    <priority>1.0</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://jomtien.net/en/"/>
     <xhtml:link rel="alternate" hreflang="th" href="https://jomtien.net/th/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://jomtien.net/en/"/>
   </url>
-  <url><loc>https://jomtien.net/en/estimate/</loc></url>
-  <url><loc>https://jomtien.net/th/estimate/</loc></url>
-  <url><loc>https://jomtien.net/en/privacy/</loc></url>
-  <url><loc>https://jomtien.net/th/privacy/</loc></url>
+  <url>
+    <loc>https://jomtien.net/en/estimate/</loc>
+    <lastmod>2026-08-31</lastmod>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://jomtien.net/en/estimate/"/>
+    <xhtml:link rel="alternate" hreflang="th" href="https://jomtien.net/th/estimate/"/>
+  </url>
+  <url>
+    <loc>https://jomtien.net/th/estimate/</loc>
+    <lastmod>2026-08-31</lastmod>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://jomtien.net/en/estimate/"/>
+    <xhtml:link rel="alternate" hreflang="th" href="https://jomtien.net/th/estimate/"/>
+  </url>
 </urlset>

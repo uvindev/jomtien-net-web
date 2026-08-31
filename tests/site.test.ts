@@ -131,8 +131,51 @@ describe("redirect map", () => {
   });
 });
 
+describe("search metadata", () => {
+  it.each(PAGES)("%s has a title within the ~62 char display limit", (page) => {
+    const title = read(page).match(/<title>([^<]*)<\/title>/)?.[1] ?? "";
+    expect(title.length).toBeGreaterThan(10);
+    expect(title.length).toBeLessThanOrEqual(62);
+  });
+
+  it.each(PAGES)("%s has a description within the ~160 char display limit", (page) => {
+    const desc = read(page).match(/<meta name="description" content="([^"]*)"/)?.[1] ?? "";
+    expect(desc.length).toBeGreaterThan(60);
+    expect(desc.length).toBeLessThanOrEqual(160);
+  });
+
+  it.each(PAGES)("%s declares a canonical URL", (page) => {
+    expect(read(page)).toMatch(/<link rel="canonical" href="https:\/\/jomtien\.net\//);
+  });
+
+  it("every indexable page carries a social image", () => {
+    for (const page of PAGES) {
+      const src = read(page);
+      if (src.includes('content="noindex"')) continue;
+      if (!src.includes("og:type")) continue;
+      expect(src, `${page} has og tags but no og:image`).toContain("og:image");
+    }
+  });
+});
+
 describe("sitemap", () => {
   const sitemap = read("sitemap.xml");
+
+  it("never lists a page that is marked noindex", () => {
+    // A sitemap advertising a noindex URL is a contradiction search engines
+    // report as an error.
+    for (const page of PAGES) {
+      if (!read(page).includes('content="noindex"')) continue;
+      const url = "https://jomtien.net/" + page.replace(/index\.html$/, "");
+      expect(sitemap, `sitemap lists noindex page ${page}`).not.toContain(`<loc>${url}</loc>`);
+    }
+  });
+
+  it("every entry carries a lastmod", () => {
+    const locs = (sitemap.match(/<loc>/g) ?? []).length;
+    const mods = (sitemap.match(/<lastmod>/g) ?? []).length;
+    expect(mods).toBe(locs);
+  });
 
   it("lists only pages that exist", () => {
     const locs = all(sitemap, /<loc>https:\/\/jomtien\.net(\/[^<]*)<\/loc>/g);
