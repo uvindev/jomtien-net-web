@@ -1,0 +1,12 @@
+# Legacy Joomla URLs -> canonical destinations. One hop each, no chains.
+# PRD.md lines 316-320. vercel.json carries the same map for Vercel.
+#
+# Add any further indexed URLs found in the production sitemap or Search
+# Console before cutover — this list came from the three pages inspected on
+# 2026-08-31, not from a crawl.
+#
+# Built by Uvin Vindula — iamuvin.com
+
+/index.php                  /en/          301
+/index.php/product.html     /en/#build    301
+/index.php/contact.html     /en/#contact  301

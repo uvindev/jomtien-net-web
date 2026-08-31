@@ -1,0 +1,156 @@
+<!doctype html>
+<!--
+  Social share card, Thai. NOT NATIVE-REVIEWED. Rendered to PNG by scripts/build-images.sh.
+  Authored rather than generated: this image is mostly type, and image models
+  cannot set type. Uses the site's own fonts and tokens so it matches exactly.
+
+  @author Uvin Vindula (IAMUVIN) — iamuvin.com
+-->
+<html lang="th">
+<head>
+<meta charset="utf-8" />
+<style>
+  @font-face {
+    font-family: "Plex Thai";
+    src: url("../../public/fonts/plex-sans-thai-thai-300.woff2") format("woff2");
+    font-weight: 300;
+  }
+  @font-face {
+    font-family: "Plex Thai";
+    src: url("../../public/fonts/plex-sans-thai-thai-600.woff2") format("woff2");
+    font-weight: 600;
+  }
+  @font-face {
+    font-family: "Plex Thai";
+    src: url("../../public/fonts/plex-sans-thai-latin-400.woff2") format("woff2");
+    font-weight: 400;
+    unicode-range: U+0000-00FF;
+  }
+  @font-face {
+    font-family: "Plex Mono";
+    src: url("../../public/fonts/plex-mono-latin-400.woff2") format("woff2");
+    font-weight: 400;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    width: 1200px;
+    height: 630px;
+    background: #06171f;
+    color: #f4f7f9;
+    font-family: "Plex Thai", system-ui, sans-serif;
+    overflow: hidden;
+    position: relative;
+  }
+
+  /* Same angular facets as the live hero. */
+  .facet { position: absolute; }
+  .f-a {
+    inset: -10% 54% 30% -8%;
+    background: linear-gradient(140deg, #123a4e, transparent 70%);
+    clip-path: polygon(0 0, 100% 22%, 62% 100%, 0 78%);
+    opacity: .5;
+  }
+  .f-b {
+    inset: -20% -12% -30% 42%;
+    background: linear-gradient(210deg, #7a2340 5%, #123a5e 48%, transparent 78%);
+    clip-path: polygon(38% 0, 100% 0, 100% 100%, 0 72%);
+    opacity: .5;
+  }
+
+  /* The coastline index, as a rail down the left edge. */
+  .rail {
+    position: absolute;
+    inset-block: 0;
+    left: 64px;
+    width: 1px;
+    background: linear-gradient(to bottom, transparent, #1b3a47 12%, #1b3a47 88%, transparent);
+  }
+  .mark {
+    position: absolute; left: -3px;
+    width: 7px; height: 7px; background: #9edde8;
+  }
+  .mark.hot { background: #f2445b; }
+
+  .inner {
+    position: relative;
+    height: 100%;
+    padding: 72px 80px 64px 112px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .eyebrow {
+    font-family: "Plex Mono", monospace;
+    font-size: 15px;
+    letter-spacing: .02em;
+    
+    color: #6cc6f2;
+  }
+
+  h1 {
+    margin-top: 28px;
+    font-size: 58px;
+    font-weight: 300;
+    line-height: 1.45;
+    letter-spacing: -.022em;
+    max-width: 17ch;
+  }
+  h1 em { font-style: normal; color: #6cc6f2; }
+
+  .cats {
+    margin-top: auto;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px 22px;
+    font-family: "Plex Mono", monospace;
+    font-size: 14px;
+    letter-spacing: 0;
+    color: #93aab5;
+  }
+  .cats span::before { content: "— "; color: #1677b2; }
+
+  .foot {
+    margin-top: 26px;
+    padding-top: 22px;
+    border-top: 1px solid #1b3a47;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    font-size: 16px;
+    color: #93aab5;
+  }
+  .foot strong { color: #f4f7f9; font-weight: 600; }
+</style>
+</head>
+<body>
+  <div class="facet f-a"></div>
+  <div class="facet f-b"></div>
+  <div class="rail">
+    <span class="mark" style="top:24%"></span>
+    <span class="mark" style="top:46%"></span>
+    <span class="mark hot" style="top:68%"></span>
+    <span class="mark" style="top:88%"></span>
+  </div>
+
+  <div class="inner">
+    <p class="eyebrow">หาดจอมเทียน · พัทยา</p>
+    <h1>เว็บไซต์ ร้านค้าออนไลน์ และ<em>ระบบ</em>ที่ทำงานอยู่เบื้องหลัง</h1>
+
+    <div class="cats">
+      <span>เว็บไซต์ธุรกิจ</span>
+      <span>ร้านค้าออนไลน์</span>
+      <span>เว็บแอปพลิเคชัน</span>
+      <span>แอปมือถือ</span>
+      <span>ระบบ AI</span>
+      <span>การเชื่อมต่อระบบ</span>
+    </div>
+
+    <div class="foot">
+      <strong>Jomtien Network</strong>
+      <span>jomtien.net</span>
+    </div>
+  </div>
+</body>
+</html>

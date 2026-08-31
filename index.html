@@ -1,0 +1,40 @@
+<!doctype html>
+<!--
+  @project  Jomtien Network — jomtien.net
+  @author   Uvin Vindula (IAMUVIN)
+  @website  https://iamuvin.com
+
+  Root locale gate. The host should serve a 302 to /en/ or /th/ instead; this
+  page is the fallback for static hosts that cannot, and it stays readable and
+  navigable with JavaScript unavailable.
+-->
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Jomtien Network — choose your language</title>
+<meta name="description" content="Jomtien Network builds business websites, e-commerce platforms, applications, and AI systems in Jomtien Beach, Pattaya." />
+<link rel="canonical" href="https://jomtien.net/en/" />
+<link rel="alternate" hreflang="en" href="https://jomtien.net/en/" />
+<link rel="alternate" hreflang="th" href="https://jomtien.net/th/" />
+<link rel="alternate" hreflang="x-default" href="https://jomtien.net/en/" />
+<meta name="author" content="Uvin Vindula — IAMUVIN" />
+<link rel="me" href="https://iamuvin.com" />
+<link rel="author" type="text/plain" href="/humans.txt" />
+<link rel="stylesheet" href="/dist/styles.css" />
+
+</head>
+<body>
+<main class="wrap min-h-screen flex flex-col justify-center py-20">
+  <p class="u-caps text-coast-lite">Jomtien Network</p>
+  <h1 class="mt-6 text-[length:var(--text-h2)]">Choose your language</h1>
+  <p class="mt-5 max-w-xl text-dim-d">
+    Websites, e-commerce, applications, and AI systems, built in Jomtien Beach.
+  </p>
+  <div class="mt-10 flex flex-wrap gap-3">
+    <a href="/en/" hreflang="en" class="btn btn-signal">English</a>
+    <a href="/th/" hreflang="th" lang="th" class="btn btn-ghost">ภาษาไทย</a>
+  </div>
+</main>
+</body>
+</html>

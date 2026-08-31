@@ -1,0 +1,56 @@
+{
+  "name": "jomtien-net-web",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Jomtien Network — bilingual landing page for business website, web application, and mobile application development.",
+  "author": "Uvin Vindula <uvin95dev@gmail.com> (https://iamuvin.com)",
+  "homepage": "https://iamuvin.com",
+  "contributors": [
+    "Uvin Vindula (IAMUVIN) — iamuvin.com"
+  ],
+  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "dev:css": "tailwindcss -i ./src/styles.css -o ./dist/styles.css --watch",
+    "dev:ts": "node node_modules/typescript7/bin/tsc --watch",
+    "dev:serve": "python3 -m http.server 4321",
+    "build:css": "tailwindcss -i ./src/styles.css -o ./dist/styles.css --minify",
+    "build:ts": "node node_modules/typescript7/bin/tsc",
+    "build": "npm run build:css && npm run build:ts && npm run images",
+    "typecheck": "node node_modules/typescript7/bin/tsc --noEmit",
+    "verify:contrast": "node scripts/check-contrast.mjs",
+    "verify:signature": "bash ./scripts/verify-signature.sh",
+    "verify:launch": "bash ./scripts/verify-launch.sh",
+    "verify": "npm run typecheck && npm run lint && npm run test && npm run build && npm run verify:contrast && npm run verify:signature",
+    "verify:all": "npm run verify && npm run test:e2e && npm run verify:overflow && npm run verify:text && npm run verify:a11y && npm run verify:modes && npm run verify:lighthouse && npm run verify:launch",
+    "images": "bash ./scripts/build-images.sh",
+    "verify:overflow": "node scripts/check-overflow.mjs",
+    "verify:text": "node scripts/check-text-contrast.mjs",
+    "verify:a11y": "node scripts/check-a11y.mjs",
+    "lint": "eslint . --max-warnings=0",
+    "test": "vitest run",
+    "test:e2e": "playwright test",
+    "verify:lighthouse": "node scripts/check-lighthouse.mjs",
+    "verify:modes": "node scripts/check-zoom-contrast-modes.mjs"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "@playwright/test": "^1.62.1",
+    "@tailwindcss/cli": "4.3.3",
+    "axe-core": "^4.13.0",
+    "eslint": "^10.9.1",
+    "globals": "^17.11.0",
+    "lighthouse": "^13.4.1",
+    "typescript": "^6.0.3",
+    "typescript-eslint": "^8.68.0",
+    "typescript7": "npm:typescript@^7.0.2",
+    "vitest": "^4.1.11"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/iamuvin/jomtien-net-web"
+  },
+  "bugs": {
+    "url": "https://github.com/iamuvin/jomtien-net-web/issues"
+  }
+}

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>https://jomtien.net/en/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://jomtien.net/en/"/>
+    <xhtml:link rel="alternate" hreflang="th" href="https://jomtien.net/th/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://jomtien.net/en/"/>
+  </url>
+  <url>
+    <loc>https://jomtien.net/th/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://jomtien.net/en/"/>
+    <xhtml:link rel="alternate" hreflang="th" href="https://jomtien.net/th/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://jomtien.net/en/"/>
+  </url>
+  <url><loc>https://jomtien.net/en/estimate/</loc></url>
+  <url><loc>https://jomtien.net/th/estimate/</loc></url>
+  <url><loc>https://jomtien.net/en/privacy/</loc></url>
+  <url><loc>https://jomtien.net/th/privacy/</loc></url>
+</urlset>

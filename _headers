@@ -1,0 +1,37 @@
+# Response headers for Netlify / Cloudflare Pages.
+# vercel.json carries the same set for Vercel. Keep the two in step.
+#
+# The CSP is this tight because the site genuinely loads nothing external:
+# no CDN, no webfont host, no analytics, no embedded map, no tag manager.
+# Fonts, styles, script and images are all same-origin. If an external origin
+# is ever added, name it here rather than loosening a directive to a wildcard.
+#
+# Built by Uvin Vindula — iamuvin.com
+
+/*
+  Content-Security-Policy: default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'self'; form-action 'self'; frame-ancestors 'none'; base-uri 'none'; object-src 'none'; upgrade-insecure-requests
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: DENY
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: geolocation=(), camera=(), microphone=(), payment=(), usb=(), interest-cohort=()
+  Cross-Origin-Opener-Policy: same-origin
+  Cross-Origin-Resource-Policy: same-origin
+  X-Built-By: Uvin Vindula — iamuvin.com
+
+# Enable only once HTTPS is confirmed working on the apex and every subdomain
+# in use. Turning this on before that locks visitors out of anything still
+# served over HTTP, and the max-age cannot be taken back from a browser that
+# has already cached it.
+#   Strict-Transport-Security: max-age=31536000; includeSubDomains
+
+/public/fonts/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/public/images/*
+  Cache-Control: public, max-age=604800
+
+/dist/*
+  Cache-Control: public, max-age=3600
+
+/*.html
+  Cache-Control: public, max-age=0, must-revalidate

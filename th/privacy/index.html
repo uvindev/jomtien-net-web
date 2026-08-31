@@ -1,0 +1,403 @@
+<!doctype html>
+<!--
+  @project  Jomtien Network — jomtien.net
+  @author   Uvin Vindula (IAMUVIN)
+  @website  https://iamuvin.com
+  @built    2026
+  @license  MIT — see LICENSE
+
+  ประกาศความเป็นส่วนตัว drafted against พ.ร.บ.คุ้มครองข้อมูลส่วนบุคคล
+  พ.ศ. 2562 — PDPA s.23, s.24, ss.30-36.
+
+  DRAFT FOR LEGAL REVIEW, and the Thai is NOT NATIVE-REVIEWED. Legal wording
+  must be settled in English first, then translated by someone qualified.
+  See docs/PRIVACY-FILL.md and docs/THAI-REVIEW.md.
+-->
+<html lang="th">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>ประกาศความเป็นส่วนตัว — Jomtien Network</title>
+<meta name="description" content="Jomtien Network เก็บรวบรวมและใช้ข้อมูลส่วนบุคคลที่ส่งผ่านเว็บไซต์นี้อย่างไร และคุณมีสิทธิอะไรบ้างตาม พ.ร.บ.คุ้มครองข้อมูลส่วนบุคคล พ.ศ. 2562" />
+<meta name="robots" content="noindex" />
+<link rel="canonical" href="https://jomtien.net/th/privacy/" />
+<link rel="alternate" hreflang="en" href="https://jomtien.net/en/privacy/" />
+<link rel="alternate" hreflang="th" href="https://jomtien.net/th/privacy/" />
+<meta name="author" content="Uvin Vindula — IAMUVIN" />
+<link rel="me" href="https://iamuvin.com" />
+<link rel="author" type="text/plain" href="/humans.txt" />
+<link rel="preload" href="/public/fonts/plex-sans-thai-thai-400.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="stylesheet" href="/dist/styles.css" />
+<script type="module" src="/dist/main.js"></script>
+</head>
+
+<body class="on-paper">
+<a href="#main" class="skip-link btn btn-signal">ข้ามไปยังเนื้อหา</a>
+<div class="scroll-progress" aria-hidden="true"></div>
+<div class="cursor-ring" aria-hidden="true"></div>
+<div class="cursor-dot" aria-hidden="true"></div>
+
+<header class="site-header sticky top-0 z-40 border-b border-line-l bg-paper/95 backdrop-blur-sm">
+  <div class="header-bar wrap flex items-center gap-4 py-3">
+    <a href="/th/" class="flex items-center gap-3 shrink-0" aria-label="Jomtien Network หน้าแรก">
+      <svg class="w-9 h-9 sm:w-10 sm:h-10 shrink-0" viewBox="0 0 40 40" fill="none" aria-hidden="true">
+        <path d="M3 28c6-1.5 7.5-11 14-11s9 7.5 14 5" stroke="#1677b2" stroke-width="2.25" stroke-linecap="square" />
+        <path d="M3 34h34" stroke="#c9d6dd" stroke-width="2.25" />
+        <path d="M3 34h13" stroke="#1677b2" stroke-width="2.25" />
+        <rect x="24" y="8" width="7" height="7" fill="#d53c50" />
+      </svg>
+      <span class="text-[1.0625rem] sm:text-[1.1875rem] font-semibold tracking-tight">Jomtien Network</span>
+    </a>
+    <div class="ml-auto flex items-center gap-2">
+      <a href="/en/privacy/" hreflang="en" lang="en" class="u-caps px-2.5 py-2 text-dim-l hover:text-ink">EN</a>
+      <a href="/th/" class="btn btn-dark !min-h-11 !py-2.5 !px-5">กลับไปหน้าเว็บ</a>
+    </div>
+  </div>
+</header>
+
+<main id="main" class="wrap py-14 sm:py-20">
+  <div class="max-w-3xl">
+
+    <p class="u-caps text-coast">ข้อกฎหมาย</p>
+    <h1 class="mt-5 text-[length:var(--text-h2)]">ประกาศความเป็นส่วนตัว</h1>
+    <p class="mt-6 text-[length:var(--text-lead)] text-dim-l">
+      ประกาศฉบับนี้อธิบายว่า Jomtien Network เก็บข้อมูลส่วนบุคคลอะไรบ้างผ่านเว็บไซต์นี้
+      เก็บไปเพื่ออะไร เก็บไว้นานเท่าไหร่ และคุณมีสิทธิอะไรบ้างตาม
+      พระราชบัญญัติคุ้มครองข้อมูลส่วนบุคคล พ.ศ. 2562
+    </p>
+    <p class="mt-4 text-sm text-dim-l">
+      ฉบับที่ <span class="u-num">1.0</span> &middot; มีผลวันที่
+      <time datetime="2026-08-31">31 สิงหาคม 2569</time>
+    </p>
+
+    <div class="slot mt-10">
+      <p class="text-ink">DRAFT PENDING LEGAL REVIEW — not customer-facing in this state.</p>
+      <p class="mt-3">Mirrors the English draft, structured on PDPA s.23, s.24 and ss.30&ndash;36.
+        Neither the legal wording nor the Thai has been reviewed by a qualified person. Settle
+        the English text with counsel first, then have this translated properly — do not treat
+        this as the source of truth. See docs/PRIVACY-FILL.md and docs/THAI-REVIEW.md.</p>
+    </div>
+
+    <nav aria-label="สารบัญ" class="mt-12 border-t border-line-l pt-6">
+      <p class="u-caps text-dim-l">สารบัญ</p>
+      <ol class="mt-4 grid gap-2 sm:grid-cols-2">
+        <li><a href="#controller">1. ใครรับผิดชอบข้อมูลของคุณ</a></li>
+        <li><a href="#collect">2. เราเก็บอะไรบ้าง</a></li>
+        <li><a href="#why">3. เก็บไปทำไม และด้วยฐานอะไร</a></li>
+        <li><a href="#share">4. ใครเห็นข้อมูลบ้าง</a></li>
+        <li><a href="#abroad">5. การส่งข้อมูลออกนอกประเทศ</a></li>
+        <li><a href="#keep">6. เก็บไว้นานเท่าไหร่</a></li>
+        <li><a href="#rights">7. สิทธิของคุณ</a></li>
+        <li><a href="#security">8. เราปกป้องข้อมูลอย่างไร</a></li>
+        <li><a href="#cookies">9. คุกกี้และการติดตาม</a></li>
+        <li><a href="#complain">10. หากต้องการร้องเรียน</a></li>
+        <li><a href="#changes">11. การแก้ไขประกาศนี้</a></li>
+        <li><a href="#contact">12. ติดต่อ</a></li>
+      </ol>
+    </nav>
+
+    <section id="controller" class="mt-14">
+      <h2 class="text-[length:var(--text-h3)]">1. ใครรับผิดชอบข้อมูลของคุณ</h2>
+      <p class="mt-4 text-dim-l">
+        ผู้ควบคุมข้อมูลส่วนบุคคลคือ <span class="fill">[ชื่อนิติบุคคลตามที่จดทะเบียน]</span>
+        จดทะเบียนในประเทศไทย เลขทะเบียนนิติบุคคล <span class="fill">[เลขทะเบียน]</span>
+        สำนักงานจดทะเบียนตั้งอยู่ที่ <span class="fill">[ที่อยู่จดทะเบียน]</span>
+        ดำเนินกิจการภายใต้ชื่อ Jomtien Network
+      </p>
+      <p class="mt-4 text-dim-l">
+        &ldquo;ผู้ควบคุมข้อมูลส่วนบุคคล&rdquo; คือคำที่กฎหมายใช้เรียกฝ่ายที่ตัดสินใจว่าจะเก็บและใช้ข้อมูลอย่างไร
+        และเพื่ออะไร ซึ่งก็คือเรา หากมีคำถามเกี่ยวกับประกาศฉบับนี้ ข้อ 12 ระบุวิธีติดต่อไว้แล้ว
+      </p>
+      <p class="mt-4 text-dim-l">
+        <span class="fill">[เรา (ได้ / ยังไม่ได้) แต่งตั้งเจ้าหน้าที่คุ้มครองข้อมูลส่วนบุคคล]</span>
+      </p>
+    </section>
+
+    <section id="collect" class="mt-12">
+      <h2 class="text-[length:var(--text-h3)]">2. เราเก็บอะไรบ้าง</h2>
+      <p class="mt-4 text-dim-l">
+        เฉพาะสิ่งที่คุณกรอกลงในแบบฟอร์มบนเว็บไซต์นี้ เราไม่ซื้อข้อมูลจากที่อื่น
+        และไม่นำข้อมูลจากแหล่งอื่นมาประกอบเป็นโปรไฟล์ของคุณ
+      </p>
+
+      <h3 class="mt-8 u-caps text-dim-l">แบบฟอร์มติดต่อ</h3>
+      <ul class="mt-3 grid gap-2 text-dim-l">
+        <li>ชื่อของคุณ</li>
+        <li>ชื่อธุรกิจ หากคุณกรอก</li>
+        <li>อีเมลของคุณ</li>
+        <li>เบอร์โทรหรือ LINE ID หากคุณกรอก</li>
+        <li>ภาษาที่คุณสะดวก และประเภทงานที่คุณเลือก</li>
+        <li>เว็บไซต์ปัจจุบันของคุณ หากคุณกรอก</li>
+        <li>ข้อความที่คุณเขียนในช่องข้อความ</li>
+      </ul>
+
+      <h3 class="mt-8 u-caps text-dim-l">คำถามกำหนดขอบเขต</h3>
+      <p class="mt-3 text-dim-l">
+        ข้อมูลติดต่อชุดเดียวกัน พร้อมคำตอบหกข้อของคุณเกี่ยวกับผลิตภัณฑ์ที่ต้องการ
+        สิ่งที่มีอยู่แล้ว สิ่งที่ระบบต้องทำได้ ใครเตรียมเนื้อหา และกรอบเวลา
+      </p>
+
+      <h3 class="mt-8 u-caps text-dim-l">บันทึกของเซิร์ฟเวอร์</h3>
+      <p class="mt-3 text-dim-l">
+        ผู้ให้บริการโฮสติ้งบันทึกข้อมูลทางเทคนิคมาตรฐานที่เว็บเซิร์ฟเวอร์ทุกตัวบันทึก ได้แก่
+        หมายเลข IP เวลา หน้าที่เรียกดู และชนิดของเบราว์เซอร์
+        เราไม่นำบันทึกเหล่านี้ไปรวมกับข้อมูลที่ส่งผ่านแบบฟอร์ม
+        และไม่ใช้เพื่อระบุตัวผู้เข้าชมรายบุคคล
+      </p>
+
+      <h3 class="mt-8 u-caps text-dim-l">สิ่งที่เราไม่ขอ</h3>
+      <p class="mt-3 text-dim-l">
+        เราไม่ขอ และคุณไม่ควรส่งให้เรา ซึ่งเลขบัตรประชาชน ข้อมูลบัตรชำระเงิน ข้อมูลสุขภาพ
+        หรือข้อมูลใด ๆ ที่กฎหมายจัดเป็นข้อมูลส่วนบุคคลอ่อนไหว
+        หากคุณส่งมา เราจะลบทิ้งแทนที่จะจัดเก็บไว้
+      </p>
+    </section>
+
+    <section id="why" class="mt-12">
+      <h2 class="text-[length:var(--text-h3)]">3. เก็บไปทำไม และด้วยฐานอะไร</h2>
+      <p class="mt-4 text-dim-l">
+        กฎหมายกำหนดให้ต้องระบุฐานทางกฎหมายสำหรับแต่ละวัตถุประสงค์ก่อนเก็บข้อมูล ของเรามีดังนี้
+      </p>
+
+      <dl class="mt-6 grid gap-px bg-line-l border border-line-l">
+        <div class="bg-paper p-5 sm:grid sm:grid-cols-[13rem_1fr] sm:gap-6">
+          <dt class="u-caps text-dim-l">ตอบกลับคำถามของคุณ</dt>
+          <dd class="mt-2 sm:mt-0 text-dim-l">จำเป็นเพื่อดำเนินการตามคำขอของคุณก่อนเข้าทำสัญญา
+            ตามมาตรา 24(3) คุณติดต่อมาเพื่อขอคำตอบ และการตอบกลับต้องใช้ข้อมูลติดต่อของคุณ</dd>
+        </div>
+        <div class="bg-paper p-5 sm:grid sm:grid-cols-[13rem_1fr] sm:gap-6">
+          <dt class="u-caps text-dim-l">จัดทำขอบเขตงานหรือใบประเมิน</dt>
+          <dd class="mt-2 sm:mt-0 text-dim-l">เป็นการดำเนินการก่อนเข้าทำสัญญาตามคำขอของคุณเช่นกัน
+            ตามมาตรา 24(3)</dd>
+        </div>
+        <div class="bg-paper p-5 sm:grid sm:grid-cols-[13rem_1fr] sm:gap-6">
+          <dt class="u-caps text-dim-l">ดูแลให้เว็บไซต์ใช้งานได้และปลอดภัย</dt>
+          <dd class="mt-2 sm:mt-0 text-dim-l">เป็นประโยชน์อันชอบด้วยกฎหมายของเราตามมาตรา 24(5)
+            ในการดูแลเว็บไซต์ให้ทำงานได้และป้องกันการใช้แบบฟอร์มในทางที่ผิด
+            เราได้ชั่งน้ำหนักกับสิทธิของคุณแล้วและเห็นว่าได้สัดส่วน
+            เพราะข้อมูลที่เกี่ยวข้องเป็นข้อมูลทางเทคนิคและเก็บไว้ระยะสั้น</dd>
+        </div>
+        <div class="bg-paper p-5 sm:grid sm:grid-cols-[13rem_1fr] sm:gap-6">
+          <dt class="u-caps text-dim-l">เก็บเอกสารทางธุรกิจ</dt>
+          <dd class="mt-2 sm:mt-0 text-dim-l">เมื่องานดำเนินต่อเป็นโครงการ
+            เป็นการปฏิบัติตามกฎหมายบัญชีและภาษีของไทย ตามมาตรา 24(6)</dd>
+        </div>
+      </dl>
+
+      <p class="mt-6 text-dim-l">
+        เราไม่ใช้ข้อมูลของคุณเพื่อการตลาด หากเรื่องนี้เปลี่ยนไปในอนาคต
+        เราจะขอความยินยอมจากคุณแยกต่างหากก่อน และคุณถอนความยินยอมได้ตลอดเวลา
+        โดยไม่กระทบเรื่องอื่น
+      </p>
+      <p class="mt-4 text-dim-l">
+        เราไม่นำข้อความของคุณไปฝึกโมเดลปัญญาประดิษฐ์ใด ๆ
+        และไม่ส่งเนื้อหาข้อความของคุณไปยังบริการ AI ของบุคคลที่สาม
+      </p>
+    </section>
+
+    <section id="share" class="mt-12">
+      <h2 class="text-[length:var(--text-h3)]">4. ใครเห็นข้อมูลบ้าง</h2>
+      <p class="mt-4 text-dim-l">
+        เราไม่ขายข้อมูลส่วนบุคคล และไม่แบ่งปันเพื่อการตลาดของผู้อื่น
+        ข้อมูลถูกประมวลผลโดยผู้ประมวลผลต่อไปนี้ ภายใต้ข้อตกลงเป็นลายลักษณ์อักษร
+        ที่จำกัดให้ทำได้เฉพาะตามคำสั่งของเรา
+      </p>
+      <ul class="mt-4 grid gap-3 text-dim-l">
+        <li><strong class="text-ink font-semibold">ผู้ให้บริการโฮสติ้ง</strong> —
+          <span class="fill">[ชื่อผู้ให้บริการและประเทศ]</span> ให้บริการหน้าเว็บ
+          และเก็บบันทึกเซิร์ฟเวอร์ตามที่ระบุในข้อ 2</li>
+        <li><strong class="text-ink font-semibold">ผู้ให้บริการอีเมล</strong> —
+          <span class="fill">[ชื่อผู้ให้บริการและประเทศ]</span>
+          นำข้อความของคุณมาถึงเราและจัดเก็บไว้ในกล่องจดหมาย</li>
+      </ul>
+      <p class="mt-5 text-dim-l">
+        เว็บไซต์นี้ไม่มีระบบวิเคราะห์ข้อมูล ไม่มีเครือข่ายโฆษณา ไม่มีวิดเจ็ตแชท ไม่มีแผนที่ฝัง
+        ไม่มีพิกเซลติดตามจากโซเชียลมีเดีย และไม่มี CDN
+        ฟอนต์ สไตล์ สคริปต์ และรูปภาพทั้งหมดเสิร์ฟจากโดเมนนี้
+        นี่เป็นการตัดสินใจเชิงออกแบบ และเป็นเหตุผลที่หัวข้อนี้สั้น
+      </p>
+      <p class="mt-4 text-dim-l">
+        เราจะเปิดเผยข้อมูลส่วนบุคคลเมื่อมีหน้าที่ตามกฎหมาย เช่น
+        ตามคำสั่งที่ชอบด้วยกฎหมายของหน่วยงานรัฐหรือศาลไทย
+      </p>
+    </section>
+
+    <section id="abroad" class="mt-12">
+      <h2 class="text-[length:var(--text-h3)]">5. การส่งข้อมูลออกนอกประเทศ</h2>
+      <p class="mt-4 text-dim-l">
+        <span class="fill">[ยืนยันว่าผู้ให้บริการโฮสติ้งและอีเมลจัดเก็บข้อมูลนอกประเทศไทยหรือไม่
+        ระบุประเทศปลายทาง และระบุกลไกที่ใช้ตามมาตรา 28 หรือ 29]</span>
+      </p>
+      <p class="mt-4 text-dim-l">
+        กฎหมายจำกัดการส่งข้อมูลส่วนบุคคลไปยังปลายทางที่ไม่มีมาตรฐานการคุ้มครองที่เพียงพอ
+        หากมีการส่งข้อมูลออกนอกประเทศ เราจะอาศัยมาตรการคุ้มครองตามที่มาตราดังกล่าวกำหนด
+        ไม่ใช่อาศัยเพียงที่ตั้งของผู้ให้บริการ
+      </p>
+    </section>
+
+    <section id="keep" class="mt-12">
+      <h2 class="text-[length:var(--text-h3)]">6. เก็บไว้นานเท่าไหร่</h2>
+      <dl class="mt-5 grid gap-4 text-dim-l">
+        <div class="border-t border-line-l pt-4 sm:grid sm:grid-cols-[16rem_1fr] sm:gap-6">
+          <dt class="text-ink font-semibold">คำถามที่ไม่ได้ดำเนินต่อ</dt>
+          <dd class="mt-1 sm:mt-0"><span class="fill">[ระยะเวลา — เสนอ 12 เดือน
+            นับจากการติดต่อครั้งล่าสุด]</span> แล้วลบทิ้ง</dd>
+        </div>
+        <div class="border-t border-line-l pt-4 sm:grid sm:grid-cols-[16rem_1fr] sm:gap-6">
+          <dt class="text-ink font-semibold">คำถามที่กลายเป็นโครงการ</dt>
+          <dd class="mt-1 sm:mt-0">เก็บตลอดอายุงาน จากนั้นเก็บต่ออีก
+            <span class="fill">[ระยะเวลาตามกฎหมายบัญชีและภาษีของไทย — ตรวจสอบกับผู้ทำบัญชี]</span></dd>
+        </div>
+        <div class="border-t border-line-l pt-4 sm:grid sm:grid-cols-[16rem_1fr] sm:gap-6">
+          <dt class="text-ink font-semibold">บันทึกของเซิร์ฟเวอร์</dt>
+          <dd class="mt-1 sm:mt-0"><span class="fill">[ระยะเวลาตามที่ผู้ให้บริการโฮสติ้งกำหนด]</span></dd>
+        </div>
+      </dl>
+      <p class="mt-6 text-dim-l">
+        เมื่อครบกำหนดระยะเวลา ข้อมูลจะถูกลบ เราไม่เก็บไว้ไม่มีกำหนดด้วยเหตุผลว่าอาจได้ใช้สักวัน
+      </p>
+    </section>
+
+    <section id="rights" class="mt-12">
+      <h2 class="text-[length:var(--text-h3)]">7. สิทธิของคุณ</h2>
+      <p class="mt-4 text-dim-l">
+        กฎหมายให้สิทธิต่อไปนี้แก่คุณเหนือข้อมูลส่วนบุคคลของคุณ ใช้สิทธิได้โดยไม่มีค่าใช้จ่าย
+        และการใช้สิทธิจะไม่กระทบต่อการที่เราให้บริการคุณ
+      </p>
+
+      <dl class="mt-6 grid gap-px bg-line-l border border-line-l">
+        <div class="bg-paper p-5 sm:grid sm:grid-cols-[15rem_1fr] sm:gap-6">
+          <dt class="text-ink font-semibold">สิทธิเข้าถึง &mdash; มาตรา 30</dt>
+          <dd class="mt-2 sm:mt-0 text-dim-l">ขอทราบว่าเราเก็บอะไรเกี่ยวกับคุณ และขอสำเนาได้</dd>
+        </div>
+        <div class="bg-paper p-5 sm:grid sm:grid-cols-[15rem_1fr] sm:gap-6">
+          <dt class="text-ink font-semibold">สิทธิให้โอนย้ายข้อมูล &mdash; มาตรา 31</dt>
+          <dd class="mt-2 sm:mt-0 text-dim-l">ขอรับข้อมูลในรูปแบบที่อ่านได้ด้วยเครื่อง
+            หรือให้ส่งต่อไปยังผู้อื่นเท่าที่ทำได้ในทางเทคนิค</dd>
+        </div>
+        <div class="bg-paper p-5 sm:grid sm:grid-cols-[15rem_1fr] sm:gap-6">
+          <dt class="text-ink font-semibold">สิทธิคัดค้าน &mdash; มาตรา 32</dt>
+          <dd class="mt-2 sm:mt-0 text-dim-l">คัดค้านการเก็บ ใช้ หรือเปิดเผยข้อมูลของคุณ
+            รวมถึงกรณีที่เราอาศัยฐานประโยชน์อันชอบด้วยกฎหมาย</dd>
+        </div>
+        <div class="bg-paper p-5 sm:grid sm:grid-cols-[15rem_1fr] sm:gap-6">
+          <dt class="text-ink font-semibold">สิทธิให้ลบข้อมูล &mdash; มาตรา 33</dt>
+          <dd class="mt-2 sm:mt-0 text-dim-l">ขอให้ลบหรือทำให้ไม่สามารถระบุตัวตนได้
+            เมื่อเราไม่มีเหตุผลทางกฎหมายที่เหนือกว่าในการเก็บต่อ</dd>
+        </div>
+        <div class="bg-paper p-5 sm:grid sm:grid-cols-[15rem_1fr] sm:gap-6">
+          <dt class="text-ink font-semibold">สิทธิให้ระงับการใช้ &mdash; มาตรา 34</dt>
+          <dd class="mt-2 sm:mt-0 text-dim-l">ขอให้หยุดใช้ข้อมูลชั่วคราวระหว่างที่มีการตรวจสอบ
+            หรือมีข้อโต้แย้ง</dd>
+        </div>
+        <div class="bg-paper p-5 sm:grid sm:grid-cols-[15rem_1fr] sm:gap-6">
+          <dt class="text-ink font-semibold">สิทธิให้แก้ไข &mdash; มาตรา 35, 36</dt>
+          <dd class="mt-2 sm:mt-0 text-dim-l">ขอให้แก้ไขข้อมูลที่ไม่ถูกต้อง ไม่เป็นปัจจุบัน
+            ไม่ครบถ้วน หรือทำให้เข้าใจผิด</dd>
+        </div>
+        <div class="bg-paper p-5 sm:grid sm:grid-cols-[15rem_1fr] sm:gap-6">
+          <dt class="text-ink font-semibold">สิทธิถอนความยินยอม</dt>
+          <dd class="mt-2 sm:mt-0 text-dim-l">ในกรณีที่เราอาศัยฐานความยินยอม
+            คุณถอนได้ตลอดเวลา การถอนไม่กระทบการประมวลผลที่ทำไปแล้วโดยชอบด้วยกฎหมาย</dd>
+        </div>
+      </dl>
+
+      <p class="mt-6 text-dim-l">
+        หากต้องการใช้สิทธิใด ส่งอีเมลมาที่
+        <a href="mailto:info@jomtien.net">info@jomtien.net</a> และระบุว่าใช้สิทธิข้อใด
+        เราอาจต้องยืนยันตัวตนของคุณก่อนดำเนินการ เพื่อไม่ให้ข้อมูลของคุณตกไปอยู่กับคนอื่น
+        เราจะตอบกลับภายใน <span class="fill">[ระยะเวลา — เสนอ 30 วัน]</span>
+        และจะแจ้งให้ทราบหากต้องใช้เวลานานกว่านั้นพร้อมเหตุผล
+      </p>
+    </section>
+
+    <section id="security" class="mt-12">
+      <h2 class="text-[length:var(--text-h3)]">8. เราปกป้องข้อมูลอย่างไร</h2>
+      <p class="mt-4 text-dim-l">มาตรการที่ใช้อยู่จริงบนเว็บไซต์นี้</p>
+      <ul class="mt-4 grid gap-2 text-dim-l">
+        <li>ทั้งเว็บไซต์ให้บริการผ่าน HTTPS</li>
+        <li>นโยบายความปลอดภัยของเนื้อหาที่เข้มงวด จำกัดให้หน้าเว็บโหลดทรัพยากรจากโดเมนนี้เท่านั้น</li>
+        <li>ข้อมูลในแบบฟอร์มถูกจำกัดความยาวและตรวจสอบก่อนส่ง</li>
+        <li>เนื้อหาในแบบฟอร์มไม่ถูกบันทึกลง console ของเบราว์เซอร์ ระบบวิเคราะห์ หรือล็อกของระบบ</li>
+        <li>สิทธิเข้าถึงกล่องจดหมายจำกัดเฉพาะผู้ที่ต้องใช้เพื่อตอบกลับคุณ</li>
+      </ul>
+      <p class="mt-5 text-dim-l">
+        ไม่มีระบบใดปลอดภัยสมบูรณ์ และเราจะไม่อ้างเช่นนั้น
+        หากเกิดการละเมิดข้อมูลที่มีความเสี่ยงต่อสิทธิและเสรีภาพของคุณ
+        เราจะแจ้งคณะกรรมการคุ้มครองข้อมูลส่วนบุคคลโดยไม่ชักช้า และเท่าที่ทำได้ภายใน 72 ชั่วโมง
+        นับแต่ทราบเหตุ และจะแจ้งคุณโดยตรงหากความเสี่ยงต่อคุณอยู่ในระดับสูง
+      </p>
+    </section>
+
+    <section id="cookies" class="mt-12">
+      <h2 class="text-[length:var(--text-h3)]">9. คุกกี้และการติดตาม</h2>
+      <p class="mt-4 text-dim-l">
+        เว็บไซต์นี้ไม่ตั้งคุกกี้ ไม่มีระบบวิเคราะห์ ไม่มีแท็กโฆษณา ไม่มีพิกเซลติดตาม
+        และไม่มีตัวระบุข้ามเว็บไซต์ ไม่มีแบนเนอร์คุกกี้เพราะไม่มีอะไรให้ยินยอม
+      </p>
+      <p class="mt-4 text-dim-l">
+        หากมีการเพิ่มระบบวิเคราะห์ในอนาคต ประกาศฉบับนี้จะถูกแก้ไขก่อน
+        ผู้ให้บริการจะถูกระบุชื่อไว้ในข้อ 4 และการติดตามที่ไม่จำเป็นจะไม่ทำงาน
+        จนกว่าคุณจะให้ความยินยอม
+      </p>
+    </section>
+
+    <section id="complain" class="mt-12">
+      <h2 class="text-[length:var(--text-h3)]">10. หากต้องการร้องเรียน</h2>
+      <p class="mt-4 text-dim-l">
+        บอกเราก่อนที่ <a href="mailto:info@jomtien.net">info@jomtien.net</a>
+        แล้วเราจะพยายามแก้ไขให้
+      </p>
+      <p class="mt-4 text-dim-l">
+        คุณมีสิทธิร้องเรียนต่อสำนักงานคณะกรรมการคุ้มครองข้อมูลส่วนบุคคลได้โดยตรงที่
+        <a href="https://www.pdpc.or.th/" target="_blank" rel="noopener noreferrer">pdpc.or.th</a>
+        โดยไม่ต้องขออนุญาตเรา และไม่จำเป็นต้องติดต่อเราก่อน
+      </p>
+    </section>
+
+    <section id="changes" class="mt-12">
+      <h2 class="text-[length:var(--text-h3)]">11. การแก้ไขประกาศนี้</h2>
+      <p class="mt-4 text-dim-l">
+        เมื่อประกาศนี้มีการแก้ไข หมายเลขฉบับและวันที่มีผลด้านบนจะเปลี่ยนตาม
+        หากการแก้ไขกระทบอย่างมีนัยสำคัญต่อวิธีที่เราจัดการข้อมูลที่คุณให้ไว้แล้ว
+        เราจะติดต่อคุณ แทนที่จะรอให้คุณสังเกตเอง
+      </p>
+    </section>
+
+    <section id="contact" class="mt-12">
+      <h2 class="text-[length:var(--text-h3)]">12. ติดต่อ</h2>
+      <p class="mt-4 text-dim-l">
+        สำหรับเรื่องใดก็ตามในประกาศฉบับนี้ รวมถึงการใช้สิทธิตามข้อ 7
+      </p>
+      <p class="mt-4">
+        <a href="mailto:info@jomtien.net" class="text-[length:var(--text-h3)]">info@jomtien.net</a>
+      </p>
+      <address class="mt-4 not-italic text-dim-l">
+        <span class="fill">[ชื่อนิติบุคคลตามที่จดทะเบียน]</span><br />
+        <span class="fill">[ที่อยู่จดทะเบียน]</span><br />
+        หาดจอมเทียน พัทยา ชลบุรี ประเทศไทย
+      </address>
+    </section>
+
+    <p class="mt-14 border-t border-line-l pt-6">
+      <a href="/th/">กลับไปหน้าเว็บไซต์</a>
+    </p>
+  </div>
+</main>
+
+<footer class="border-t border-line-l">
+  <div class="wrap py-10 flex flex-wrap items-center justify-between gap-4">
+    <p class="text-sm text-dim-l">
+      <a href="/th/">Jomtien Network</a> &middot;
+      <a href="mailto:info@jomtien.net">info@jomtien.net</a>
+    </p>
+    <span class="text-sm text-dim-l">
+      Built by
+      <a href="https://iamuvin.com" target="_blank" rel="noopener noreferrer"
+         class="underline underline-offset-2">Uvin Vindula</a>
+    </span>
+  </div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,16 @@
+/* TEAM */
+  Engineer: Uvin Vindula (IAMUVIN)
+  Site: https://iamuvin.com
+  Location: Sri Lanka
+
+/* CLIENT */
+  Site: Jomtien Network — jomtien.net
+  Location: Jomtien Beach, Pattaya, Chonburi, Thailand
+
+/* SITE */
+  Standards: HTML5, CSS, TypeScript
+  Components: Tailwind CSS v4.3, TypeScript 7.0
+  Typefaces: IBM Plex Sans, IBM Plex Sans Thai, IBM Plex Mono (SIL OFL 1.1)
+  Built: 2026
+
+Built by Uvin Vindula — iamuvin.com

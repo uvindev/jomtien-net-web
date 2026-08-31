@@ -1,0 +1,841 @@
+<!doctype html>
+<!--
+  @project  Jomtien Network — jomtien.net
+  @author   Uvin Vindula (IAMUVIN)
+  @website  https://iamuvin.com
+  @built    2026
+  @license  MIT — see LICENSE
+-->
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Jomtien Network — websites, e-commerce, and AI systems for businesses</title>
+<meta name="description" content="Jomtien Network builds business websites, e-commerce platforms, web and mobile applications, AI systems, and integrations for businesses in Jomtien Beach and Pattaya." />
+
+<link rel="canonical" href="https://jomtien.net/en/" />
+<link rel="alternate" hreflang="en" href="https://jomtien.net/en/" />
+<link rel="alternate" hreflang="th" href="https://jomtien.net/th/" />
+<link rel="alternate" hreflang="x-default" href="https://jomtien.net/en/" />
+
+<meta name="author" content="Uvin Vindula — IAMUVIN" />
+<meta name="designer" content="IAMUVIN — iamuvin.com" />
+<meta name="developer" content="Uvin Vindula — iamuvin.com" />
+<link rel="me" href="https://iamuvin.com" />
+<link rel="author" type="text/plain" href="/humans.txt" />
+
+<meta property="og:type" content="website" />
+<meta property="og:locale" content="en" />
+<meta property="og:site_name" content="Jomtien Network" />
+<meta property="og:title" content="Jomtien Network — websites, e-commerce, and AI systems" />
+<meta property="og:description" content="Business websites, e-commerce platforms, web and mobile applications, AI systems, and integrations. Built in Jomtien Beach." />
+<meta property="og:url" content="https://jomtien.net/en/" />
+<meta property="og:image" content="https://jomtien.net/public/images/og-en.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta name="twitter:card" content="summary_large_image" />
+
+<link rel="preload" href="/public/fonts/plex-sans-latin-var.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="stylesheet" href="/dist/styles.css" />
+<script type="module" src="/dist/main.js"></script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "Jomtien Network",
+  "url": "https://jomtien.net/",
+  "inLanguage": ["en", "th"],
+  "creator": {
+    "@type": "Person",
+    "name": "Uvin Vindula",
+    "alternateName": "IAMUVIN",
+    "url": "https://iamuvin.com"
+  }
+}
+</script>
+</head>
+
+<body>
+<a href="#main" class="skip-link btn btn-signal">Skip to content</a>
+<div class="scroll-progress" aria-hidden="true"></div>
+<div class="cursor-ring" aria-hidden="true"></div>
+<div class="cursor-dot" aria-hidden="true"></div>
+
+<!-- ══ HEADER ══════════════════════════════════════════════════════════════ -->
+<header class="site-header sticky top-0 z-40 border-b border-line-d bg-ink/92 backdrop-blur-sm">
+  <div class="header-bar wrap flex items-center gap-4 py-3">
+
+    <a href="/en/" class="flex items-center gap-3 shrink-0" aria-label="Jomtien Network, home">
+      <!-- Authored coastline mark. Swap for the supplied logo — see assets-inbox/README.md -->
+      <svg class="w-9 h-9 sm:w-10 sm:h-10 shrink-0" viewBox="0 0 40 40" fill="none" aria-hidden="true">
+        <path d="M3 28c6-1.5 7.5-11 14-11s9 7.5 14 5" stroke="#6cc6f2" stroke-width="2.25" stroke-linecap="square" />
+        <path d="M3 34h34" stroke="#1b3a47" stroke-width="2.25" />
+        <path d="M3 34h13" stroke="#9edde8" stroke-width="2.25" />
+        <rect x="24" y="8" width="7" height="7" fill="#f2445b" />
+      </svg>
+      <span class="hidden min-[400px]:inline text-[1.0625rem] sm:text-[1.1875rem] font-semibold tracking-tight">Jomtien Network</span>
+    </a>
+
+    <nav class="ml-auto hidden lg:block" aria-label="Primary">
+      <ul class="flex items-center gap-7 text-sm">
+        <li><a href="#build" class="nav-link hover:text-coast-lite">What we build</a></li>
+        <li><a href="#choose" class="nav-link hover:text-coast-lite">Which product</a></li>
+        <li><a href="#process" class="nav-link hover:text-coast-lite">Process</a></li>
+        <li><a href="/en/estimate/" class="nav-link hover:text-coast-lite">Estimate</a></li>
+        <li><a href="#faq" class="nav-link hover:text-coast-lite">FAQ</a></li>
+      </ul>
+    </nav>
+
+    <div class="ml-auto lg:ml-0 flex items-center gap-2">
+      <a href="/th/" hreflang="th" lang="th"
+         class="u-caps px-2.5 py-2 text-dim-d hover:text-paper" >ไทย</a>
+      <a href="#contact" class="btn btn-signal !min-h-11 !py-2.5 !px-4 sm:!px-5"><span class="sm:hidden">Discuss</span><span class="hidden sm:inline">Discuss your project</span></a>
+      <button type="button" id="navToggle" class="lg:hidden btn btn-ghost !min-h-11 !px-3"
+              aria-expanded="false" aria-controls="navPanel">
+        <span class="sr-only">Menu</span>
+        <svg width="18" height="14" viewBox="0 0 18 14" aria-hidden="true">
+          <path d="M0 1h18M0 7h18M0 13h18" stroke="currentColor" stroke-width="1.5" />
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <div id="navPanel" hidden class="lg:hidden border-t border-line-d">
+    <nav class="wrap py-4" aria-label="Mobile">
+      <ul class="grid gap-1 text-lg">
+        <li><a href="#build" class="block py-3">What we build</a></li>
+        <li><a href="#choose" class="block py-3">Which product</a></li>
+        <li><a href="#work" class="block py-3">Work</a></li>
+        <li><a href="#process" class="block py-3">Process</a></li>
+        <li><a href="/en/estimate/" class="block py-3">Estimate</a></li>
+        <li><a href="#faq" class="block py-3">FAQ</a></li>
+        <li class="pt-2"><a href="#contact" class="btn btn-signal w-full">Discuss your project</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+
+<!-- ══ HERO ════════════════════════════════════════════════════════════════ -->
+<section class="relative overflow-hidden border-b border-line-d">
+  <div class="facets" aria-hidden="true">
+    <div class="facet facet-a"></div>
+    <div class="facet facet-b"></div>
+    <div class="facet facet-c"></div>
+  </div>
+  <div class="art art-hero" aria-hidden="true"></div>
+  <div class="art-scrim" aria-hidden="true"></div>
+  <div class="rail hidden md:block" aria-hidden="true" data-rail>
+    <span class="rail-mark" style="top:22%"></span>
+    <span class="rail-mark" style="top:44%"></span>
+    <span class="rail-mark" style="top:66%"></span>
+    <span class="rail-mark" style="top:88%"></span>
+  </div>
+
+  <div class="wrap relative py-12 sm:py-24 lg:py-36">
+    <div class="mx-auto max-w-4xl text-center">
+      <p class="u-caps text-coast-lite reveal">Jomtien Beach · Pattaya</p>
+
+      <h1 class="mt-5 text-[length:var(--text-display)] reveal">
+        Websites, online shops, and the
+        <span class="text-coast-lite">systems</span>
+        that run behind them.
+      </h1>
+
+      <p class="mt-6 mx-auto max-w-2xl text-[length:var(--text-lead)] text-dim-d reveal">
+        Jomtien Network builds business websites, e-commerce platforms, web and mobile
+        applications, AI systems, and the integrations that connect them. Tell us what the
+        business needs to do. We define the product and the scope before anyone writes code.
+      </p>
+
+      <div class="mt-8 flex flex-wrap items-center justify-center gap-3 reveal">
+        <a href="#contact" class="btn btn-signal">Discuss your project</a>
+        <a href="/en/estimate/" class="btn btn-ghost">Scope it in 6 questions</a>
+      </div>
+
+      <p class="mt-6 u-caps text-dim-d reveal">Reply by email within one working day</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══ CAPABILITY INDEX ════════════════════════════════════════════════════
+     Six categories as an indexed editorial list. Not a card grid — see
+     DESIGN-SYSTEM.md line 14 and CURRENT-SITE-AUDIT.md line 11.
+     ═══════════════════════════════════════════════════════════════════════ -->
+<section id="build" class="relative overflow-hidden border-b border-line-d">
+  <div class="art art-grain" aria-hidden="true"></div>
+  <div class="wrap py-20 sm:py-28">
+    <div class="max-w-3xl">
+      <p class="u-caps text-coast-lite reveal">01 — What we build</p>
+      <h2 class="mt-5 text-[length:var(--text-h2)] reveal">
+        Six things, and the <span class="text-coast-lite">care</span> that keeps them running.
+      </h2>
+    </div>
+
+    <div class="mt-14">
+      <article class="row-index reveal">
+        <p class="u-caps text-dim-d pt-2 w-10">01</p>
+        <div class="grid gap-5 md:grid-cols-[1fr_1.1fr] md:gap-8 lg:grid-cols-[1fr_1.15fr] lg:gap-12">
+          <h3 class="text-[length:var(--text-h3)]">Business websites</h3>
+          <div class="text-dim-d">
+            <p>Marketing, service, and hospitality sites for businesses that need a customer to
+              understand the offer and act on it. Structure, original visual direction, responsive
+              build, content integration, and search foundations.</p>
+            <p class="mt-3 text-sm">Multilingual where the audience needs it. Hosting, domain, and
+              business email where the agreed scope includes them.</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="row-index reveal">
+        <p class="u-caps text-dim-d pt-2 w-10">02</p>
+        <div class="grid gap-5 md:grid-cols-[1fr_1.1fr] md:gap-8 lg:grid-cols-[1fr_1.15fr] lg:gap-12">
+          <h3 class="text-[length:var(--text-h3)]">E-commerce platforms</h3>
+          <div class="text-dim-d">
+            <p>Storefronts that take real money. Catalogue and stock structure, cart and checkout,
+              Thai and international payment methods, shipping and fulfilment rules, tax handling,
+              customer accounts, and order operations for the people packing the boxes.</p>
+            <p class="mt-3 text-sm">Payment provider, currency, and tax treatment are decided in
+              discovery, not assumed.</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="row-index reveal">
+        <p class="u-caps text-dim-d pt-2 w-10">03</p>
+        <div class="grid gap-5 md:grid-cols-[1fr_1.1fr] md:gap-8 lg:grid-cols-[1fr_1.15fr] lg:gap-12">
+          <h3 class="text-[length:var(--text-h3)]">Web applications</h3>
+          <div class="text-dim-d">
+            <p>Portals, dashboards, booking systems, and internal tools shaped around a workflow
+              that already exists on paper, in a spreadsheet, or in someone's head. User roles,
+              data model, permissions, and acceptance criteria come first.</p>
+            <p class="mt-3 text-sm">If a well-configured off-the-shelf tool would do the job, we
+              say so before quoting a build.</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="row-index reveal">
+        <p class="u-caps text-dim-d pt-2 w-10">04</p>
+        <div class="grid gap-5 md:grid-cols-[1fr_1.1fr] md:gap-8 lg:grid-cols-[1fr_1.15fr] lg:gap-12">
+          <h3 class="text-[length:var(--text-h3)]">Mobile applications</h3>
+          <div class="text-dim-d">
+            <p>iOS and Android products for customers or for staff. Supported platforms, offline
+              behaviour, backend services, device permissions, testing, and release process are
+              defined in scope before the build starts.</p>
+            <p class="mt-3 text-sm">Store accounts, review handling, and who owns them are settled
+              in writing at the start, not at launch.</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="row-index reveal">
+        <p class="u-caps text-dim-d pt-2 w-10">05</p>
+        <div class="grid gap-5 md:grid-cols-[1fr_1.1fr] md:gap-8 lg:grid-cols-[1fr_1.15fr] lg:gap-12">
+          <h3 class="text-[length:var(--text-h3)]">AI systems</h3>
+          <div class="text-dim-d">
+            <p>Assistants and automation grounded in your own content and data — answering from
+              retrieved sources rather than guessing, with the cases it must refuse defined up
+              front. Document handling, enquiry triage, drafting, and summarising.</p>
+            <p class="mt-3 text-sm">An AI feature ships with the evaluation that shows it works,
+              a human check on anything irreversible, and a running cost you approve first.</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="row-index reveal">
+        <p class="u-caps text-dim-d pt-2 w-10">06</p>
+        <div class="grid gap-5 md:grid-cols-[1fr_1.1fr] md:gap-8 lg:grid-cols-[1fr_1.15fr] lg:gap-12">
+          <h3 class="text-[length:var(--text-h3)]">Integrations and automation</h3>
+          <div class="text-dim-d">
+            <p>Payments, messaging, authentication, accounting, booking channels, and reporting
+              connected through documented APIs so a record is entered once instead of three times.</p>
+            <p class="mt-3 text-sm">Every integration depends on the other system's API terms and
+              rate limits. Those get checked during discovery.</p>
+          </div>
+        </div>
+      </article>
+    </div>
+
+    <div class="mt-12 max-w-3xl reveal">
+      <p class="u-caps text-dim-d">Underneath all six</p>
+      <p class="mt-3 text-[length:var(--text-lead)]">
+        <strong class="font-semibold">Product care</strong> — hosting, monitoring, backups,
+        security updates, releases, and support, under a written maintenance scope. A system
+        nobody maintains is a system that fails quietly.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ══ WHICH PRODUCT ═══════════════════════════════════════════════════════
+     Answers PRD.md line 30 — the buyer has a problem but does not know which
+     product solves it. This is the section a template cannot supply.
+     ═══════════════════════════════════════════════════════════════════════ -->
+<section id="choose" class="on-paper border-b border-line-l">
+  <div class="wrap py-20 sm:py-28">
+    <div class="max-w-3xl">
+      <p class="u-caps text-coast reveal">02 — Which product</p>
+      <h2 class="mt-5 text-[length:var(--text-h2)] reveal">
+        You don't need to know the answer <span class="text-coast">before</span> you call.
+      </h2>
+      <p class="mt-6 text-[length:var(--text-lead)] text-dim-l reveal">
+        Most enquiries start with a problem, not a product. Here is roughly how the problem
+        maps to the build. It is a starting point for the conversation, not a quote.
+      </p>
+    </div>
+
+    <div class="mt-14 grid gap-px bg-line-l sm:grid-cols-2">
+      <div class="bg-paper p-7 sm:p-9 reveal">
+        <p class="u-caps text-dim-l">If the problem sounds like</p>
+        <p class="mt-4 text-[length:var(--text-h3)]">&ldquo;Customers can't find us, or they find us and leave.&rdquo;</p>
+        <p class="mt-5 text-dim-l">Usually a <strong class="text-ink font-semibold">business website</strong> — structure,
+          proof, and a clear action. Sometimes only the content and speed need fixing, which is
+          cheaper than a rebuild and we will tell you so.</p>
+      </div>
+
+      <div class="bg-paper p-7 sm:p-9 reveal">
+        <p class="u-caps text-dim-l">If the problem sounds like</p>
+        <p class="mt-4 text-[length:var(--text-h3)]">&ldquo;We want to sell online without paying a marketplace cut.&rdquo;</p>
+        <p class="mt-5 text-dim-l">An <strong class="text-ink font-semibold">e-commerce platform</strong>. The build is the
+          easy half — payments, stock accuracy, shipping rules, and returns are what decide
+          whether it works.</p>
+      </div>
+
+      <div class="bg-paper p-7 sm:p-9 reveal">
+        <p class="u-caps text-dim-l">If the problem sounds like</p>
+        <p class="mt-4 text-[length:var(--text-h3)]">&ldquo;Bookings live in a notebook and a LINE chat.&rdquo;</p>
+        <p class="mt-5 text-dim-l">A <strong class="text-ink font-semibold">web application</strong>. Staff need it on a
+          browser, customers need one reliable way in, and both need the same source of truth.</p>
+      </div>
+
+      <div class="bg-paper p-7 sm:p-9 reveal">
+        <p class="u-caps text-dim-l">If the problem sounds like</p>
+        <p class="mt-4 text-[length:var(--text-h3)]">&ldquo;Staff are on their feet, not at a desk.&rdquo;</p>
+        <p class="mt-5 text-dim-l">A <strong class="text-ink font-semibold">mobile application</strong> — but only if it
+          needs the camera, offline use, location, or notifications. If it does not, a web app on
+          a phone costs less and updates faster.</p>
+      </div>
+
+      <div class="bg-paper p-7 sm:p-9 reveal">
+        <p class="u-caps text-dim-l">If the problem sounds like</p>
+        <p class="mt-4 text-[length:var(--text-h3)]">&ldquo;We answer the same forty questions every day.&rdquo;</p>
+        <p class="mt-5 text-dim-l">An <strong class="text-ink font-semibold">AI system</strong> grounded in your own
+          documents, with an honest &ldquo;I don't know&rdquo; and a handover to a person. Worth doing when
+          the volume is real and the answers are already written down somewhere.</p>
+      </div>
+
+      <div class="bg-paper p-7 sm:p-9 reveal">
+        <p class="u-caps text-dim-l">If the problem sounds like</p>
+        <p class="mt-4 text-[length:var(--text-h3)]">&ldquo;The same order is typed into three systems.&rdquo;</p>
+        <p class="mt-5 text-dim-l">An <strong class="text-ink font-semibold">integration</strong>. Often the cheapest
+          project on this page and the one that saves the most hours per week.</p>
+      </div>
+    </div>
+
+    <div class="mt-10 reveal">
+      <a href="/en/estimate/" class="btn btn-dark">Work through it in 6 questions</a>
+    </div>
+  </div>
+</section>
+
+<!-- ══ WORK ════════════════════════════════════════════════════════════════ -->
+<section id="work" class="border-b border-line-d">
+  <div class="wrap py-20 sm:py-28">
+    <div class="max-w-3xl">
+      <p class="u-caps text-coast-lite reveal">03 — Work</p>
+      <h2 class="mt-5 text-[length:var(--text-h2)] reveal">Evidence, once it is approved.</h2>
+    </div>
+
+    <!-- BUILD SLOT — must be filled or deleted before launch.
+         scripts/verify-launch.sh fails while any .slot remains in en/ or th/. -->
+    <div class="mt-12 slot reveal">
+      <p class="text-paper">CASE STUDY SLOT — not customer-facing.</p>
+      <p class="mt-3">Blocked on: approved LT BBQ before image, approved CafeTC after image,
+        written owner sign-off on the outcome text, and valid HTTPS on the CafeTC URL
+        (the certificate was expired on inspection, 2026-08-31).</p>
+      <p class="mt-3">Web-application and AI case studies have no source material at all.
+        See assets-inbox/README.md sections 3, 4, and 5.</p>
+      <p class="mt-3 text-paper">No invented dashboard, stock mockup, or unapproved outcome
+        goes in this space.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══ PROCESS ═════════════════════════════════════════════════════════════ -->
+<section id="process" class="on-paper border-b border-line-l relative">
+  <div class="wrap py-20 sm:py-28">
+    <div class="max-w-3xl">
+      <p class="u-caps text-coast reveal">04 — Process</p>
+      <h2 class="mt-5 text-[length:var(--text-h2)] reveal">
+        Four stages. Each one ends in a <span class="text-coast">decision</span> you make.
+      </h2>
+    </div>
+
+    <div class="art art-process mt-12 reveal" role="img"
+         aria-label="A coastline traced left to right with four marked stages along it."></div>
+
+    <ol class="mt-14 grid gap-px bg-line-l">
+      <li class="bg-paper p-7 sm:p-9 reveal">
+        <div class="grid gap-6 md:grid-cols-[7rem_1fr] md:gap-8 lg:grid-cols-[7rem_1fr_1fr_1fr] lg:gap-10">
+          <p class="u-caps text-dim-l">Stage 01</p>
+          <h3 class="text-[length:var(--text-h3)]">Discover</h3>
+          <div><p class="u-caps text-dim-l">You bring</p>
+            <p class="mt-2 text-dim-l">The business problem, the current workflow, who uses it,
+              and any deadline that is real.</p></div>
+          <div><p class="u-caps text-dim-l">You get</p>
+            <p class="mt-2 text-dim-l">A written scope: product type, user roles, integrations,
+              constraints, and what success means. <strong class="text-ink font-semibold">Gate:</strong>
+              you approve the scope before design starts.</p></div>
+        </div>
+      </li>
+
+      <li class="bg-paper p-7 sm:p-9 reveal">
+        <div class="grid gap-6 md:grid-cols-[7rem_1fr] md:gap-8 lg:grid-cols-[7rem_1fr_1fr_1fr] lg:gap-10">
+          <p class="u-caps text-dim-l">Stage 02</p>
+          <h3 class="text-[length:var(--text-h3)]">Design</h3>
+          <div><p class="u-caps text-dim-l">You bring</p>
+            <p class="mt-2 text-dim-l">Content, brand material, and decisions on the flows we
+              put in front of you.</p></div>
+          <div><p class="u-caps text-dim-l">You get</p>
+            <p class="mt-2 text-dim-l">Information architecture, user flows, and an interface you
+              can click through. <strong class="text-ink font-semibold">Gate:</strong> you approve
+              the prototype before the build starts.</p></div>
+        </div>
+      </li>
+
+      <li class="bg-paper p-7 sm:p-9 reveal">
+        <div class="grid gap-6 md:grid-cols-[7rem_1fr] md:gap-8 lg:grid-cols-[7rem_1fr_1fr_1fr] lg:gap-10">
+          <p class="u-caps text-dim-l">Stage 03</p>
+          <h3 class="text-[length:var(--text-h3)]">Build</h3>
+          <div><p class="u-caps text-dim-l">You bring</p>
+            <p class="mt-2 text-dim-l">Accounts and access for the systems we connect to, and
+              answers when a real edge case appears.</p></div>
+          <div><p class="u-caps text-dim-l">You get</p>
+            <p class="mt-2 text-dim-l">The product built inside the approved boundary, with
+              working software to review as it lands. <strong class="text-ink font-semibold">Gate:</strong>
+              acceptance against the criteria agreed in stage one.</p></div>
+        </div>
+      </li>
+
+      <li class="bg-paper p-7 sm:p-9 reveal">
+        <div class="grid gap-6 md:grid-cols-[7rem_1fr] md:gap-8 lg:grid-cols-[7rem_1fr_1fr_1fr] lg:gap-10">
+          <p class="u-caps text-dim-l">Stage 04</p>
+          <h3 class="text-[length:var(--text-h3)]">Launch and care</h3>
+          <div><p class="u-caps text-dim-l">You bring</p>
+            <p class="mt-2 text-dim-l">A decision on the maintenance scope, and the sign-off to
+              go live.</p></div>
+          <div><p class="u-caps text-dim-l">You get</p>
+            <p class="mt-2 text-dim-l">Testing, release, monitoring, backups, and a written
+              handover of what you own. <strong class="text-ink font-semibold">Gate:</strong> ownership
+              of domain, code, accounts, and data is documented, not assumed.</p></div>
+        </div>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<!-- ══ ENGAGEMENT ══════════════════════════════════════════════════════════
+     No prices. Every commercial term in CONTENT-AND-ASSETS.md is [UNVERIFIED]
+     and PRD.md line 132 requires omission until written approval.
+     ═══════════════════════════════════════════════════════════════════════ -->
+<section id="engagement" class="border-b border-line-d">
+  <div class="wrap py-20 sm:py-28">
+    <div class="max-w-3xl">
+      <p class="u-caps text-coast-lite reveal">05 — How we work together</p>
+      <h2 class="mt-5 text-[length:var(--text-h2)] reveal">Two ways in.</h2>
+    </div>
+
+    <div class="mt-14 grid gap-px bg-line-d md:grid-cols-2">
+      <div class="bg-ink p-7 sm:p-10 reveal">
+        <p class="u-caps text-coast-lite">Path A</p>
+        <h3 class="mt-4 text-[length:var(--text-h3)]">Defined website package</h3>
+        <p class="mt-5 text-dim-d">For a business that needs a clear, fast presence and knows
+          roughly what it wants. Fixed scope, fixed set of sections, fixed price.</p>
+        <dl class="mt-7 grid gap-4 text-sm">
+          <div class="flex gap-4 border-t border-line-d pt-4">
+            <dt class="u-caps text-dim-d w-28 shrink-0">Price</dt>
+            <dd class="text-dim-d">Ask for the current package details. We publish a price only
+              alongside its page count, inclusions, revisions, and renewal terms.</dd>
+          </div>
+          <div class="flex gap-4 border-t border-line-d pt-4">
+            <dt class="u-caps text-dim-d w-28 shrink-0">Good for</dt>
+            <dd class="text-dim-d">Restaurants, cafés, hotels, property and service businesses.</dd>
+          </div>
+          <div class="flex gap-4 border-t border-line-d pt-4">
+            <dt class="u-caps text-dim-d w-28 shrink-0">Not for</dt>
+            <dd class="text-dim-d">Anything with logins, payments, stock, or a workflow behind
+              it. That is path B, and no fixed website price applies to it.</dd>
+          </div>
+        </dl>
+      </div>
+
+      <div class="bg-ink-2 p-7 sm:p-10 reveal">
+        <p class="u-caps text-coast-lite">Path B</p>
+        <h3 class="mt-4 text-[length:var(--text-h3)]">Discovery, then a build estimate</h3>
+        <p class="mt-5 text-dim-d">For e-commerce, applications, AI systems, and integrations.
+          The estimate comes after the scope exists, because an estimate before that is a guess
+          with a number attached.</p>
+        <dl class="mt-7 grid gap-4 text-sm">
+          <div class="flex gap-4 border-t border-line-d pt-4">
+            <dt class="u-caps text-dim-d w-28 shrink-0">Step 1</dt>
+            <dd class="text-dim-d">Discovery — users, workflows, data, integrations, constraints,
+              and the operating outcome you are buying.</dd>
+          </div>
+          <div class="flex gap-4 border-t border-line-d pt-4">
+            <dt class="u-caps text-dim-d w-28 shrink-0">Step 2</dt>
+            <dd class="text-dim-d">A written estimate with the work broken down by stage,
+              milestones, and acceptance criteria.</dd>
+          </div>
+          <div class="flex gap-4 border-t border-line-d pt-4">
+            <dt class="u-caps text-dim-d w-28 shrink-0">Step 3</dt>
+            <dd class="text-dim-d">You decide whether to build, change the scope, or stop. The
+              discovery document is yours either way.</dd>
+          </div>
+        </dl>
+      </div>
+    </div>
+
+    <div class="mt-12 flex flex-wrap items-center gap-4 reveal">
+      <a href="/en/estimate/" class="btn btn-signal">Start the scoping questions</a>
+      <p class="text-sm text-dim-d">Six questions. No price at the end — a written estimate,
+        after a person reads it.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══ LOCAL ═══════════════════════════════════════════════════════════════ -->
+<section id="local" class="on-paper border-b border-line-l">
+  <div class="wrap py-20 sm:py-28">
+    <div class="grid gap-10 md:grid-cols-2 md:gap-12 lg:gap-20 items-start">
+      <div>
+        <p class="u-caps text-coast reveal">06 — Local</p>
+        <h2 class="mt-5 text-[length:var(--text-h2)] reveal">
+          Built in <span class="text-coast">Jomtien</span>, not offshore.
+        </h2>
+        <p class="mt-6 text-[length:var(--text-lead)] text-dim-l reveal">
+          We work in the same time zone as your staff, in a market where a booking system has to
+          handle Thai and English, low season and high season, and a payment method a European
+          card processor has never heard of.
+        </p>
+        <p class="mt-4 text-dim-l reveal">
+          That context is the reason a local build is worth more than a cheaper template from
+          somewhere that has never seen a Jomtien low season.
+        </p>
+      </div>
+
+      <figure class="reveal">
+        <div class="art art-local"></div>
+        <figcaption class="mt-4 u-caps text-dim-l">
+          Jomtien coastline, abstracted &mdash; the shoreline as an index
+        </figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- ══ FAQ ═════════════════════════════════════════════════════════════════ -->
+<section id="faq" class="border-b border-line-d">
+  <div class="wrap py-20 sm:py-28">
+    <div class="max-w-3xl">
+      <p class="u-caps text-coast-lite reveal">07 — Questions</p>
+      <h2 class="mt-5 text-[length:var(--text-h2)] reveal">Asked before every project.</h2>
+    </div>
+
+    <div class="mt-12 max-w-4xl">
+      <details class="border-t border-line-d py-2 reveal">
+        <summary class="flex cursor-pointer items-center justify-between gap-6 py-4 text-[length:var(--text-h3)] font-light">
+          Do I need a website, a web app, or a mobile app?
+          <span class="u-caps text-coast-lite shrink-0" aria-hidden="true">+</span>
+        </summary>
+        <div class="faq-body"><div>
+        <p class="pb-5 pr-10 text-dim-d">If customers need to find you and act, a website. If
+          staff or customers need to do something repeatedly with saved data, a web application.
+          A mobile app only when it needs the camera, offline use, location, or push
+          notifications — otherwise a web app on a phone is cheaper and updates faster.</p></div></div>
+      </details>
+
+      <details class="border-t border-line-d py-2 reveal">
+        <summary class="flex cursor-pointer items-center justify-between gap-6 py-4 text-[length:var(--text-h3)] font-light">
+          What does it cost?
+          <span class="u-caps text-coast-lite shrink-0" aria-hidden="true">+</span>
+        </summary>
+        <div class="faq-body"><div>
+        <p class="pb-5 pr-10 text-dim-d">Website packages have a set price, and we send the
+          current one with its inclusions in writing. Everything else is estimated after
+          discovery. A number given before the scope exists is a guess, and guesses are how
+          projects end in an argument.</p></div></div>
+      </details>
+
+      <details class="border-t border-line-d py-2 reveal">
+        <summary class="flex cursor-pointer items-center justify-between gap-6 py-4 text-[length:var(--text-h3)] font-light">
+          Can you rebuild the website I already have?
+          <span class="u-caps text-coast-lite shrink-0" aria-hidden="true">+</span>
+        </summary>
+        <div class="faq-body"><div>
+        <p class="pb-5 pr-10 text-dim-d">Yes, and we will first check whether you need one. If
+          the structure is sound and only the content, speed, or mobile layout is failing, fixing
+          those costs less than a rebuild.</p></div></div>
+      </details>
+
+      <details class="border-t border-line-d py-2 reveal">
+        <summary class="flex cursor-pointer items-center justify-between gap-6 py-4 text-[length:var(--text-h3)] font-light">
+          Who owns the code, domain, accounts, and data?
+          <span class="u-caps text-coast-lite shrink-0" aria-hidden="true">+</span>
+        </summary>
+        <div class="faq-body"><div>
+        <p class="pb-5 pr-10 text-dim-d">Ownership is written into the scope document at the
+          start of every project, covering source code, domain, hosting, store accounts, and
+          customer data. Ask for those terms in writing before you sign anything — with us or
+          with anyone else.</p></div></div>
+      </details>
+
+      <details class="border-t border-line-d py-2 reveal">
+        <summary class="flex cursor-pointer items-center justify-between gap-6 py-4 text-[length:var(--text-h3)] font-light">
+          Is an AI feature worth it for a small business?
+          <span class="u-caps text-coast-lite shrink-0" aria-hidden="true">+</span>
+        </summary>
+        <div class="faq-body"><div>
+        <p class="pb-5 pr-10 text-dim-d">Sometimes. It is worth it when the same questions arrive
+          in volume and the answers already exist in writing. It is not worth it when the volume
+          is low, the answers change constantly, or a wrong answer costs you a customer. We will
+          say which case you are in.</p></div></div>
+      </details>
+
+      <details class="border-t border-line-d py-2 reveal">
+        <summary class="flex cursor-pointer items-center justify-between gap-6 py-4 text-[length:var(--text-h3)] font-light">
+          Can the site work in Thai and English?
+          <span class="u-caps text-coast-lite shrink-0" aria-hidden="true">+</span>
+        </summary>
+        <div class="faq-body"><div>
+        <p class="pb-5 pr-10 text-dim-d">Yes. Both languages are written and reviewed properly,
+          with a typeface that renders Thai correctly. We do not ship a machine-translation widget
+          and call it bilingual.</p></div></div>
+      </details>
+
+      <details class="border-t border-line-d py-2 reveal">
+        <summary class="flex cursor-pointer items-center justify-between gap-6 py-4 text-[length:var(--text-h3)] font-light">
+          What happens after launch?
+          <span class="u-caps text-coast-lite shrink-0" aria-hidden="true">+</span>
+        </summary>
+        <div class="faq-body"><div>
+        <p class="pb-5 pr-10 text-dim-d">Product care: hosting, monitoring, backups, security
+          updates, and support under a written scope with agreed response expectations. It is a
+          separate agreement from the build, and you can decline it.</p></div></div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ══ CONTACT ═════════════════════════════════════════════════════════════ -->
+<section id="contact" class="on-paper">
+  <div class="wrap py-20 sm:py-28">
+    <div class="grid gap-14 lg:grid-cols-[1.4fr_1fr] lg:gap-20 items-start">
+
+      <div>
+        <p class="u-caps text-coast reveal">08 — Contact</p>
+        <h2 class="mt-5 text-[length:var(--text-h2)] reveal">
+          Tell us what the business needs to <span class="text-coast">do</span>.
+        </h2>
+        <p class="mt-6 text-[length:var(--text-lead)] text-dim-l reveal">
+          Describe the current workflow, who uses it, and the deadline if one is real. You do not
+          need to choose the technology before contacting us.
+        </p>
+
+        <form id="enquiry" class="mt-10 grid gap-5" novalidate>
+          <div class="grid gap-5 sm:grid-cols-2">
+            <p class="grid gap-2">
+              <label for="f-name" class="u-caps text-dim-l">Name <span class="text-signal" aria-hidden="true">*</span></label>
+              <input class="field" id="f-name" name="name" type="text" required maxlength="120"
+                     autocomplete="name" aria-describedby="e-name" />
+              <span id="e-name" class="text-sm text-signal" hidden></span>
+            </p>
+            <p class="grid gap-2">
+              <label for="f-business" class="u-caps text-dim-l">Business name</label>
+              <input class="field" id="f-business" name="business" type="text" maxlength="120"
+                     autocomplete="organization" />
+            </p>
+          </div>
+
+          <div class="grid gap-5 sm:grid-cols-2">
+            <p class="grid gap-2">
+              <label for="f-email" class="u-caps text-dim-l">Email <span class="text-signal" aria-hidden="true">*</span></label>
+              <input class="field" id="f-email" name="email" type="email" required maxlength="180"
+                     autocomplete="email" aria-describedby="e-email" />
+              <span id="e-email" class="text-sm text-signal" hidden></span>
+            </p>
+            <p class="grid gap-2">
+              <label for="f-phone" class="u-caps text-dim-l">Phone or LINE</label>
+              <input class="field" id="f-phone" name="phone" type="tel" maxlength="60" autocomplete="tel" />
+            </p>
+          </div>
+
+          <div class="grid gap-5 sm:grid-cols-2">
+            <p class="grid gap-2">
+              <label for="f-type" class="u-caps text-dim-l">Project type <span class="text-signal" aria-hidden="true">*</span></label>
+              <select class="field" id="f-type" name="projectType" required aria-describedby="e-type">
+                <option value="">Select one</option>
+                <option value="new-website">New business website</option>
+                <option value="website-rebuild">Website rebuild</option>
+                <option value="ecommerce">E-commerce platform</option>
+                <option value="web-app">Web application</option>
+                <option value="mobile-app">Mobile application</option>
+                <option value="ai-system">AI system or automation</option>
+                <option value="booking-payments">Booking, commerce, or payment system</option>
+                <option value="integration">Integration or automation</option>
+                <option value="maintenance">Maintenance or product improvement</option>
+              </select>
+              <span id="e-type" class="text-sm text-signal" hidden></span>
+            </p>
+            <p class="grid gap-2">
+              <label for="f-lang" class="u-caps text-dim-l">Preferred language</label>
+              <select class="field" id="f-lang" name="language">
+                <option value="en">English</option>
+                <option value="th">ไทย</option>
+              </select>
+            </p>
+          </div>
+
+          <p class="grid gap-2">
+            <label for="f-url" class="u-caps text-dim-l">Current website</label>
+            <input class="field" id="f-url" name="currentUrl" type="url" maxlength="200"
+                   inputmode="url" placeholder="https://" />
+          </p>
+
+          <p class="grid gap-2">
+            <label for="f-msg" class="u-caps text-dim-l">What does the business need to do? <span class="text-signal" aria-hidden="true">*</span></label>
+            <textarea class="field" id="f-msg" name="message" rows="6" required minlength="20"
+                      maxlength="4000" aria-describedby="e-msg"></textarea>
+            <span id="e-msg" class="text-sm text-signal" hidden></span>
+          </p>
+
+          <!-- Honeypot. Off-screen rather than display:none so it stays in the
+               accessibility tree for nobody and out of the tab order. -->
+          <p class="absolute -left-[9999px]" aria-hidden="true">
+            <label for="f-website2">Leave this empty</label>
+            <input id="f-website2" name="website2" type="text" tabindex="-1" autocomplete="off" />
+          </p>
+
+          <p class="flex items-start gap-3">
+            <input class="mt-1 size-5 shrink-0" id="f-consent" name="consent" type="checkbox"
+                   required aria-describedby="e-consent" />
+            <label for="f-consent" class="text-sm text-dim-l">
+              I agree that Jomtien Network may use these details to reply to this enquiry.
+              <a href="/en/privacy/">Privacy notice</a>.
+            </label>
+          </p>
+          <span id="e-consent" class="text-sm text-signal" hidden></span>
+
+          <div class="flex flex-wrap items-center gap-4">
+            <button type="submit" class="btn btn-signal">Send enquiry</button>
+            <a href="/en/estimate/" class="text-sm">or work through the scoping questions first</a>
+          </div>
+
+          <p id="formStatus" role="status" aria-live="polite" class="text-sm"></p>
+        </form>
+      </div>
+
+      <aside class="grid gap-6">
+        <div>
+          <p class="u-caps text-dim-l">Direct</p>
+          <p class="mt-3">
+            <a href="mailto:info@jomtien.net" class="text-[length:var(--text-h3)]">info@jomtien.net</a>
+          </p>
+          <p class="mt-2 text-sm text-dim-l">Replies come from a person, in English or Thai.</p>
+        </div>
+
+        <div class="border-t border-line-l pt-6">
+          <p class="u-caps text-dim-l">Social</p>
+          <p class="mt-3">
+            <a href="https://facebook.com/jomtiennetwork" target="_blank" rel="noopener noreferrer">
+              facebook.com/jomtiennetwork</a>
+          </p>
+        </div>
+
+        <div class="border-t border-line-l pt-6">
+          <p class="u-caps text-dim-l">Where</p>
+          <address class="mt-3 not-italic text-dim-l">Jomtien Beach, Pattaya, Chonburi, Thailand</address>
+        </div>
+
+        <div class="border-t border-line-l pt-6">
+          <p class="u-caps text-dim-l">Phone</p>
+          <ul class="mt-4 grid gap-3">
+            <li class="flex flex-wrap items-baseline gap-x-3 gap-y-1">
+              <a href="tel:+66611735100" class="u-num text-[length:var(--text-h3)]">061 173 5100</a>
+              <span class="text-sm text-dim-l">Mobile &mdash; English</span>
+            </li>
+            <li class="flex flex-wrap items-baseline gap-x-3 gap-y-1">
+              <a href="tel:+66968281736" class="u-num text-[length:var(--text-h3)]">096 828 1736</a>
+              <span class="text-sm text-dim-l">Mobile &mdash; ไทย</span>
+            </li>
+            <li class="flex flex-wrap items-baseline gap-x-3 gap-y-1">
+              <a href="tel:+6644138813" class="u-num">044 138 813</a>
+              <span class="text-sm text-dim-l">Office</span>
+            </li>
+            <li class="flex flex-wrap items-baseline gap-x-3 gap-y-1">
+              <a href="tel:+6633138813" class="u-num">033 138 813</a>
+              <span class="text-sm text-dim-l">Office</span>
+            </li>
+          </ul>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>
+</main>
+
+<!-- ══ FOOTER ══════════════════════════════════════════════════════════════ -->
+<footer class="border-t border-line-d">
+  <div class="wrap py-14">
+    <div class="grid gap-10 sm:grid-cols-2 md:grid-cols-4">
+      <div>
+        <p class="font-semibold">Jomtien Network</p>
+        <p class="mt-3 text-sm text-dim-d">Business websites, e-commerce, applications, AI
+          systems, and integrations. Jomtien Beach, Pattaya.</p>
+      </div>
+      <nav aria-label="Footer — build">
+        <p class="u-caps text-dim-d">Build</p>
+        <ul class="mt-3 grid gap-2 text-sm">
+          <li><a href="#build" class="text-dim-d hover:text-paper">What we build</a></li>
+          <li><a href="#choose" class="text-dim-d hover:text-paper">Which product</a></li>
+          <li><a href="#process" class="text-dim-d hover:text-paper">Process</a></li>
+          <li><a href="/en/estimate/" class="text-dim-d hover:text-paper">Scoping questions</a></li>
+        </ul>
+      </nav>
+      <nav aria-label="Footer — company">
+        <p class="u-caps text-dim-d">Company</p>
+        <ul class="mt-3 grid gap-2 text-sm">
+          <li><a href="#faq" class="text-dim-d hover:text-paper">FAQ</a></li>
+          <li><a href="#contact" class="text-dim-d hover:text-paper">Contact</a></li>
+          <li><a href="/en/privacy/" class="text-dim-d hover:text-paper">Privacy</a></li>
+          <li><a href="/th/" lang="th" class="text-dim-d hover:text-paper">ภาษาไทย</a></li>
+        </ul>
+      </nav>
+      <div>
+        <p class="u-caps text-dim-d">Contact</p>
+        <ul class="mt-3 grid gap-2 text-sm">
+          <li><a href="mailto:info@jomtien.net" class="text-dim-d hover:text-paper">info@jomtien.net</a></li>
+          <li><a href="https://facebook.com/jomtiennetwork" target="_blank" rel="noopener noreferrer"
+                 class="text-dim-d hover:text-paper">Facebook</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="mt-12 border-t border-line-d pt-6 flex flex-wrap items-center justify-between gap-4">
+      <p class="text-sm text-dim-d">
+        &copy; <span class="u-num">2026</span> Jomtien Network.
+        <span class="slot !border-0 !p-0 !inline">Legal entity name pending owner confirmation.</span>
+      </p>
+      <span class="text-sm text-dim-d">
+        Built by
+        <a href="https://iamuvin.com" target="_blank" rel="noopener noreferrer"
+           class="underline underline-offset-2 hover:text-paper">Uvin Vindula</a>
+      </span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,262 @@
+<!doctype html>
+<!--
+  @project  Jomtien Network — jomtien.net
+  @author   Uvin Vindula (IAMUVIN)
+  @website  https://iamuvin.com
+  @built    2026
+  @license  MIT — see LICENSE
+
+  Scoping questions. Deliberately NOT a price calculator: every commercial term
+  in CONTENT-AND-ASSETS.md is [UNVERIFIED], so emitting a THB figure here would
+  be a fabricated quote. The reference site takes the same position — an exact
+  price needs a defined scope, and six questions cannot define one.
+-->
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Scope your project — Jomtien Network</title>
+<meta name="description" content="Six questions about your project. You get a written scope summary and a considered estimate from a person — not an instant number." />
+
+<link rel="canonical" href="https://jomtien.net/en/estimate/" />
+<link rel="alternate" hreflang="en" href="https://jomtien.net/en/estimate/" />
+<link rel="alternate" hreflang="th" href="https://jomtien.net/th/estimate/" />
+
+<meta name="author" content="Uvin Vindula — IAMUVIN" />
+<meta name="developer" content="Uvin Vindula — iamuvin.com" />
+<link rel="me" href="https://iamuvin.com" />
+<link rel="author" type="text/plain" href="/humans.txt" />
+
+<link rel="preload" href="/public/fonts/plex-sans-latin-var.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="stylesheet" href="/dist/styles.css" />
+<script type="module" src="/dist/main.js"></script>
+</head>
+
+<body>
+<a href="#main" class="skip-link btn btn-signal">Skip to content</a>
+<div class="scroll-progress" aria-hidden="true"></div>
+<div class="cursor-ring" aria-hidden="true"></div>
+<div class="cursor-dot" aria-hidden="true"></div>
+
+<header class="site-header sticky top-0 z-40 border-b border-line-d bg-ink/92 backdrop-blur-sm">
+  <div class="header-bar wrap flex items-center gap-4 py-3">
+    <a href="/en/" class="flex items-center gap-3 shrink-0" aria-label="Jomtien Network, home">
+      <svg class="w-9 h-9 sm:w-10 sm:h-10 shrink-0" viewBox="0 0 40 40" fill="none" aria-hidden="true">
+        <path d="M3 28c6-1.5 7.5-11 14-11s9 7.5 14 5" stroke="#6cc6f2" stroke-width="2.25" stroke-linecap="square" />
+        <path d="M3 34h34" stroke="#1b3a47" stroke-width="2.25" />
+        <path d="M3 34h13" stroke="#9edde8" stroke-width="2.25" />
+        <rect x="24" y="8" width="7" height="7" fill="#f2445b" />
+      </svg>
+      <span class="text-[1.0625rem] sm:text-[1.1875rem] font-semibold tracking-tight">Jomtien Network</span>
+    </a>
+    <div class="ml-auto flex items-center gap-2">
+      <a href="/th/estimate/" hreflang="th" lang="th"
+         class="u-caps px-2.5 py-2 text-dim-d hover:text-paper" >ไทย</a>
+      <a href="/en/" class="btn btn-ghost !min-h-11 !py-2.5 !px-5">Back to site</a>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+<section class="relative overflow-hidden border-b border-line-d">
+  <div class="facets" aria-hidden="true">
+    <div class="facet facet-a"></div>
+    <div class="facet facet-b"></div>
+  </div>
+  <div class="art art-hero" aria-hidden="true"></div>
+  <div class="art-scrim" aria-hidden="true"></div>
+
+  <div class="wrap relative py-16 sm:py-24">
+    <div class="max-w-3xl">
+      <p class="u-caps text-coast-lite">Scoping questions</p>
+      <h1 class="mt-5 text-[length:var(--text-h2)]">
+        What will your project actually <span class="text-coast-lite">take</span>?
+      </h1>
+      <p class="mt-6 text-[length:var(--text-lead)] text-dim-d">
+        Six questions. At the end you get a written summary of what you described and a
+        considered estimate from a person who has read it.
+      </p>
+      <p class="mt-4 text-dim-d">
+        You will not get an instant number. An exact price needs a defined scope, and six
+        questions cannot define your scope — anyone who gives you a figure at this stage is
+        guessing, and you will pay for the guess later.
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="on-paper">
+  <div class="wrap py-16 sm:py-24">
+    <div class="mx-auto max-w-3xl">
+
+      <!-- Progress. Rendered server-side so it is correct before JS runs. -->
+      <div class="flex items-center justify-between gap-4">
+        <p class="u-caps text-dim-l">
+          Step <span id="stepNow" class="u-num">1</span> of <span class="u-num">6</span>
+        </p>
+        <p id="stepName" class="u-caps text-dim-l">Product</p>
+      </div>
+      <div class="mt-3 h-1 w-full bg-line-l" role="presentation">
+        <div id="stepBar" class="h-1 bg-signal-bright transition-[width] duration-300" style="width:16.6%"></div>
+      </div>
+
+      <form id="scope" class="mt-12" novalidate>
+
+        <!-- ── 1 ────────────────────────────────────────────────────────── -->
+        <fieldset class="scope-step" data-step="1" data-name="Product">
+          <legend class="text-[length:var(--text-h3)]">What are you trying to build?</legend>
+          <p class="mt-3 text-dim-l">Pick the closest. We will correct it if it is wrong — that
+            is part of the job.</p>
+          <div class="mt-7 grid gap-px bg-line-l">
+            <label class="bg-paper flex gap-4 p-5 cursor-pointer"><input type="radio" name="product" value="Business website" class="mt-1 size-5 shrink-0" required /><span><strong class="font-semibold">A business website</strong><br /><span class="text-sm text-dim-l">Customers find us, understand the offer, and get in touch.</span></span></label>
+            <label class="bg-paper flex gap-4 p-5 cursor-pointer"><input type="radio" name="product" value="E-commerce platform" class="mt-1 size-5 shrink-0" /><span><strong class="font-semibold">An online shop</strong><br /><span class="text-sm text-dim-l">Selling products or services online and taking payment.</span></span></label>
+            <label class="bg-paper flex gap-4 p-5 cursor-pointer"><input type="radio" name="product" value="Web application" class="mt-1 size-5 shrink-0" /><span><strong class="font-semibold">A web application</strong><br /><span class="text-sm text-dim-l">Bookings, dashboards, internal tools, a workflow with saved data.</span></span></label>
+            <label class="bg-paper flex gap-4 p-5 cursor-pointer"><input type="radio" name="product" value="Mobile application" class="mt-1 size-5 shrink-0" /><span><strong class="font-semibold">A mobile app</strong><br /><span class="text-sm text-dim-l">iOS or Android, for customers or for staff on their feet.</span></span></label>
+            <label class="bg-paper flex gap-4 p-5 cursor-pointer"><input type="radio" name="product" value="AI system" class="mt-1 size-5 shrink-0" /><span><strong class="font-semibold">An AI system</strong><br /><span class="text-sm text-dim-l">Answering questions, triaging enquiries, handling documents.</span></span></label>
+            <label class="bg-paper flex gap-4 p-5 cursor-pointer"><input type="radio" name="product" value="Integration" class="mt-1 size-5 shrink-0" /><span><strong class="font-semibold">An integration</strong><br /><span class="text-sm text-dim-l">Connecting systems we already pay for so data is entered once.</span></span></label>
+            <label class="bg-paper flex gap-4 p-5 cursor-pointer"><input type="radio" name="product" value="Not sure yet" class="mt-1 size-5 shrink-0" /><span><strong class="font-semibold">I am not sure yet</strong><br /><span class="text-sm text-dim-l">A completely acceptable answer. Describe the problem in step 6.</span></span></label>
+          </div>
+        </fieldset>
+
+        <!-- ── 2 ────────────────────────────────────────────────────────── -->
+        <fieldset class="scope-step" data-step="2" data-name="Starting point">
+          <legend class="text-[length:var(--text-h3)]">What exists today?</legend>
+          <p class="mt-3 text-dim-l">Replacing something is a different job from starting clean.</p>
+          <div class="mt-7 grid gap-px bg-line-l">
+            <label class="bg-paper flex gap-4 p-5 cursor-pointer"><input type="radio" name="existing" value="Nothing yet" class="mt-1 size-5 shrink-0" required /><span>Nothing yet — this would be the first version.</span></label>
+            <label class="bg-paper flex gap-4 p-5 cursor-pointer"><input type="radio" name="existing" value="Something old to replace" class="mt-1 size-5 shrink-0" /><span>Something exists and is out of date or not working.</span></label>
+            <label class="bg-paper flex gap-4 p-5 cursor-pointer"><input type="radio" name="existing" value="Works, needs extending" class="mt-1 size-5 shrink-0" /><span>It works, but it needs new capability added.</span></label>
+            <label class="bg-paper flex gap-4 p-5 cursor-pointer"><input type="radio" name="existing" value="Manual process today" class="mt-1 size-5 shrink-0" /><span>It is done by hand today — paper, spreadsheets, or chat messages.</span></label>
+          </div>
+        </fieldset>
+
+        <!-- ── 3 ────────────────────────────────────────────────────────── -->
+        <fieldset class="scope-step" data-step="3" data-name="Capability">
+          <legend class="text-[length:var(--text-h3)]">What does it need to do?</legend>
+          <p class="mt-3 text-dim-l">Choose every one that applies. These are the items that
+            actually move an estimate.</p>
+          <div class="mt-7 grid gap-px bg-line-l sm:grid-cols-2">
+            <label class="bg-paper flex gap-4 p-5 cursor-pointer"><input type="checkbox" name="needs" value="Take payments" class="mt-1 size-5 shrink-0" /><span>Take payments</span></label>
+            <label class="bg-paper flex gap-4 p-5 cursor-pointer"><input type="checkbox" name="needs" value="Customer accounts / logins" class="mt-1 size-5 shrink-0" /><span>Customer accounts or logins</span></label>
+            <label class="bg-paper flex gap-4 p-5 cursor-pointer"><input type="checkbox" name="needs" value="Bookings or scheduling" class="mt-1 size-5 shrink-0" /><span>Bookings or scheduling</span></label>
+            <label class="bg-paper flex gap-4 p-5 cursor-pointer"><input type="checkbox" name="needs" value="Stock or inventory" class="mt-1 size-5 shrink-0" /><span>Stock or inventory</span></label>
+            <label class="bg-paper flex gap-4 p-5 cursor-pointer"><input type="checkbox" name="needs" value="Staff roles and permissions" class="mt-1 size-5 shrink-0" /><span>Staff roles and permissions</span></label>
+            <label class="bg-paper flex gap-4 p-5 cursor-pointer"><input type="checkbox" name="needs" value="Thai and English" class="mt-1 size-5 shrink-0" /><span>Thai and English</span></label>
+            <label class="bg-paper flex gap-4 p-5 cursor-pointer"><input type="checkbox" name="needs" value="Connects to another system" class="mt-1 size-5 shrink-0" /><span>Connects to another system</span></label>
+            <label class="bg-paper flex gap-4 p-5 cursor-pointer"><input type="checkbox" name="needs" value="AI assistance" class="mt-1 size-5 shrink-0" /><span>AI assistance or automation</span></label>
+            <label class="bg-paper flex gap-4 p-5 cursor-pointer"><input type="checkbox" name="needs" value="Reporting" class="mt-1 size-5 shrink-0" /><span>Reporting or analytics</span></label>
+            <label class="bg-paper flex gap-4 p-5 cursor-pointer"><input type="checkbox" name="needs" value="Works offline" class="mt-1 size-5 shrink-0" /><span>Works offline</span></label>
+          </div>
+        </fieldset>
+
+        <!-- ── 4 ────────────────────────────────────────────────────────── -->
+        <fieldset class="scope-step" data-step="4" data-name="Content">
+          <legend class="text-[length:var(--text-h3)]">Who supplies the content?</legend>
+          <p class="mt-3 text-dim-l">The most common cause of a late project, and the easiest one
+            to plan for.</p>
+          <div class="mt-7 grid gap-px bg-line-l">
+            <label class="bg-paper flex gap-4 p-5 cursor-pointer"><input type="radio" name="content" value="Ready to hand over" class="mt-1 size-5 shrink-0" required /><span>Text and images are ready to hand over.</span></label>
+            <label class="bg-paper flex gap-4 p-5 cursor-pointer"><input type="radio" name="content" value="Some exists" class="mt-1 size-5 shrink-0" /><span>Some exists; the rest needs writing or shooting.</span></label>
+            <label class="bg-paper flex gap-4 p-5 cursor-pointer"><input type="radio" name="content" value="Need it produced" class="mt-1 size-5 shrink-0" /><span>We would need it written and photographed.</span></label>
+            <label class="bg-paper flex gap-4 p-5 cursor-pointer"><input type="radio" name="content" value="Not thought about it" class="mt-1 size-5 shrink-0" /><span>Have not thought about it yet.</span></label>
+          </div>
+        </fieldset>
+
+        <!-- ── 5 ────────────────────────────────────────────────────────── -->
+        <fieldset class="scope-step" data-step="5" data-name="Timing">
+          <legend class="text-[length:var(--text-h3)]">Is there a real deadline?</legend>
+          <p class="mt-3 text-dim-l">A real one, tied to something in the business — not a
+            preference.</p>
+          <div class="mt-7 grid gap-px bg-line-l">
+            <label class="bg-paper flex gap-4 p-5 cursor-pointer"><input type="radio" name="timing" value="Fixed date" class="mt-1 size-5 shrink-0" required /><span>Yes — a fixed date we cannot move.</span></label>
+            <label class="bg-paper flex gap-4 p-5 cursor-pointer"><input type="radio" name="timing" value="Season" class="mt-1 size-5 shrink-0" /><span>Tied to a season or an event.</span></label>
+            <label class="bg-paper flex gap-4 p-5 cursor-pointer"><input type="radio" name="timing" value="Soon, flexible" class="mt-1 size-5 shrink-0" /><span>Soon, but the date is flexible.</span></label>
+            <label class="bg-paper flex gap-4 p-5 cursor-pointer"><input type="radio" name="timing" value="Exploring" class="mt-1 size-5 shrink-0" /><span>Still working out whether to do it at all.</span></label>
+          </div>
+        </fieldset>
+
+        <!-- ── 6 ────────────────────────────────────────────────────────── -->
+        <fieldset class="scope-step" data-step="6" data-name="Your details">
+          <legend class="text-[length:var(--text-h3)]">Where do we send the summary?</legend>
+          <p class="mt-3 text-dim-l">Describe the problem in your own words. That paragraph is
+            worth more to an estimate than every answer above it.</p>
+
+          <div class="mt-7 grid gap-5">
+            <div class="grid gap-5 sm:grid-cols-2">
+              <p class="grid gap-2">
+                <label for="s-name" class="u-caps text-dim-l">Name <span class="text-signal" aria-hidden="true">*</span></label>
+                <input class="field" id="s-name" name="name" type="text" required maxlength="120" autocomplete="name" />
+                <span id="s-e-name" class="text-sm text-signal" hidden></span>
+              </p>
+              <p class="grid gap-2">
+                <label for="s-email" class="u-caps text-dim-l">Email <span class="text-signal" aria-hidden="true">*</span></label>
+                <input class="field" id="s-email" name="email" type="email" required maxlength="180" autocomplete="email" />
+                <span id="s-e-email" class="text-sm text-signal" hidden></span>
+              </p>
+            </div>
+            <p class="grid gap-2">
+              <label for="s-business" class="u-caps text-dim-l">Business name</label>
+              <input class="field" id="s-business" name="business" type="text" maxlength="120" autocomplete="organization" />
+            </p>
+            <p class="grid gap-2">
+              <label for="s-msg" class="u-caps text-dim-l">What is the problem? <span class="text-signal" aria-hidden="true">*</span></label>
+              <textarea class="field" id="s-msg" name="message" rows="5" required minlength="20" maxlength="4000"></textarea>
+              <span id="s-e-msg" class="text-sm text-signal" hidden></span>
+            </p>
+
+            <p class="absolute -left-[9999px]" aria-hidden="true">
+              <label for="s-trap">Leave this empty</label>
+              <input id="s-trap" name="website2" type="text" tabindex="-1" autocomplete="off" />
+            </p>
+
+            <p class="flex items-start gap-3">
+              <input class="mt-1 size-5 shrink-0" id="s-consent" name="consent" type="checkbox" required />
+              <label for="s-consent" class="text-sm text-dim-l">
+                I agree that Jomtien Network may use these details to reply.
+                <a href="/en/privacy/">Privacy notice</a>.
+              </label>
+            </p>
+            <span id="s-e-consent" class="text-sm text-signal" hidden></span>
+          </div>
+        </fieldset>
+
+        <!-- ── Navigation ───────────────────────────────────────────────── -->
+        <div class="mt-10 flex flex-wrap items-center gap-3 border-t border-line-l pt-8">
+          <button type="button" id="scopeBack" class="btn btn-ghost !text-ink !border-border-l" hidden>Back</button>
+          <button type="button" id="scopeNext" class="btn btn-dark" hidden>Next</button>
+          <button type="submit" id="scopeSend" class="btn btn-signal">Send it</button>
+          <p id="scopeStatus" role="status" aria-live="polite" class="w-full text-sm text-dim-l"></p>
+        </div>
+      </form>
+
+      <!-- Summary. Built from the visitor's own answers, shown before sending. -->
+      <div id="scopeSummary" hidden class="mt-14 border-t-2 border-ink pt-8">
+        <p class="u-caps text-dim-l">Your scope summary</p>
+        <h2 class="mt-4 text-[length:var(--text-h3)]">Here is what you told us.</h2>
+        <dl id="scopeOut" class="mt-7 grid gap-4"></dl>
+        <p class="mt-8 text-dim-l">A person reads this and replies with the questions it raises,
+          the approach we would take, and what it would take to build. If it is the wrong product
+          for the problem, that is in the reply too.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="border-t border-line-d">
+  <div class="wrap py-10 flex flex-wrap items-center justify-between gap-4">
+    <p class="text-sm text-dim-d">
+      <a href="/en/" class="hover:text-paper">Jomtien Network</a> ·
+      <a href="mailto:info@jomtien.net" class="hover:text-paper">info@jomtien.net</a>
+    </p>
+    <span class="text-sm text-dim-d">
+      Built by
+      <a href="https://iamuvin.com" target="_blank" rel="noopener noreferrer"
+         class="underline underline-offset-2 hover:text-paper">Uvin Vindula</a>
+    </span>
+  </div>
+</footer>
+
+</body>
+</html>

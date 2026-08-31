@@ -1,0 +1,247 @@
+<!doctype html>
+<!--
+  @project  Jomtien Network — jomtien.net
+  @author   Uvin Vindula (IAMUVIN)
+  @website  https://iamuvin.com
+  @built    2026
+  @license  MIT — see LICENSE
+
+  THAI COPY NOT NATIVE-REVIEWED. Mirrors en/estimate/. Deliberately not a price
+  calculator — no THB figure is produced anywhere on this page.
+-->
+<html lang="th">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>กำหนดขอบเขตงานของคุณ — Jomtien Network</title>
+<meta name="description" content="หกคำถามเกี่ยวกับงานของคุณ คุณจะได้สรุปขอบเขตเป็นลายลักษณ์อักษรและใบประเมินจากคนจริง ไม่ใช่ตัวเลขอัตโนมัติ" />
+
+<link rel="canonical" href="https://jomtien.net/th/estimate/" />
+<link rel="alternate" hreflang="en" href="https://jomtien.net/en/estimate/" />
+<link rel="alternate" hreflang="th" href="https://jomtien.net/th/estimate/" />
+
+<meta name="author" content="Uvin Vindula — IAMUVIN" />
+<meta name="developer" content="Uvin Vindula — iamuvin.com" />
+<link rel="me" href="https://iamuvin.com" />
+<link rel="author" type="text/plain" href="/humans.txt" />
+
+<link rel="preload" href="/public/fonts/plex-sans-thai-thai-400.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="stylesheet" href="/dist/styles.css" />
+<script type="module" src="/dist/main.js"></script>
+</head>
+
+<body>
+<a href="#main" class="skip-link btn btn-signal">ข้ามไปยังเนื้อหา</a>
+<div class="scroll-progress" aria-hidden="true"></div>
+<div class="cursor-ring" aria-hidden="true"></div>
+<div class="cursor-dot" aria-hidden="true"></div>
+
+<header class="site-header sticky top-0 z-40 border-b border-line-d bg-ink/92 backdrop-blur-sm">
+  <div class="header-bar wrap flex items-center gap-4 py-3">
+    <a href="/th/" class="flex items-center gap-3 shrink-0" aria-label="Jomtien Network หน้าแรก">
+      <svg class="w-9 h-9 sm:w-10 sm:h-10 shrink-0" viewBox="0 0 40 40" fill="none" aria-hidden="true">
+        <path d="M3 28c6-1.5 7.5-11 14-11s9 7.5 14 5" stroke="#6cc6f2" stroke-width="2.25" stroke-linecap="square" />
+        <path d="M3 34h34" stroke="#1b3a47" stroke-width="2.25" />
+        <path d="M3 34h13" stroke="#9edde8" stroke-width="2.25" />
+        <rect x="24" y="8" width="7" height="7" fill="#f2445b" />
+      </svg>
+      <span class="text-[1.0625rem] sm:text-[1.1875rem] font-semibold tracking-tight">Jomtien Network</span>
+    </a>
+    <div class="ml-auto flex items-center gap-2">
+      <a href="/en/estimate/" hreflang="en" lang="en"
+         class="u-caps px-2.5 py-2 text-dim-d hover:text-paper">EN</a>
+      <a href="/th/" class="btn btn-ghost !min-h-11 !py-2.5 !px-5">กลับไปหน้าเว็บ</a>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+<section class="relative overflow-hidden border-b border-line-d">
+  <div class="facets" aria-hidden="true">
+    <div class="facet facet-a"></div>
+    <div class="facet facet-b"></div>
+  </div>
+  <div class="art art-hero" aria-hidden="true"></div>
+  <div class="art-scrim" aria-hidden="true"></div>
+
+  <div class="wrap relative py-16 sm:py-24">
+    <div class="max-w-3xl">
+      <p class="u-caps text-coast-lite">คำถามกำหนดขอบเขต</p>
+      <h1 class="mt-5 text-[length:var(--text-h2)]">
+        งานของคุณต้องใช้<span class="text-coast-lite">อะไรบ้าง</span>จริง ๆ
+      </h1>
+      <p class="mt-6 text-[length:var(--text-lead)] text-dim-d">
+        หกคำถาม เมื่อตอบครบ คุณจะได้สรุปสิ่งที่คุณอธิบายมาเป็นลายลักษณ์อักษร
+        และใบประเมินจากคนที่อ่านมันจริง ๆ
+      </p>
+      <p class="mt-4 text-dim-d">
+        คุณจะไม่ได้ตัวเลขทันที ราคาที่แม่นยำต้องมีขอบเขตงานที่ชัดเจน
+        และหกคำถามกำหนดขอบเขตงานของคุณไม่ได้ — ใครที่ให้ตัวเลขในขั้นนี้คือกำลังเดา
+        และคุณจะเป็นคนจ่ายค่าการเดานั้นทีหลัง
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="on-paper">
+  <div class="wrap py-16 sm:py-24">
+    <div class="mx-auto max-w-3xl">
+
+      <div class="flex items-center justify-between gap-4">
+        <p class="u-caps text-dim-l">
+          ข้อ <span id="stepNow" class="u-num">1</span> จาก <span class="u-num">6</span>
+        </p>
+        <p id="stepName" class="u-caps text-dim-l">ประเภทงาน</p>
+      </div>
+      <div class="mt-3 h-1 w-full bg-line-l" role="presentation">
+        <div id="stepBar" class="h-1 bg-signal-bright transition-[width] duration-300" style="width:16.6%"></div>
+      </div>
+
+      <form id="scope" class="mt-12" novalidate>
+
+        <fieldset class="scope-step" data-step="1" data-name="ประเภทงาน">
+          <legend class="text-[length:var(--text-h3)]">คุณกำลังจะสร้างอะไร</legend>
+          <p class="mt-3 text-dim-l">เลือกข้อที่ใกล้เคียงที่สุด ถ้าเลือกผิดเราจะแก้ให้ — นั่นคือส่วนหนึ่งของงาน</p>
+          <div class="mt-7 grid gap-px bg-line-l">
+            <label class="bg-paper flex gap-4 p-5 cursor-pointer"><input type="radio" name="product" value="เว็บไซต์ธุรกิจ" class="mt-1 size-5 shrink-0" required /><span><strong class="font-semibold">เว็บไซต์ธุรกิจ</strong><br /><span class="text-sm text-dim-l">ให้ลูกค้าหาเจอ เข้าใจสิ่งที่เราขาย และติดต่อกลับมา</span></span></label>
+            <label class="bg-paper flex gap-4 p-5 cursor-pointer"><input type="radio" name="product" value="ร้านค้าออนไลน์" class="mt-1 size-5 shrink-0" /><span><strong class="font-semibold">ร้านค้าออนไลน์</strong><br /><span class="text-sm text-dim-l">ขายสินค้าหรือบริการออนไลน์และรับชำระเงิน</span></span></label>
+            <label class="bg-paper flex gap-4 p-5 cursor-pointer"><input type="radio" name="product" value="เว็บแอปพลิเคชัน" class="mt-1 size-5 shrink-0" /><span><strong class="font-semibold">เว็บแอปพลิเคชัน</strong><br /><span class="text-sm text-dim-l">ระบบจอง แดชบอร์ด เครื่องมือภายใน งานที่มีข้อมูลถูกบันทึก</span></span></label>
+            <label class="bg-paper flex gap-4 p-5 cursor-pointer"><input type="radio" name="product" value="แอปมือถือ" class="mt-1 size-5 shrink-0" /><span><strong class="font-semibold">แอปมือถือ</strong><br /><span class="text-sm text-dim-l">iOS หรือ Android สำหรับลูกค้าหรือพนักงานที่ทำงานเดิน</span></span></label>
+            <label class="bg-paper flex gap-4 p-5 cursor-pointer"><input type="radio" name="product" value="ระบบ AI" class="mt-1 size-5 shrink-0" /><span><strong class="font-semibold">ระบบ AI</strong><br /><span class="text-sm text-dim-l">ตอบคำถาม คัดกรองงานที่เข้ามา จัดการเอกสาร</span></span></label>
+            <label class="bg-paper flex gap-4 p-5 cursor-pointer"><input type="radio" name="product" value="การเชื่อมต่อระบบ" class="mt-1 size-5 shrink-0" /><span><strong class="font-semibold">การเชื่อมต่อระบบ</strong><br /><span class="text-sm text-dim-l">เชื่อมระบบที่จ่ายเงินใช้อยู่แล้ว ให้กรอกข้อมูลครั้งเดียว</span></span></label>
+            <label class="bg-paper flex gap-4 p-5 cursor-pointer"><input type="radio" name="product" value="ยังไม่แน่ใจ" class="mt-1 size-5 shrink-0" /><span><strong class="font-semibold">ยังไม่แน่ใจ</strong><br /><span class="text-sm text-dim-l">เป็นคำตอบที่ใช้ได้ อธิบายปัญหาในข้อ 6 ได้เลย</span></span></label>
+          </div>
+        </fieldset>
+
+        <fieldset class="scope-step" data-step="2" data-name="จุดเริ่มต้น">
+          <legend class="text-[length:var(--text-h3)]">ตอนนี้มีอะไรอยู่แล้วบ้าง</legend>
+          <p class="mt-3 text-dim-l">การแทนที่ของเดิมเป็นงานคนละแบบกับการเริ่มจากศูนย์</p>
+          <div class="mt-7 grid gap-px bg-line-l">
+            <label class="bg-paper flex gap-4 p-5 cursor-pointer"><input type="radio" name="existing" value="ยังไม่มีอะไรเลย" class="mt-1 size-5 shrink-0" required /><span>ยังไม่มีอะไรเลย นี่จะเป็นเวอร์ชันแรก</span></label>
+            <label class="bg-paper flex gap-4 p-5 cursor-pointer"><input type="radio" name="existing" value="มีของเดิมที่ต้องแทนที่" class="mt-1 size-5 shrink-0" /><span>มีอยู่แล้วแต่เก่าหรือใช้งานไม่ได้</span></label>
+            <label class="bg-paper flex gap-4 p-5 cursor-pointer"><input type="radio" name="existing" value="ใช้ได้ แต่ต้องเพิ่มความสามารถ" class="mt-1 size-5 shrink-0" /><span>ใช้งานได้อยู่ แต่ต้องเพิ่มความสามารถใหม่</span></label>
+            <label class="bg-paper flex gap-4 p-5 cursor-pointer"><input type="radio" name="existing" value="ตอนนี้ทำด้วยมือ" class="mt-1 size-5 shrink-0" /><span>ตอนนี้ทำด้วยมือ — กระดาษ ไฟล์ Excel หรือแชท</span></label>
+          </div>
+        </fieldset>
+
+        <fieldset class="scope-step" data-step="3" data-name="ความสามารถ">
+          <legend class="text-[length:var(--text-h3)]">ระบบต้องทำอะไรได้บ้าง</legend>
+          <p class="mt-3 text-dim-l">เลือกได้หลายข้อ ข้อเหล่านี้คือสิ่งที่มีผลต่อราคาจริง ๆ</p>
+          <div class="mt-7 grid gap-px bg-line-l sm:grid-cols-2">
+            <label class="bg-paper flex gap-4 p-5 cursor-pointer"><input type="checkbox" name="needs" value="รับชำระเงิน" class="mt-1 size-5 shrink-0" /><span>รับชำระเงิน</span></label>
+            <label class="bg-paper flex gap-4 p-5 cursor-pointer"><input type="checkbox" name="needs" value="บัญชีลูกค้าหรือระบบล็อกอิน" class="mt-1 size-5 shrink-0" /><span>บัญชีลูกค้าหรือระบบล็อกอิน</span></label>
+            <label class="bg-paper flex gap-4 p-5 cursor-pointer"><input type="checkbox" name="needs" value="การจองหรือตารางเวลา" class="mt-1 size-5 shrink-0" /><span>การจองหรือตารางเวลา</span></label>
+            <label class="bg-paper flex gap-4 p-5 cursor-pointer"><input type="checkbox" name="needs" value="สต็อกสินค้า" class="mt-1 size-5 shrink-0" /><span>สต็อกสินค้า</span></label>
+            <label class="bg-paper flex gap-4 p-5 cursor-pointer"><input type="checkbox" name="needs" value="บทบาทและสิทธิ์ของพนักงาน" class="mt-1 size-5 shrink-0" /><span>บทบาทและสิทธิ์ของพนักงาน</span></label>
+            <label class="bg-paper flex gap-4 p-5 cursor-pointer"><input type="checkbox" name="needs" value="ไทยและอังกฤษ" class="mt-1 size-5 shrink-0" /><span>ไทยและอังกฤษ</span></label>
+            <label class="bg-paper flex gap-4 p-5 cursor-pointer"><input type="checkbox" name="needs" value="เชื่อมกับระบบอื่น" class="mt-1 size-5 shrink-0" /><span>เชื่อมกับระบบอื่น</span></label>
+            <label class="bg-paper flex gap-4 p-5 cursor-pointer"><input type="checkbox" name="needs" value="ผู้ช่วย AI หรือระบบอัตโนมัติ" class="mt-1 size-5 shrink-0" /><span>ผู้ช่วย AI หรือระบบอัตโนมัติ</span></label>
+            <label class="bg-paper flex gap-4 p-5 cursor-pointer"><input type="checkbox" name="needs" value="รายงานและสถิติ" class="mt-1 size-5 shrink-0" /><span>รายงานและสถิติ</span></label>
+            <label class="bg-paper flex gap-4 p-5 cursor-pointer"><input type="checkbox" name="needs" value="ใช้งานตอนไม่มีเน็ต" class="mt-1 size-5 shrink-0" /><span>ใช้งานตอนไม่มีเน็ต</span></label>
+          </div>
+        </fieldset>
+
+        <fieldset class="scope-step" data-step="4" data-name="เนื้อหา">
+          <legend class="text-[length:var(--text-h3)]">ใครเตรียมเนื้อหา</legend>
+          <p class="mt-3 text-dim-l">สาเหตุที่ทำให้งานล่าช้าบ่อยที่สุด และเป็นเรื่องที่วางแผนล่วงหน้าได้ง่ายที่สุด</p>
+          <div class="mt-7 grid gap-px bg-line-l">
+            <label class="bg-paper flex gap-4 p-5 cursor-pointer"><input type="radio" name="content" value="พร้อมส่งให้แล้ว" class="mt-1 size-5 shrink-0" required /><span>ข้อความและรูปพร้อมส่งให้แล้ว</span></label>
+            <label class="bg-paper flex gap-4 p-5 cursor-pointer"><input type="radio" name="content" value="มีบางส่วน" class="mt-1 size-5 shrink-0" /><span>มีบางส่วน ที่เหลือต้องเขียนหรือถ่ายเพิ่ม</span></label>
+            <label class="bg-paper flex gap-4 p-5 cursor-pointer"><input type="radio" name="content" value="ต้องให้ช่วยผลิต" class="mt-1 size-5 shrink-0" /><span>ต้องให้ช่วยเขียนและถ่ายภาพให้</span></label>
+            <label class="bg-paper flex gap-4 p-5 cursor-pointer"><input type="radio" name="content" value="ยังไม่ได้คิด" class="mt-1 size-5 shrink-0" /><span>ยังไม่ได้คิดเรื่องนี้</span></label>
+          </div>
+        </fieldset>
+
+        <fieldset class="scope-step" data-step="5" data-name="กรอบเวลา">
+          <legend class="text-[length:var(--text-h3)]">มีกำหนดส่งจริงไหม</legend>
+          <p class="mt-3 text-dim-l">กำหนดที่ผูกกับเรื่องจริงในธุรกิจ ไม่ใช่แค่ความต้องการส่วนตัว</p>
+          <div class="mt-7 grid gap-px bg-line-l">
+            <label class="bg-paper flex gap-4 p-5 cursor-pointer"><input type="radio" name="timing" value="มีวันที่แน่นอน" class="mt-1 size-5 shrink-0" required /><span>มี — วันที่แน่นอนที่เลื่อนไม่ได้</span></label>
+            <label class="bg-paper flex gap-4 p-5 cursor-pointer"><input type="radio" name="timing" value="ผูกกับฤดูกาลหรืออีเวนต์" class="mt-1 size-5 shrink-0" /><span>ผูกกับฤดูกาลหรืออีเวนต์</span></label>
+            <label class="bg-paper flex gap-4 p-5 cursor-pointer"><input type="radio" name="timing" value="เร็ว ๆ นี้ แต่ยืดหยุ่นได้" class="mt-1 size-5 shrink-0" /><span>เร็ว ๆ นี้ แต่วันที่ยืดหยุ่นได้</span></label>
+            <label class="bg-paper flex gap-4 p-5 cursor-pointer"><input type="radio" name="timing" value="ยังพิจารณาอยู่" class="mt-1 size-5 shrink-0" /><span>ยังพิจารณาอยู่ว่าจะทำหรือไม่</span></label>
+          </div>
+        </fieldset>
+
+        <fieldset class="scope-step" data-step="6" data-name="ข้อมูลของคุณ">
+          <legend class="text-[length:var(--text-h3)]">ส่งสรุปไปที่ไหน</legend>
+          <p class="mt-3 text-dim-l">อธิบายปัญหาด้วยคำพูดของคุณเอง
+            ย่อหน้านั้นมีค่าต่อการประเมินมากกว่าทุกคำตอบด้านบนรวมกัน</p>
+
+          <div class="mt-7 grid gap-5">
+            <div class="grid gap-5 sm:grid-cols-2">
+              <p class="grid gap-2">
+                <label for="s-name" class="u-caps text-dim-l">ชื่อ <span class="text-signal" aria-hidden="true">*</span></label>
+                <input class="field" id="s-name" name="name" type="text" required maxlength="120" autocomplete="name" />
+                <span id="s-e-name" class="text-sm text-signal" hidden></span>
+              </p>
+              <p class="grid gap-2">
+                <label for="s-email" class="u-caps text-dim-l">อีเมล <span class="text-signal" aria-hidden="true">*</span></label>
+                <input class="field" id="s-email" name="email" type="email" required maxlength="180" autocomplete="email" />
+                <span id="s-e-email" class="text-sm text-signal" hidden></span>
+              </p>
+            </div>
+            <p class="grid gap-2">
+              <label for="s-business" class="u-caps text-dim-l">ชื่อธุรกิจ</label>
+              <input class="field" id="s-business" name="business" type="text" maxlength="120" autocomplete="organization" />
+            </p>
+            <p class="grid gap-2">
+              <label for="s-msg" class="u-caps text-dim-l">ปัญหาคืออะไร <span class="text-signal" aria-hidden="true">*</span></label>
+              <textarea class="field" id="s-msg" name="message" rows="5" required minlength="20" maxlength="4000"></textarea>
+              <span id="s-e-msg" class="text-sm text-signal" hidden></span>
+            </p>
+
+            <p class="absolute -left-[9999px]" aria-hidden="true">
+              <label for="s-trap">เว้นว่างไว้</label>
+              <input id="s-trap" name="website2" type="text" tabindex="-1" autocomplete="off" />
+            </p>
+
+            <p class="flex items-start gap-3">
+              <input class="mt-1 size-5 shrink-0" id="s-consent" name="consent" type="checkbox" required />
+              <label for="s-consent" class="text-sm text-dim-l">
+                ยินยอมให้ Jomtien Network ใช้ข้อมูลนี้เพื่อติดต่อกลับ
+                <a href="/th/privacy/">นโยบายความเป็นส่วนตัว</a>
+              </label>
+            </p>
+            <span id="s-e-consent" class="text-sm text-signal" hidden></span>
+          </div>
+        </fieldset>
+
+        <div class="mt-10 flex flex-wrap items-center gap-3 border-t border-line-l pt-8">
+          <button type="button" id="scopeBack" class="btn btn-ghost !text-ink !border-border-l" hidden>ย้อนกลับ</button>
+          <button type="button" id="scopeNext" class="btn btn-dark" hidden>ถัดไป</button>
+          <button type="submit" id="scopeSend" class="btn btn-signal">ส่งเลย</button>
+          <p id="scopeStatus" role="status" aria-live="polite" class="w-full text-sm text-dim-l"></p>
+        </div>
+      </form>
+
+      <div id="scopeSummary" hidden class="mt-14 border-t-2 border-ink pt-8">
+        <p class="u-caps text-dim-l">สรุปขอบเขตงานของคุณ</p>
+        <h2 class="mt-4 text-[length:var(--text-h3)]">นี่คือสิ่งที่คุณบอกเรามา</h2>
+        <dl id="scopeOut" class="mt-7 grid gap-4"></dl>
+        <p class="mt-8 text-dim-l">คนจริงจะอ่านสรุปนี้ แล้วตอบกลับพร้อมคำถามที่เกิดขึ้น
+          แนวทางที่เราจะใช้ และสิ่งที่ต้องใช้ในการสร้าง
+          ถ้ามันเป็นผลิตภัณฑ์ที่ไม่ตรงกับปัญหา เราจะบอกไว้ในคำตอบด้วย</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="border-t border-line-d">
+  <div class="wrap py-10 flex flex-wrap items-center justify-between gap-4">
+    <p class="text-sm text-dim-d">
+      <a href="/th/" class="hover:text-paper">Jomtien Network</a> ·
+      <a href="mailto:info@jomtien.net" class="hover:text-paper">info@jomtien.net</a>
+    </p>
+    <span class="text-sm text-dim-d">
+      Built by
+      <a href="https://iamuvin.com" target="_blank" rel="noopener noreferrer"
+         class="underline underline-offset-2 hover:text-paper">Uvin Vindula</a>
+    </span>
+  </div>
+</footer>
+
+</body>
+</html>

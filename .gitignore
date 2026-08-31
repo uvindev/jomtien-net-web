@@ -1,0 +1,18 @@
+node_modules/
+dist/
+.DS_Store
+*.log
+
+# Owner-supplied originals stay out of the repo until rights are recorded.
+# Optimised web derivatives live in public/ and are committed.
+# The asset brief carries unapproved commercial terms and contact values.
+assets-inbox/**
+!assets-inbox/**/.gitkeep
+
+lighthouse-reports/
+test-results/
+playwright-report/
+
+# Client-confidential handoff. Contains unapproved commercial terms, contact
+# values, and an audit of the owner's existing site. Not ours to publish.
+instructions/
