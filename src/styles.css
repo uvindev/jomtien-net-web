@@ -363,6 +363,42 @@
     pointer-events: none;
   }
 
+  /* Hero photograph, blended into the ink ground rather than shown.
+     It is a texture, not a picture: the coastline reads through the dark
+     background without competing with the copy. Opacity is measured, not
+     chosen by eye — the image peaks at 0.796 luminance in the text band, and
+     0.16 over ink keeps even those glints inside the contrast budget that
+     large display type allows. object-position favours the darker left third. */
+  .hero-photo {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    opacity: 0.16;
+  }
+  .hero-photo picture,
+  .hero-photo img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 32% 58%;
+  }
+
+  /* A light gradient over the top only, so the sticky header always has a
+     settled ground to sit on regardless of what the photograph is doing. */
+  .hero-veil {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: linear-gradient(
+      to bottom,
+      color-mix(in srgb, var(--color-ink) 70%, transparent) 0%,
+      transparent 26%,
+      transparent 74%,
+      color-mix(in srgb, var(--color-ink) 55%, transparent) 100%
+    );
+  }
+
   /* Photography.
      A real photograph, framed rather than bled: sharp corners, a hairline in
      the site's own rule colour, and a slow reveal. The beach shot measures

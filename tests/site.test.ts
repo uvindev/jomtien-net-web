@@ -70,8 +70,25 @@ describe("assets referenced actually exist", () => {
       for (const img of imgs) {
         expect(img, `${page}: img without width`).toMatch(/width="\d+"/);
         expect(img, `${page}: img without height`).toMatch(/height="\d+"/);
-        expect(img, `${page}: img without alt`).toMatch(/alt="[^"]+"/);
+        expect(img, `${page}: img without an alt attribute`).toMatch(/\balt="/);
       }
+    }
+  });
+
+  it("decorative images are silent and meaningful ones are described", () => {
+    // The hero photograph is background texture inside an aria-hidden wrapper,
+    // so alt="" is correct — announcing it would be noise. The local-section
+    // photograph is content in a <figure> and must carry a real description.
+    for (const page of ["en/index.html", "th/index.html"]) {
+      const src = read(page);
+      const hero = src.match(/<img[^>]*hero-jomtien[^>]*>/)?.[0] ?? "";
+      expect(hero, `${page}: hero photo should be decorative`).toMatch(/alt=""/);
+      expect(src, `${page}: hero photo needs an aria-hidden wrapper`).toMatch(
+        /<div class="hero-photo" aria-hidden="true">/
+      );
+
+      const local = src.match(/<img[^>]*local-jomtien[^>]*>/)?.[0] ?? "";
+      expect(local, `${page}: local photo needs real alt text`).toMatch(/alt="[^"]+"/);
     }
   });
 
