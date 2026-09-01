@@ -17,7 +17,7 @@
 const BASE = process.argv[2] ?? "http://localhost:4321";
 const PORT = 9223;
 const WIDTHS = [320, 390, 768, 1024, 1440, 1920];
-const PATHS = ["/en/", "/th/", "/en/estimate/", "/th/estimate/"];
+const PATHS = ["/", "/en/", "/th/", "/en/estimate/", "/th/estimate/"];
 
 const CHROME =
   "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome";

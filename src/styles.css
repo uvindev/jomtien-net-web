@@ -13,6 +13,14 @@
 @source "../th/**/*.html";
 @source "../src/**/*.ts";
 
+/* Cross-document view transitions. Chrome/Edge 126+ and Safari 18.2+; Firefox
+   has not shipped them in stable, so this is a pure enhancement — anywhere it
+   is unsupported the navigation simply happens, with nothing to fall back to
+   and nothing to break. No library, no JavaScript. */
+@view-transition {
+  navigation: auto;
+}
+
 /* ---------------------------------------------------------------------------
    Fonts — self-hosted OFL subsets. See public/fonts/README.txt.
    Latin comes from the variable Plex Sans file; Thai from the static Thai cuts.
@@ -797,5 +805,159 @@
       translate: none;
       transition: none;
     }
+  }
+}
+
+
+/* ---------------------------------------------------------------------------
+   Language gate
+   The x-default page. It targets no locale, never auto-redirects, and offers
+   both choices as equals — the browser's preference is a hint at most.
+   --------------------------------------------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-group(*),
+  ::view-transition-old(*),
+  ::view-transition-new(*) {
+    animation: none !important;
+  }
+}
+
+/* The page label carries across the navigation, so the gate does not blink
+   into the site — it resolves into it. */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 420ms;
+  animation-timing-function: cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+@layer components {
+  .gate {
+    position: relative;
+    min-height: 100svh;
+    overflow-x: hidden;
+  }
+
+  .gate-photo {
+    position: fixed;
+  }
+
+  .gate-main {
+    position: relative;
+    min-height: 100svh;
+    display: flex;
+    align-items: center;
+    padding-block: clamp(3rem, 2rem + 6vw, 7rem);
+  }
+
+  .gate-inner {
+    max-width: 46rem;
+  }
+
+  /* The mark draws itself once. Short, and it never repeats. */
+  .gate-mark path {
+    stroke-dasharray: 60;
+    stroke-dashoffset: 60;
+    animation: gate-draw 900ms cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
+  }
+  .gate-mark path:nth-child(2) { animation-delay: 160ms; }
+  .gate-mark path:nth-child(3) { animation-delay: 300ms; }
+  .gate-mark rect {
+    opacity: 0;
+    animation: gate-pop 420ms ease 520ms forwards;
+  }
+  @keyframes gate-draw {
+    to { stroke-dashoffset: 0; }
+  }
+  @keyframes gate-pop {
+    from { opacity: 0; scale: 0.4; }
+    to   { opacity: 1; scale: 1; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .gate-mark path {
+      stroke-dashoffset: 0;
+      animation: none;
+    }
+    .gate-mark rect {
+      opacity: 1;
+      animation: none;
+    }
+  }
+
+  .gate-choices {
+    display: grid;
+    gap: 1px;
+    background: var(--color-line-d);
+    border: 1px solid var(--color-line-d);
+  }
+  @media (min-width: 40rem) {
+    .gate-choices {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  /* A card, not a button: the choice is the whole surface, which is a larger
+     target and reads as a door rather than a control. */
+  .gate-card {
+    position: relative;
+    display: grid;
+    gap: 0.35rem;
+    padding: clamp(1.5rem, 1rem + 2vw, 2.25rem);
+    background: color-mix(in srgb, var(--color-ink) 88%, transparent);
+    text-decoration: none;
+    transition: background-color 260ms ease, padding-inline-start 260ms ease;
+  }
+  .gate-card:hover,
+  .gate-card:focus-visible {
+    background: color-mix(in srgb, var(--color-ink-2) 94%, transparent);
+    padding-inline-start: calc(clamp(1.5rem, 1rem + 2vw, 2.25rem) + 0.4rem);
+  }
+
+  .gate-card-lang {
+    font-size: clamp(1.5rem, 1.2rem + 1.4vw, 2.1rem);
+    font-weight: 300;
+    letter-spacing: -0.02em;
+    color: var(--color-paper);
+  }
+  [lang="th"] .gate-card-lang {
+    line-height: 1.55;
+  }
+
+  .gate-card-note {
+    font-size: 0.9375rem;
+    color: var(--color-dim-d);
+  }
+
+  .gate-card-go {
+    margin-block-start: 0.9rem;
+    color: var(--color-coast-lite);
+    translate: 0 0;
+    transition: translate 260ms cubic-bezier(0.22, 0.61, 0.36, 1);
+  }
+  .gate-card:hover .gate-card-go,
+  .gate-card:focus-visible .gate-card-go {
+    translate: 6px 0;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .gate-card,
+    .gate-card-go {
+      transition: none;
+    }
+    .gate-card:hover,
+    .gate-card:focus-visible {
+      padding-inline-start: clamp(1.5rem, 1rem + 2vw, 2.25rem);
+    }
+    .gate-card:hover .gate-card-go,
+    .gate-card:focus-visible .gate-card-go {
+      translate: none;
+    }
+  }
+
+  /* A quiet mark on whichever locale the browser already prefers. Set by
+     main.ts; it never redirects and never reorders the choices. */
+  .gate-card[data-suggested="true"] .gate-card-note::after {
+    content: " · " attr(data-hint);
+    color: var(--color-coast-lite);
   }
 }

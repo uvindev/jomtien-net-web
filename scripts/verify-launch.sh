@@ -8,7 +8,7 @@
 
 set -uo pipefail
 FAIL=0
-PAGES=(en th index.html)
+PAGES=(en th index.html 404.html)
 
 pass() { printf '  PASS  %s\n' "$1"; }
 fail() { printf '  FAIL  %s\n' "$1"; FAIL=1; }

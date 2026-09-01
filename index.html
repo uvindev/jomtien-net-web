@@ -3,22 +3,29 @@
   @project  Jomtien Network — jomtien.net
   @author   Uvin Vindula (IAMUVIN)
   @website  https://iamuvin.com
+  @built    2026
+  @license  MIT — see LICENSE
 
-  Root locale gate. The host should serve a 302 to /en/ or /th/ instead; this
-  page is the fallback for static hosts that cannot, and it stays readable and
-  navigable with JavaScript unavailable.
+  Language gate. This is the x-default page: it targets no locale, which is
+  exactly what Google's x-default annotation is for. It never auto-redirects —
+  both choices stay visible and reachable by keyboard — and the browser's own
+  preference is offered as a hint, never as a decision.
 -->
 <html lang="en">
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Jomtien Network — choose your language</title>
-<meta name="description" content="Jomtien Network builds business websites, e-commerce platforms, applications, and AI systems in Jomtien Beach, Pattaya." />
-<link rel="canonical" href="https://jomtien.net/en/" />
+<meta name="description" content="Business websites, e-commerce platforms, applications and AI systems, built in Jomtien Beach. Choose English or Thai." />
+
+<link rel="canonical" href="https://jomtien.net/" />
 <link rel="alternate" hreflang="en" href="https://jomtien.net/en/" />
 <link rel="alternate" hreflang="th" href="https://jomtien.net/th/" />
-<link rel="alternate" hreflang="x-default" href="https://jomtien.net/en/" />
+<link rel="alternate" hreflang="x-default" href="https://jomtien.net/" />
+
 <meta name="author" content="Uvin Vindula — IAMUVIN" />
+<meta name="designer" content="IAMUVIN — iamuvin.com" />
+<meta name="developer" content="Uvin Vindula — iamuvin.com" />
 <link rel="me" href="https://iamuvin.com" />
 <link rel="author" type="text/plain" href="/humans.txt" />
 
@@ -31,6 +38,13 @@
 <meta property="og:image:width" content="1200" />
 <meta property="og:image:height" content="630" />
 <meta name="twitter:card" content="summary_large_image" />
+
+<link rel="preload" href="/public/fonts/plex-sans-latin-var.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="icon" href="/favicon.ico" sizes="32x32" />
+<link rel="icon" href="/public/brand/favicon.svg" type="image/svg+xml" />
+<link rel="apple-touch-icon" href="/public/brand/apple-touch-icon.png" />
+<link rel="stylesheet" href="/dist/styles.css" />
+<script type="module" src="/dist/main.js"></script>
 
 <script type="application/ld+json">
 {
@@ -47,22 +61,84 @@
   }
 }
 </script>
-<link rel="icon" href="/favicon.ico" sizes="32x32" />
-<link rel="icon" href="/public/brand/favicon.svg" type="image/svg+xml" />
-<link rel="apple-touch-icon" href="/public/brand/apple-touch-icon.png" />
-<link rel="stylesheet" href="/dist/styles.css" />
-
 </head>
-<body>
-<main class="wrap min-h-screen flex flex-col justify-center py-20">
-  <p class="u-caps text-coast-lite">Jomtien Network</p>
-  <h1 class="mt-6 text-[length:var(--text-h2)]">Choose your language</h1>
-  <p class="mt-5 max-w-xl text-dim-d">
-    Websites, e-commerce, applications, and AI systems, built in Jomtien Beach.
-  </p>
-  <div class="mt-10 flex flex-wrap gap-3">
-    <a href="/en/" hreflang="en" class="btn btn-signal">English</a>
-    <a href="/th/" hreflang="th" lang="th" class="btn btn-ghost">ภาษาไทย</a>
+
+<body class="gate">
+<div class="cursor-ring" aria-hidden="true"></div>
+<div class="cursor-dot" aria-hidden="true"></div>
+
+<!-- Same photograph as the hero, same 16% blend, so the gate and the site it
+     opens read as one thing rather than two. -->
+<div class="hero-photo gate-photo" aria-hidden="true">
+  <picture class="hero-slide" data-on="true">
+    <source type="image/avif" sizes="100vw"
+            srcset="/public/images/hero-jomtien-800.avif 800w,
+                    /public/images/hero-jomtien-1200.avif 1200w,
+                    /public/images/hero-jomtien-1600.avif 1600w" />
+    <source type="image/webp" sizes="100vw"
+            srcset="/public/images/hero-jomtien-800.webp 800w,
+                    /public/images/hero-jomtien-1200.webp 1200w,
+                    /public/images/hero-jomtien-1600.webp 1600w" />
+    <img src="/public/images/hero-jomtien-1600.jpg" alt=""
+         width="1600" height="830" fetchpriority="high" loading="eager" decoding="async" />
+  </picture>
+</div>
+<div class="hero-veil" aria-hidden="true"></div>
+<div class="facets" aria-hidden="true">
+  <div class="facet facet-a"></div>
+  <div class="facet facet-b"></div>
+</div>
+
+<main id="main" class="wrap gate-main">
+  <div class="gate-inner">
+
+    <div class="gate-mark reveal">
+      <svg class="w-14 h-14" viewBox="0 0 40 40" fill="none" aria-hidden="true">
+        <path d="M3 28c6-1.5 7.5-11 14-11s9 7.5 14 5" stroke="#6cc6f2" stroke-width="2.25" stroke-linecap="square" />
+        <path d="M3 34h34" stroke="#1b3a47" stroke-width="2.25" />
+        <path d="M3 34h13" stroke="#9edde8" stroke-width="2.25" />
+        <rect x="24" y="8" width="7" height="7" fill="#f2445b" />
+      </svg>
+    </div>
+
+    <p class="mt-6 u-caps text-coast-lite reveal">Jomtien Beach · Pattaya</p>
+
+    <h1 class="mt-4 text-[length:var(--text-h2)] reveal">Jomtien Network</h1>
+
+    <p class="mt-5 max-w-xl text-[length:var(--text-lead)] text-paper reveal">
+      Business websites, e-commerce platforms, applications, AI systems and the
+      integrations that connect them.
+    </p>
+
+    <nav class="gate-choices mt-12" aria-label="Choose a language">
+      <a href="/en/" hreflang="en" class="gate-card reveal" data-lang="en">
+        <span class="gate-card-lang">English</span>
+        <span class="gate-card-note">Continue in English</span>
+        <span class="gate-card-go" aria-hidden="true">
+          <svg width="26" height="10" viewBox="0 0 26 10" fill="none">
+            <path d="M0 5h24M20 1l4 4-4 4" stroke="currentColor" stroke-width="1.5" />
+          </svg>
+        </span>
+      </a>
+
+      <a href="/th/" hreflang="th" lang="th" class="gate-card reveal" data-lang="th">
+        <span class="gate-card-lang">ภาษาไทย</span>
+        <span class="gate-card-note">อ่านต่อเป็นภาษาไทย</span>
+        <span class="gate-card-go" aria-hidden="true">
+          <svg width="26" height="10" viewBox="0 0 26 10" fill="none">
+            <path d="M0 5h24M20 1l4 4-4 4" stroke="currentColor" stroke-width="1.5" />
+          </svg>
+        </span>
+      </a>
+    </nav>
+
+    <p class="mt-10 text-sm text-dim-d reveal">
+      <a href="mailto:info@jomtien.net">info@jomtien.net</a>
+      <span class="mx-2 text-line-d" aria-hidden="true">·</span>
+      Built by
+      <a href="https://iamuvin.com" target="_blank" rel="noopener noreferrer">Uvin Vindula</a>
+    </p>
+
   </div>
 </main>
 </body>

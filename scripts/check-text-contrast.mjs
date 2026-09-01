@@ -27,6 +27,8 @@ const CHROME = "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome";
 const DPR = 1;   // 1 is plenty for luminance sampling and 4x cheaper
 
 const CASES = [
+  { path: "/", width: 390 },
+  { path: "/", width: 1440 },
   { path: "/en/", width: 390 },
   { path: "/en/", width: 1440 },
   { path: "/th/", width: 390 },

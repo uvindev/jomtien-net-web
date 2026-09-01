@@ -22,7 +22,7 @@ import { spawn } from "node:child_process";
 const BASE = process.argv[2] ?? "http://localhost:4321";
 const PORT = 9600 + (process.pid % 300);
 const CHROME = "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome";
-const PAGES = ["/en/", "/th/", "/en/estimate/", "/th/estimate/", "/en/privacy/", "/th/privacy/"];
+const PAGES = ["/", "/en/", "/th/", "/en/estimate/", "/th/estimate/", "/en/privacy/", "/th/privacy/"];
 
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
@@ -90,7 +90,10 @@ const FORCED_CHECK = `(() => {
 
   // The skip link is the one control that is hidden until it matters. Focus it
   // and confirm it becomes a real, bordered target rather than vanishing.
-  let skip = 'absent';
+  // WCAG 2.4.1 applies to blocks repeated across pages. The language gate has
+  // no header and no nav, so it has nothing to bypass and needs no skip link —
+  // demanding one there would add noise for a screen-reader user, not remove it.
+  let skip = document.querySelector('header') ? 'absent' : 'not-required';
   const link = document.querySelector('a[href="#main"]');
   if (link) {
     link.focus();
@@ -156,7 +159,7 @@ try {
     await sleep(700);
     const r = await cdp.send("Runtime.evaluate", { expression: FORCED_CHECK, returnByValue: true });
     const { media, skip, borderless, count } = JSON.parse(r.result.value);
-    const ok = count === 0 && skip === "ok";
+    const ok = count === 0 && (skip === "ok" || skip === "not-required");
     if (!ok) failed++;
     console.log(`  ${ok ? "PASS" : "FAIL"}  ${path.padEnd(18)} forced-colors ${media ? "active" : "NOT APPLIED"} · ${count} borderless · skip link ${skip}`);
     for (const b of borderless) console.log(`          ${b}`);

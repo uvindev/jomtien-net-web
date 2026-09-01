@@ -18,7 +18,7 @@ const BASE = process.argv[2] ?? "http://localhost:4321";
 const PORT = 9400 + (process.pid % 300);
 const CHROME = "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome";
 
-const PAGES = ["/en/", "/th/", "/en/estimate/", "/th/estimate/", "/en/privacy/", "/th/privacy/"];
+const PAGES = ["/", "/en/", "/th/", "/en/estimate/", "/th/estimate/", "/en/privacy/", "/th/privacy/"];
 const WIDTHS = [390, 1440];
 
 /** Only these stop a launch. Minor/moderate are reported, not fatal. */

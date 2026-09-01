@@ -365,6 +365,29 @@ function initRail(): void {
   update();
 }
 
+/**
+ * Language gate. Marks whichever locale the browser already prefers, and does
+ * nothing else — no redirect, no reordering, no cookie. Google's guidance is
+ * explicit that the visitor must keep every option, so this is a hint on an
+ * equal choice rather than a decision made for them.
+ */
+function initGate(): void {
+  const cards = [...document.querySelectorAll<HTMLElement>(".gate-card")];
+  if (cards.length === 0) return;
+
+  const prefers = (navigator.languages.length > 0 ? navigator.languages : [navigator.language])
+    .map((l) => l.toLowerCase().split("-")[0] ?? "")
+    .find((l) => l === "th" || l === "en");
+  if (!prefers) return;
+
+  const match = cards.find((c) => c.dataset.lang === prefers);
+  if (!match) return;
+
+  const note = match.querySelector<HTMLElement>(".gate-card-note");
+  note?.setAttribute("data-hint", prefers === "th" ? "ภาษาของเบราว์เซอร์คุณ" : "your browser language");
+  match.dataset.suggested = "true";
+}
+
 /* ── Navigation ─────────────────────────────────────────────────────────── */
 
 function initNav(): void {
@@ -788,6 +811,7 @@ initHeader();
 initProgress();
 initCursor();
 initSlideshow();
+initGate();
 initNav();
 initFaq();
 initEnquiry();

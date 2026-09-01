@@ -22,7 +22,7 @@ const BASE = process.argv[2] ?? "http://localhost:4321";
 const RUNS = 3;
 const OUT = "lighthouse-reports";
 
-const PAGES = ["/en/", "/th/"];
+const PAGES = ["/", "/en/", "/th/"];
 const TARGETS = {
   performance: 90,
   accessibility: 95,
