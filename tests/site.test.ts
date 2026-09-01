@@ -134,6 +134,23 @@ describe("assets referenced actually exist", () => {
     }
   });
 
+  it("every .art class used in markup has a CSS rule and a real image", () => {
+    const css = read("src/styles.css");
+    const used = new Set<string>();
+    for (const page of ["en/index.html", "th/index.html"]) {
+      for (const m of read(page).matchAll(/class="art (art-[\w-]+)/g)) used.add(m[1] ?? "");
+    }
+    expect(used.size, "no .art layers found").toBeGreaterThan(0);
+    for (const cls of used) {
+      expect(css, `.${cls} is used in markup but has no CSS rule`).toContain(`.${cls} {`);
+      const rule = css.slice(css.indexOf(`.${cls} {`));
+      const body = rule.slice(0, rule.indexOf("\n  }"));
+      for (const m of body.matchAll(/url\("(\/public\/images\/[^"]+)"\)/g)) {
+        expect(existsSync(`.${m[1]}`), `.${cls} points at missing ${m[1]}`).toBe(true);
+      }
+    }
+  });
+
   it("every artwork layer resolves to a built file", () => {
     const images = all(css, /url\("(\/public\/images\/[^"]+)"\)/g);
     expect(images.length, "no image references matched — has the CSS changed?").toBeGreaterThan(0);

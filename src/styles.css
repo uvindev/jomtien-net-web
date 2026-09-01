@@ -454,6 +454,21 @@
 
   /* Scrim between the artwork and the copy. Keeps the centre of the hero at
      ink level so text contrast never depends on what the image is doing. */
+  /* The coastline resolving into the four process stages — the signature
+     moment made visual. Restored: an over-broad delete of .art-hero took this
+     rule with it, leaving an empty box in the Process section that screen
+     readers still announced as a described image. */
+  .art-process {
+    position: relative;
+    inset: auto;
+    aspect-ratio: 16 / 9;
+    background-size: contain;
+    background-image: image-set(
+      url("/public/images/process-index.avif") type("image/avif"),
+      url("/public/images/process-index.webp") type("image/webp")
+    );
+  }
+
   .art-grain {
     background-image: image-set(
       url("/public/images/chart-texture.avif") type("image/avif"),

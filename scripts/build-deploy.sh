@@ -38,6 +38,22 @@ if [ -f "$OUT/dist/main.js" ]; then
   sed -i "" "/^\/\/# sourceMappingURL=/d" "$OUT/dist/main.js"
 fi
 rm -rf "$OUT/public/fonts/README.txt"      # internal note; licence stays
+
+# Drop images nothing references. Generated artwork the photography replaced,
+# and PNG fallbacks that only image-set()'s avif/webp candidates supersede.
+python3 - "$OUT" <<'PRUNE'
+import pathlib, re, sys, os
+out = pathlib.Path(sys.argv[1])
+refs = set()
+for f in list(out.rglob("*.html")) + list(out.rglob("*.css")):
+    refs.update(re.findall(r"/public/images/([\w.-]+\.(?:avif|webp|jpg|png))", f.read_text()))
+removed = 0
+freed = 0
+for f in (out / "public/images").glob("*"):
+    if f.is_file() and f.name not in refs:
+        freed += os.path.getsize(f); f.unlink(); removed += 1
+print(f"  pruned {removed} unreferenced images, {freed // 1024} KB")
+PRUNE
 echo "  stripped source maps and dev files"
 
 # 4. Prove the bundle is complete and clean.
@@ -50,7 +66,7 @@ for f in index.html 404.html .htaccess humans.txt robots.txt sitemap.xml favicon
          dist/styles.css dist/main.js \
          public/fonts/plex-sans-latin-var.woff2 public/fonts/OFL-IBM-Plex.txt \
          public/images/og-en.png public/images/hero-jomtien-1200.avif \
-         public/images/local-jomtien-1200.avif public/images/hero-jomtien-1200.jpg \
+         public/images/local-jomtien-1200.avif public/images/hero-jomtien-1600.jpg \
          public/brand/favicon.svg public/brand/apple-touch-icon.png \
          public/images/hero-b1-800.avif public/images/hero-b2-800.avif \
          public/images/hero-b3-800.avif; do
