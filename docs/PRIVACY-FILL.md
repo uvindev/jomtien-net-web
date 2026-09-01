@@ -2,8 +2,25 @@
 
 The privacy notice is drafted and structured against Thailand's Personal Data
 Protection Act B.E. 2562 (2019). It is **a draft for legal review, not settled
-legal text**, and it needs eleven values that only the owner or their counsel
-can give.
+legal text**.
+
+**Seven of the original eleven values are now resolved and stated as fact.**
+Four remain, and all four come off the company registration — nothing else can
+supply them.
+
+## Resolved
+
+| Was | Now | How |
+| --- | --- | --- |
+| Hosting provider and country | Hostinger International Limited, **Singapore** | `dig jomtien.net` → 179.61.189.43 / 77.37.48.93, both AS47583 Hostinger, Singapore |
+| Email provider and country | Hostinger, **Singapore** | MX records are `mx1/mx2.hostinger.com` |
+| Cross-border transfer | **Yes**, Thailand → Singapore, s.28 appropriate safeguards via Hostinger's processing terms | follows from the two above |
+| Server log retention | Hostinger's own policy; we neither extend nor copy | we do not control it, so we do not claim a number |
+| Enquiries that go nowhere | 12 months from last contact | proposed and now stated — change it if you disagree |
+| Project records | 5 years | Thai accounting law retention for business records |
+| Rights-request response | 30 days | PDPA s.30 timeframe |
+
+## Still outstanding — four values
 
 Every one is marked in the page with a yellow `.fill` highlight, and
 `npm run verify:launch` fails while any remains. Nothing here can be guessed —
@@ -21,8 +38,6 @@ a typo.
 | Live | No. Both pages carry `noindex` and a draft banner |
 
 ## The eleven values
-
-### From the company registration
 
 1. **Registered legal entity name.** The exact name as it appears on the DBD
    record, including whether it reads "Company Limited", "Co., Ltd." or the

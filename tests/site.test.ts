@@ -202,7 +202,10 @@ describe("locale parity", () => {
     // and would otherwise be counted as one.
     const fills = (p: string) =>
       (read(p).replace(/<!--[\s\S]*?-->/g, "").match(/<span class="fill">/g) ?? []).length;
-    expect(fills("en/privacy/index.html")).toBe(13);
+    // Down from 13: hosting, email, transfers, three retention periods and
+    // the response window are all resolved. What remains is the company
+    // registration, which cannot be guessed.
+    expect(fills("en/privacy/index.html")).toBe(6);
     expect(fills("th/privacy/index.html")).toBe(fills("en/privacy/index.html"));
   });
 

@@ -67,11 +67,17 @@ else
   pass "no unverified marker or residue in rendered text"
 fi
 
-# 4. The form must not claim success without a delivery provider.
-if grep -rq 'CONTACT_PROVIDER' .env 2>/dev/null; then
-  pass "contact provider configured"
+# 4. The forms must post to a handler that exists and names a real inbox.
+if [ -f contact.php ] && grep -q "MAIL_TO *= *'[^']*@" contact.php; then
+  MAILBOX=$(grep -o "MAIL_TO *= *'[^']*'" contact.php | head -1 | sed "s/.*'\(.*\)'/\1/")
+  ACTIONS=$(grep -rl 'action="/contact.php"' en th 2>/dev/null | wc -l | tr -d ' ')
+  if [ "$ACTIONS" -ge 4 ]; then
+    pass "contact handler present, delivering to $MAILBOX ($ACTIONS forms wired)"
+  else
+    fail "contact.php exists but only $ACTIONS of 4 forms post to it"
+  fi
 else
-  fail "no contact provider configured — form cannot claim delivery"
+  fail "no contact handler — forms cannot claim delivery"
 fi
 
 # 5. Both locales must exist and carry equivalent sections.

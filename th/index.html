@@ -780,7 +780,9 @@
           คุณไม่จำเป็นต้องเลือกเทคโนโลยีก่อนติดต่อเรา
         </p>
 
-        <form id="enquiry" class="mt-10 grid gap-5" method="post" novalidate>
+        <form id="enquiry" class="mt-10 grid gap-5" method="post" action="/contact.php" novalidate>
+          <input type="hidden" name="form" value="enquiry" />
+          <input type="hidden" name="locale" value="th" />
           <div class="grid gap-5 sm:grid-cols-2">
             <p class="grid gap-2">
               <label for="f-name" class="u-caps text-dim-l">ชื่อ <span class="text-signal" aria-hidden="true">*</span></label>

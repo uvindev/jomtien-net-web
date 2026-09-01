@@ -783,7 +783,9 @@
           need to choose the technology before contacting us.
         </p>
 
-        <form id="enquiry" class="mt-10 grid gap-5" method="post" novalidate>
+        <form id="enquiry" class="mt-10 grid gap-5" method="post" action="/contact.php" novalidate>
+          <input type="hidden" name="form" value="enquiry" />
+          <input type="hidden" name="locale" value="en" />
           <div class="grid gap-5 sm:grid-cols-2">
             <p class="grid gap-2">
               <label for="f-name" class="u-caps text-dim-l">Name <span class="text-signal" aria-hidden="true">*</span></label>

@@ -26,7 +26,7 @@ mkdir -p "$OUT"
 
 # 2. Copy only what the running site needs.
 cp -R en th dist public "$OUT"/
-cp index.html 404.html humans.txt robots.txt sitemap.xml .htaccess favicon.ico "$OUT"/
+cp index.html 404.html humans.txt robots.txt sitemap.xml .htaccess favicon.ico contact.php "$OUT"/
 echo "  copied pages, dist, public, root files, .htaccess"
 
 # 3. Nothing that is not runtime.
@@ -60,7 +60,7 @@ echo "  stripped source maps and dev files"
 echo "------------------------------------------------------------"
 FAIL=0
 need() { [ -e "$OUT/$1" ] || { echo "  MISSING  $1"; FAIL=1; }; }
-for f in index.html 404.html .htaccess humans.txt robots.txt sitemap.xml favicon.ico \
+for f in index.html 404.html .htaccess humans.txt robots.txt sitemap.xml favicon.ico contact.php \
          en/index.html th/index.html en/estimate/index.html th/estimate/index.html \
          en/privacy/index.html th/privacy/index.html \
          dist/styles.css dist/main.js \

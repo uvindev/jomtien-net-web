@@ -100,7 +100,9 @@
         <div id="stepBar" class="step-bar h-1 bg-signal-bright transition-[width] duration-300 motion-reduce:transition-none" role="progressbar" aria-label="ความคืบหน้าของคำถาม" aria-valuemin="1" aria-valuemax="6" aria-valuenow="1"></div>
       </div>
 
-      <form id="scope" class="mt-12" method="post" novalidate>
+      <form id="scope" class="mt-12" method="post" action="/contact.php" novalidate>
+        <input type="hidden" name="form" value="scope" />
+        <input type="hidden" name="locale" value="th" />
 
         <fieldset class="scope-step" data-step="1" data-name="ประเภทงาน">
           <legend class="text-[length:var(--text-h3)]">คุณกำลังจะสร้างอะไร</legend>

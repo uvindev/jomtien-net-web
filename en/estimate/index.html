@@ -103,7 +103,9 @@
         <div id="stepBar" class="step-bar h-1 bg-signal-bright transition-[width] duration-300 motion-reduce:transition-none" role="progressbar" aria-label="Scoping questions progress" aria-valuemin="1" aria-valuemax="6" aria-valuenow="1"></div>
       </div>
 
-      <form id="scope" class="mt-12" method="post" novalidate>
+      <form id="scope" class="mt-12" method="post" action="/contact.php" novalidate>
+        <input type="hidden" name="form" value="scope" />
+        <input type="hidden" name="locale" value="en" />
 
         <!-- ── 1 ────────────────────────────────────────────────────────── -->
         <fieldset class="scope-step" data-step="1" data-name="Product">

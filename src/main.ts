@@ -45,10 +45,11 @@ interface Copy {
   readonly message: string;
   readonly consent: string;
   readonly needsAttention: (n: number) => string;
-  readonly enquiryNotSent: string;
+  readonly sending: string;
+  readonly sendFailed: string;
   readonly answerThisStep: string;
   readonly scopeIncomplete: string;
-  readonly scopeNotSent: string;
+  readonly scopeFailed: string;
   readonly rows: readonly [string, string, string, string, string, string];
   readonly stepOf: (n: number, total: number, name: string) => string;
   readonly notAnswered: string;
@@ -64,13 +65,14 @@ const COPY: Readonly<Record<"en" | "th", Copy>> = {
     consent: "We need your agreement before we can store these details to reply.",
     needsAttention: (n) =>
       `${n} ${n === 1 ? "field needs" : "fields need"} attention. Nothing you typed has been lost.`,
-    enquiryNotSent:
-      "Message delivery is not connected on this preview yet. Nothing was sent. Please email info@jomtien.net and we will pick it up from there.",
+    sending: "Sending…",
+    sendFailed:
+      "That did not go through. Nothing you typed has been lost — please email info@jomtien.net and we will pick it up there.",
     answerThisStep: "Answer this one before moving on.",
     scopeIncomplete:
       "Name, email, a description, and your agreement are needed before we can reply. Nothing you typed has been lost.",
-    scopeNotSent:
-      "Delivery is not connected on this preview, so nothing was sent. Your summary is below — copy it into an email to info@jomtien.net and we will pick it up.",
+    scopeFailed:
+      "That did not go through. Your summary is below — nothing is lost. Please email info@jomtien.net and we will pick it up there.",
     rows: ["Product", "Today", "Must do", "Content", "Timing", "In your words"],
     stepOf: (n, total, name) => `Step ${n} of ${total} — ${name}`,
     notAnswered: "Not answered",
@@ -84,13 +86,14 @@ const COPY: Readonly<Record<"en" | "th", Copy>> = {
     consent: "เราต้องได้รับความยินยอมจากคุณก่อน จึงจะเก็บข้อมูลนี้ไว้ติดต่อกลับได้",
     needsAttention: (n) =>
       `มี ${n} ช่องที่ต้องแก้ไข ข้อมูลที่คุณกรอกไว้ยังอยู่ครบ`,
-    enquiryNotSent:
-      "ระบบส่งข้อความยังไม่ได้เชื่อมต่อในเวอร์ชันตัวอย่างนี้ ข้อความยังไม่ถูกส่ง กรุณาส่งอีเมลมาที่ info@jomtien.net แล้วเราจะรับเรื่องต่อ",
+    sending: "กำลังส่ง…",
+    sendFailed:
+      "ส่งไม่สำเร็จ ข้อมูลที่คุณกรอกไว้ยังอยู่ครบ กรุณาส่งอีเมลมาที่ info@jomtien.net แล้วเราจะรับเรื่องต่อ",
     answerThisStep: "ตอบข้อนี้ก่อนไปต่อ",
     scopeIncomplete:
       "ต้องมีชื่อ อีเมล คำอธิบาย และความยินยอมของคุณ ก่อนที่เราจะติดต่อกลับได้ ข้อมูลที่คุณกรอกไว้ยังอยู่ครบ",
-    scopeNotSent:
-      "ระบบส่งยังไม่ได้เชื่อมต่อในเวอร์ชันตัวอย่างนี้ ข้อมูลจึงยังไม่ถูกส่ง สรุปของคุณอยู่ด้านล่าง คัดลอกแล้วส่งอีเมลมาที่ info@jomtien.net แล้วเราจะรับเรื่องต่อ",
+    scopeFailed:
+      "ส่งไม่สำเร็จ สรุปของคุณอยู่ด้านล่างและข้อมูลยังอยู่ครบ กรุณาส่งอีเมลมาที่ info@jomtien.net แล้วเราจะรับเรื่องต่อ",
     rows: ["ประเภทงาน", "ตอนนี้มีอะไร", "ต้องทำอะไรได้", "เนื้อหา", "กรอบเวลา", "ในคำพูดของคุณ"],
     stepOf: (n, total, name) => `ข้อ ${n} จาก ${total} — ${name}`,
     notAnswered: "ไม่ได้ตอบ",
@@ -400,6 +403,31 @@ function initFaq(): void {
   }
 }
 
+/* ── Delivery ───────────────────────────────────────────────────────────── */
+
+/**
+ * Posts a form to the PHP handler on this same origin and reports what really
+ * happened. Success is shown only after the server confirms it, and a failure
+ * never clears the form — the visitor keeps everything they typed and gets a
+ * working address to fall back on.
+ */
+async function deliver(form: HTMLFormElement, status: HTMLElement, onFail: string): Promise<void> {
+  status.textContent = t.sending;
+  try {
+    const res = await fetch(form.action, {
+      method: "POST",
+      body: new FormData(form),
+      headers: { Accept: "application/json" },
+    });
+    const data = (await res.json()) as { ok?: boolean; message?: string };
+    status.textContent = data.message ?? (data.ok === true ? "" : onFail);
+    if (data.ok === true) form.reset();
+  } catch {
+    // Network failure, offline, or a handler that is not there yet.
+    status.textContent = onFail;
+  }
+}
+
 /* ── Enquiry form ───────────────────────────────────────────────────────── */
 
 interface Rule {
@@ -469,7 +497,7 @@ function initEnquiry(): void {
     // real person would otherwise get a Send button that does nothing.
     const trap = form.querySelector<HTMLInputElement>("#f-website2");
     if (trap && trap.value !== "") {
-      status.textContent = t.enquiryNotSent;
+      status.textContent = t.sendFailed;
       return;
     }
 
@@ -496,10 +524,7 @@ function initEnquiry(): void {
       return;
     }
 
-    // No delivery provider is configured. Saying "sent" here would be a lie,
-    // so the form reports the real state and hands over a working channel.
-    // Wire CONTACT_PROVIDER per ENGINEERING-GUIDE.md, then replace this branch.
-    status.textContent = t.enquiryNotSent;
+    void deliver(form, status, t.sendFailed);
   });
 }
 
@@ -700,7 +725,7 @@ function bindScopeSubmit(ui: ScopeUi, state: { at: number }): void {
 
     const trap = ui.form.querySelector<HTMLInputElement>("#s-trap");
     if (trap && trap.value !== "") {
-      ui.status.textContent = t.scopeNotSent;
+      ui.status.textContent = t.scopeFailed;
       return;
     }
 
@@ -730,8 +755,7 @@ function bindScopeSubmit(ui: ScopeUi, state: { at: number }): void {
       ui.summary.hidden = false;
     }
 
-    // No delivery provider configured — see ENGINEERING-GUIDE.md line 124.
-    ui.status.textContent = t.scopeNotSent;
+    void deliver(ui.form, ui.status, t.scopeFailed);
     ui.summary?.scrollIntoView({
       block: "start",
       behavior: reducedMotion.matches ? "auto" : "smooth",

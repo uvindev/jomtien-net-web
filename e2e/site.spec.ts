@@ -99,7 +99,7 @@ test.describe("enquiry form", () => {
     await expect(page.locator("#f-email")).toHaveAttribute("aria-invalid", "false");
   });
 
-  test("never claims delivery while no provider is configured", async ({ page }) => {
+  test("posts to the handler and never claims a success it did not get", async ({ page }) => {
     await page.locator("#f-name").fill("Uvin Vindula");
     await page.locator("#f-email").fill("uvin@example.com");
     await page.locator("#f-type").selectOption("web-app");
@@ -107,12 +107,23 @@ test.describe("enquiry form", () => {
     await page.locator("#f-consent").check();
     await page.locator('#enquiry button[type="submit"]').click();
 
+    // The test server is static and does not execute PHP, so the POST fails.
+    // That is the case worth asserting: the form must report the failure
+    // honestly, keep every value the visitor typed, and hand over a working
+    // address — never a fabricated success.
     const status = page.locator("#formStatus");
-    await expect(status).toContainText("not connected");
-    await expect(status).toContainText("Nothing was sent");
     await expect(status).toContainText("info@jomtien.net");
-    // The failure that matters is a false success, not the word "sent".
-    await expect(status).not.toContainText(/thank you|we'll be in touch|successfully/i);
+    await expect(status).not.toContainText(/thank you|we'll be in touch|successfully|has reached us/i);
+    await expect(page.locator("#f-name")).toHaveValue("Uvin Vindula");
+    await expect(page.locator("#f-msg")).not.toHaveValue("");
+  });
+
+  test("the form posts to the first-party handler, not a third party", async ({ page }) => {
+    const action = await page.locator("#enquiry").getAttribute("action");
+    expect(action).toBe("/contact.php");
+    // A third-party endpoint would be a new sub-processor and a CSP change.
+    expect(action).not.toMatch(/^https?:\/\//);
+    await expect(page.locator('#enquiry input[name="form"]')).toHaveAttribute("value", "enquiry");
   });
 
   test("a filled honeypot short-circuits before validation, without going dead", async ({ page }) => {
