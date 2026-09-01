@@ -57,9 +57,10 @@ describe("assets referenced actually exist", () => {
         refs.add(m[0]);
       }
     }
-    // Two <picture> elements: 3 AVIF + 3 WebP srcset entries plus one JPEG
-    // fallback each = 14 distinct files.
-    expect(refs.size, "photo references missing").toBe(14);
+    // Five hero slides plus the captioned local figure. Assert a floor rather
+    // than an exact count so adding a slide does not fail the wrong test — the
+    // point here is that every referenced file exists.
+    expect(refs.size, "photo references missing").toBeGreaterThanOrEqual(20);
     for (const r of refs) expect(existsSync(`.${r}`), `missing ${r}`).toBe(true);
   });
 
@@ -82,13 +83,17 @@ describe("assets referenced actually exist", () => {
     for (const page of ["en/index.html", "th/index.html"]) {
       const src = read(page);
       const hero = src.match(/<img[^>]*hero-jomtien[^>]*>/)?.[0] ?? "";
-      expect(hero, `${page}: hero photo should be decorative`).toMatch(/alt=""/);
+      expect(hero, `${page}: hero slide should be decorative`).toMatch(/alt=""/);
       expect(src, `${page}: hero photo needs an aria-hidden wrapper`).toMatch(
-        /<div class="hero-photo" aria-hidden="true">/
+        /<div class="hero-photo" aria-hidden="true"/
       );
 
-      const local = src.match(/<img[^>]*local-jomtien[^>]*>/)?.[0] ?? "";
-      expect(local, `${page}: local photo needs real alt text`).toMatch(/alt="[^"]+"/);
+      // local-jomtien appears twice now: once as a decorative hero slide and
+      // once as the captioned figure. Only the figure carries a description.
+      const figure = src.match(/<figure class="hero-figure[^"]*"[\s\S]*?<\/figure>/)?.[0] ?? "";
+      expect(figure, `${page}: local figure missing`).toContain("local-jomtien");
+      const figImg = figure.match(/<img[^>]*>/)?.[0] ?? "";
+      expect(figImg, `${page}: local photo needs real alt text`).toMatch(/alt="[^"]+"/);
     }
   });
 
@@ -99,6 +104,34 @@ describe("assets referenced actually exist", () => {
     expect(hero).toContain('loading="eager"');
     const local = en.match(/<img[^>]*local-jomtien[^>]*>/)?.[0] ?? "";
     expect(local).toContain('loading="lazy"');
+  });
+
+  it("every hero slide has all its sources on disk", () => {
+    const en = read("en/index.html");
+    const slides = [...en.matchAll(/<picture class="hero-slide"[\s\S]*?<\/picture>/g)].map((m) => m[0]);
+    expect(slides.length, "hero slideshow missing").toBe(5);
+    for (const slide of slides) {
+      const refs = [...slide.matchAll(/\/public\/images\/[\w-]+\.(?:avif|webp|jpg)/g)].map((m) => m[0]);
+      expect(refs.length).toBeGreaterThan(0);
+      for (const r of refs) expect(existsSync(`.${r}`), `missing ${r}`).toBe(true);
+    }
+    // Only the first slide may be eager; the rest must not compete with it.
+    expect(slides[0]).toContain('loading="eager"');
+    for (const s of slides.slice(1)) expect(s).toContain('loading="lazy"');
+  });
+
+  it("the hero slideshow is decorative and cannot shift layout", () => {
+    for (const page of ["en/index.html", "th/index.html"]) {
+      const src = read(page);
+      expect(src).toContain('<div class="hero-photo" aria-hidden="true" data-slideshow>');
+      const imgs = [...src.matchAll(/<picture class="hero-slide"[\s\S]*?<img([^>]*)>/g)].map((m) => m[1]);
+      expect(imgs.length).toBe(5);
+      for (const attrs of imgs) {
+        expect(attrs, `${page}: slide needs empty alt`).toMatch(/alt=""/);
+        expect(attrs, `${page}: slide needs width`).toMatch(/width="\d+"/);
+        expect(attrs, `${page}: slide needs height`).toMatch(/height="\d+"/);
+      }
+    }
   });
 
   it("every artwork layer resolves to a built file", () => {

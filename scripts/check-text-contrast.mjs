@@ -71,6 +71,19 @@ const COLLECT = `(() => {
   return JSON.stringify(out);
 })()`;
 
+const SLIDE_COUNT = `(() => document.querySelectorAll('.hero-slide').length)()`;
+
+const showSlide = (i) => `(() => {
+  const s = [...document.querySelectorAll('.hero-slide')];
+  if (s.length === 0) return 0;
+  s.forEach((el, n) => {
+    el.removeAttribute('data-on');
+    el.style.transition = 'none';
+    if (n === ${i}) el.setAttribute('data-on', 'true');
+  });
+  return s.length;
+})()`;
+
 const HIDE_TEXT = `(() => {
   const s = document.createElement('style');
   s.id = '__hide_text__';
@@ -169,12 +182,31 @@ try {
       return p;
     };
 
-    const normal = await shot(`n-${width}-${path.replace(/\W/g, "")}.png`);
-    await cdp.send("Runtime.evaluate", { expression: HIDE_TEXT, returnByValue: true });
-    await sleep(250);
-    const plain = await shot(`p-${width}-${path.replace(/\W/g, "")}.png`);
+    const nSlides = Number(
+      (await cdp.send("Runtime.evaluate", { expression: SLIDE_COUNT, returnByValue: true }))
+        .result.value
+    ) || 0;
 
-    const rows = await python({ normal, plain, dpr: DPR, elements });
+    // Measure every hero slide, not just the one that happens to be showing.
+    const rows = [];
+    for (let slide = 0; slide < Math.max(1, nSlides); slide++) {
+      if (nSlides > 0) {
+        await cdp.send("Runtime.evaluate", { expression: showSlide(slide), returnByValue: true });
+        await sleep(160);
+      }
+      const tag = `${width}-${path.replace(/\W/g, "")}-s${slide}`;
+      const normal = await shot(`n-${tag}.png`);
+      await cdp.send("Runtime.evaluate", { expression: HIDE_TEXT, returnByValue: true });
+      await sleep(200);
+      const plain = await shot(`p-${tag}.png`);
+      const batch = await python({ normal, plain, dpr: DPR, elements });
+      for (const r of batch) rows.push({ ...r, slide });
+      if (nSlides > 0 && slide < nSlides - 1) {
+        await cdp.send("Page.navigate", { url: `${BASE}${path}` });
+        await sleep(900);
+      }
+    }
+
     const bad = rows.filter((r) => !r.pass);
     const worst = rows.reduce((a, b) => (a && a.ratio < b.ratio ? a : b), null);
 
@@ -182,11 +214,12 @@ try {
       console.log(`  FAIL  ${(path + " @ " + width).padEnd(26)} measured NOTHING — scope or capture is wrong`);
       failures.push({ path, width, ratio: 0, required: 0, fg: "-", bg: "-", label: "no elements measured", text: "" });
     } else if (bad.length === 0) {
-      console.log(`  PASS  ${(path + " @ " + width).padEnd(26)} ${rows.length} elements, worst ${worst?.ratio ?? "-"}:1`);
+      const slideNote = nSlides > 1 ? ` across ${nSlides} slides` : "";
+      console.log(`  PASS  ${(path + " @ " + width).padEnd(26)} ${rows.length} measurements${slideNote}, worst ${worst?.ratio ?? "-"}:1`);
     } else {
       console.log(`  FAIL  ${(path + " @ " + width).padEnd(26)} ${bad.length}/${rows.length} below minimum`);
       for (const b of bad.slice(0, 6)) {
-        console.log(`          ${String(b.ratio).padStart(5)}:1 (need ${b.required})  ${b.fg} on ${b.bg}  ${b.label}`);
+        console.log(`          slide ${b.slide ?? 0}: ${String(b.ratio).padStart(5)}:1 (need ${b.required})  ${b.fg} on ${b.bg}  ${b.label}`);
         console.log(`          └─ "${b.text}"`);
       }
       failures.push(...bad.map((b) => ({ ...b, path, width })));

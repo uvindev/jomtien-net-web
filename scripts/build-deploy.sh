@@ -51,7 +51,9 @@ for f in index.html 404.html .htaccess humans.txt robots.txt sitemap.xml favicon
          public/fonts/plex-sans-latin-var.woff2 public/fonts/OFL-IBM-Plex.txt \
          public/images/og-en.png public/images/hero-jomtien-1200.avif \
          public/images/local-jomtien-1200.avif public/images/hero-jomtien-1200.jpg \
-         public/brand/favicon.svg public/brand/apple-touch-icon.png; do
+         public/brand/favicon.svg public/brand/apple-touch-icon.png \
+         public/images/hero-b1-800.avif public/images/hero-b2-800.avif \
+         public/images/hero-b3-800.avif; do
   need "$f"
 done
 

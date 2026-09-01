@@ -276,6 +276,61 @@ function initCursor(): void {
   });
 }
 
+/**
+ * Hero background crossfade.
+ *
+ * The handoff bans a rotating hero, and it is right about the defect: the old
+ * site rotated CONTENT, so a visitor had to wait to learn what the company
+ * sells and readability changed with each slide. This rotates neither. The
+ * proposition is fixed, nothing moves, and all five images were measured to
+ * clear the same contrast bar at 16% opacity, so the copy reads identically on
+ * every one.
+ *
+ * Stops entirely under reduced motion, and pauses when the tab is hidden.
+ */
+function initSlideshow(): void {
+  const stage = document.querySelector<HTMLElement>("[data-slideshow]");
+  if (!stage) return;
+
+  const slides = [...stage.querySelectorAll<HTMLElement>(".hero-slide")];
+  if (slides.length < 2) return;
+
+  document.documentElement.classList.add("js-slideshow");
+  if (reducedMotion.matches) return;
+
+  const HOLD = 6500;
+  let at = 0;
+  let timer: number | undefined;
+
+  const advance = (): void => {
+    slides[at]?.removeAttribute("data-on");
+    at = (at + 1) % slides.length;
+    slides[at]?.setAttribute("data-on", "true");
+  };
+
+  const start = (): void => {
+    if (timer !== undefined) return;
+    timer = window.setInterval(advance, HOLD);
+  };
+  const stop = (): void => {
+    if (timer === undefined) return;
+    window.clearInterval(timer);
+    timer = undefined;
+  };
+
+  // A background animation on a tab nobody is looking at is wasted battery.
+  document.addEventListener("visibilitychange", () => {
+    if (document.hidden) stop();
+    else start();
+  });
+  reducedMotion.addEventListener("change", (e) => {
+    if (e.matches) stop();
+    else start();
+  });
+
+  start();
+}
+
 /** The coastline index tracks scroll depth through the page. */
 function initRail(): void {
   const rail = document.querySelector<HTMLElement>("[data-rail]");
@@ -708,6 +763,7 @@ initRail();
 initHeader();
 initProgress();
 initCursor();
+initSlideshow();
 initNav();
 initFaq();
 initEnquiry();

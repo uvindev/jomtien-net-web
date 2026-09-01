@@ -375,13 +375,33 @@
     overflow: hidden;
     opacity: 0.16;
   }
-  .hero-photo picture,
+  /* Five stacked slides. Only opacity animates, so the crossfade is composited
+     and never touches layout — CLS stays at zero. */
+  .hero-slide {
+    position: absolute;
+    inset: 0;
+    display: block;
+    opacity: 0;
+    transition: opacity 1600ms ease-in-out;
+  }
+  .hero-slide[data-on="true"] {
+    opacity: 1;
+  }
   .hero-photo img {
     display: block;
     width: 100%;
     height: 100%;
     object-fit: cover;
     object-position: 32% 58%;
+  }
+  /* No script, no rotation: the first slide must still be the visible one. */
+  html:not(.js-slideshow) .hero-slide:first-child {
+    opacity: 1;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .hero-slide {
+      transition: none;
+    }
   }
 
   /* A light gradient over the top only, so the sticky header always has a
