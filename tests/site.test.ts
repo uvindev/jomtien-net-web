@@ -47,6 +47,43 @@ describe("assets referenced actually exist", () => {
     expect(existsSync("public/fonts/OFL-IBM-Plex.txt")).toBe(true);
   });
 
+  it("every responsive photo variant referenced in the pages exists", () => {
+    // The hero and local photographs ship as <picture> with three widths in
+    // three formats. A missing variant fails only on the device that asks
+    // for it, which is the worst way to find out.
+    const refs = new Set<string>();
+    for (const page of ["en/index.html", "th/index.html"]) {
+      for (const m of read(page).matchAll(/\/public\/images\/[\w-]+\.(?:avif|webp|jpg)/g)) {
+        refs.add(m[0]);
+      }
+    }
+    // Two <picture> elements: 3 AVIF + 3 WebP srcset entries plus one JPEG
+    // fallback each = 14 distinct files.
+    expect(refs.size, "photo references missing").toBe(14);
+    for (const r of refs) expect(existsSync(`.${r}`), `missing ${r}`).toBe(true);
+  });
+
+  it("photographs declare intrinsic dimensions so they cannot shift layout", () => {
+    for (const page of ["en/index.html", "th/index.html"]) {
+      const imgs = [...read(page).matchAll(/<img[^>]+>/g)].map((m) => m[0]);
+      expect(imgs.length).toBeGreaterThan(0);
+      for (const img of imgs) {
+        expect(img, `${page}: img without width`).toMatch(/width="\d+"/);
+        expect(img, `${page}: img without height`).toMatch(/height="\d+"/);
+        expect(img, `${page}: img without alt`).toMatch(/alt="[^"]+"/);
+      }
+    }
+  });
+
+  it("the hero photograph is eager and high priority; others are lazy", () => {
+    const en = read("en/index.html");
+    const hero = en.match(/<img[^>]*hero-jomtien[^>]*>/)?.[0] ?? "";
+    expect(hero).toContain('fetchpriority="high"');
+    expect(hero).toContain('loading="eager"');
+    const local = en.match(/<img[^>]*local-jomtien[^>]*>/)?.[0] ?? "";
+    expect(local).toContain('loading="lazy"');
+  });
+
   it("every artwork layer resolves to a built file", () => {
     const images = all(css, /url\("(\/public\/images\/[^"]+)"\)/g);
     expect(images.length, "no image references matched — has the CSS changed?").toBeGreaterThan(0);

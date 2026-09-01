@@ -41,7 +41,8 @@ const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
    >=18.66px bold) needs 3:1; everything else 4.5:1. */
 const COLLECT = `(() => {
   const out = [];
-  const arts = [...document.querySelectorAll('.art')].map(a => a.closest('section') || a.parentElement);
+  const arts = [...document.querySelectorAll('.art, .facets, .art-scrim')]
+    .map(a => a.closest('section') || a.parentElement);
   const scopes = [...new Set(arts)].filter(Boolean);
   for (const scope of scopes) {
     for (const el of scope.querySelectorAll('h1,h2,h3,p,a,span,strong,li,dt,dd,label,legend,button,summary')) {
@@ -49,7 +50,7 @@ const COLLECT = `(() => {
       if (!direct) continue;
       const r = el.getBoundingClientRect();
       if (r.width < 4 || r.height < 4) continue;
-      if (r.bottom < 0 || (r.top + window.scrollY) > 3500) continue;
+      if (r.bottom < 0 || (r.top + window.scrollY) > 4200) continue;
       const cs = getComputedStyle(el);
       if (cs.visibility === 'hidden' || cs.opacity === '0') continue;
       const m = cs.color.match(/\\d+/g);
@@ -162,7 +163,7 @@ try {
 
     const shot = async (file) => {
       const r = await cdp.send("Page.captureScreenshot", { format: "png", captureBeyondViewport: true,
-        clip: { x: 0, y: 0, width, height: Math.min(pageHeight, 3600), scale: 1 } });
+        clip: { x: 0, y: 0, width, height: Math.min(pageHeight, 4400), scale: 1 } });
       const p = join(dir, file);
       writeFileSync(p, Buffer.from(r.data, "base64"));
       return p;
@@ -177,7 +178,10 @@ try {
     const bad = rows.filter((r) => !r.pass);
     const worst = rows.reduce((a, b) => (a && a.ratio < b.ratio ? a : b), null);
 
-    if (bad.length === 0) {
+    if (rows.length === 0) {
+      console.log(`  FAIL  ${(path + " @ " + width).padEnd(26)} measured NOTHING — scope or capture is wrong`);
+      failures.push({ path, width, ratio: 0, required: 0, fg: "-", bg: "-", label: "no elements measured", text: "" });
+    } else if (bad.length === 0) {
       console.log(`  PASS  ${(path + " @ " + width).padEnd(26)} ${rows.length} elements, worst ${worst?.ratio ?? "-"}:1`);
     } else {
       console.log(`  FAIL  ${(path + " @ " + width).padEnd(26)} ${bad.length}/${rows.length} below minimum`);

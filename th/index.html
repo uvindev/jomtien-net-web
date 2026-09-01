@@ -131,8 +131,6 @@
     <div class="facet facet-b"></div>
     <div class="facet facet-c"></div>
   </div>
-  <div class="art art-hero" aria-hidden="true"></div>
-  <div class="art-scrim" aria-hidden="true"></div>
   <div class="rail hidden md:block" aria-hidden="true" data-rail>
     <span class="rail-mark"></span>
     <span class="rail-mark"></span>
@@ -140,26 +138,47 @@
     <span class="rail-mark"></span>
   </div>
 
-  <div class="wrap relative py-12 sm:py-24 lg:py-36">
-    <div class="mx-auto max-w-4xl text-center">
-      <p class="u-caps text-coast-lite reveal">หาดจอมเทียน · พัทยา</p>
+  <div class="wrap relative py-12 sm:py-20 lg:py-28">
+    <div class="grid items-center gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,0.92fr)] lg:gap-16">
 
-      <h1 class="mt-5 text-[length:var(--text-display)] reveal">
-        เว็บไซต์ ร้านค้าออนไลน์ และ<span class="text-coast-lite">ระบบ</span>ที่ทำงานอยู่เบื้องหลัง
-      </h1>
+      <div class="max-w-2xl">
+        <p class="u-caps text-coast-lite reveal">หาดจอมเทียน · พัทยา</p>
 
-      <p class="mt-6 mx-auto max-w-2xl text-[length:var(--text-lead)] text-dim-d reveal">
-        Jomtien Network สร้างเว็บไซต์ธุรกิจ ร้านค้าออนไลน์ เว็บแอปพลิเคชัน แอปมือถือ ระบบ AI
-        และการเชื่อมต่อระบบต่าง ๆ เข้าด้วยกัน บอกเราว่าธุรกิจของคุณต้องทำอะไรได้บ้าง
-        เราจะกำหนดตัวผลิตภัณฑ์และขอบเขตงานให้ชัดก่อนเริ่มเขียนโค้ด
-      </p>
+        <h1 class="mt-5 text-[length:var(--text-display)] reveal">
+          เว็บไซต์ ร้านค้าออนไลน์ และ<span class="text-coast-lite">ระบบ</span>ที่ทำงานอยู่เบื้องหลัง
+        </h1>
 
-      <div class="mt-8 flex flex-wrap items-center justify-center gap-3 reveal">
-        <a href="#contact" class="btn btn-signal">คุยเรื่องโปรเจกต์ของคุณ</a>
-        <a href="/th/estimate/" class="btn btn-ghost">ตอบ 6 ข้อเพื่อกำหนดขอบเขต</a>
+        <p class="mt-6 max-w-xl text-[length:var(--text-lead)] text-dim-d reveal">
+          Jomtien Network สร้างเว็บไซต์ธุรกิจ ร้านค้าออนไลน์ เว็บแอปพลิเคชัน แอปมือถือ ระบบ AI
+          และการเชื่อมต่อระบบต่าง ๆ เข้าด้วยกัน บอกเราว่าธุรกิจของคุณต้องทำอะไรได้บ้าง
+          เราจะกำหนดตัวผลิตภัณฑ์และขอบเขตงานให้ชัดก่อนเริ่มเขียนโค้ด
+        </p>
+
+        <div class="mt-8 flex flex-wrap items-center gap-3 reveal">
+          <a href="#contact" class="btn btn-signal">คุยเรื่องโปรเจกต์ของคุณ</a>
+          <a href="/th/estimate/" class="btn btn-ghost">ตอบ 6 ข้อเพื่อกำหนดขอบเขต</a>
+        </div>
+
+        <p class="mt-6 u-caps text-dim-d reveal">อีเมลและโทรศัพท์ติดต่อถึงคนโดยตรง</p>
       </div>
 
-      <p class="mt-6 u-caps text-dim-d reveal">ตอบกลับทางอีเมลภายในหนึ่งวันทำการ</p>
+      <figure class="hero-figure reveal">
+        <picture>
+          <source type="image/avif" sizes="(min-width: 1024px) 46vw, 100vw"
+                  srcset="/public/images/hero-jomtien-800.avif 800w,
+                          /public/images/hero-jomtien-1200.avif 1200w,
+                          /public/images/hero-jomtien-1600.avif 1600w" />
+          <source type="image/webp" sizes="(min-width: 1024px) 46vw, 100vw"
+                  srcset="/public/images/hero-jomtien-800.webp 800w,
+                          /public/images/hero-jomtien-1200.webp 1200w,
+                          /public/images/hero-jomtien-1600.webp 1600w" />
+          <img src="/public/images/hero-jomtien-1200.jpg" alt="หาดจอมเทียน พัทยา"
+               width="1600" height="830" fetchpriority="high" loading="eager" decoding="async"
+               class="w-full h-full object-cover" />
+        </picture>
+        <figcaption class="mt-3 u-caps text-dim-d">หาดจอมเทียน พัทยา</figcaption>
+      </figure>
+
     </div>
   </div>
 </section>
@@ -606,11 +625,21 @@
         </p>
       </div>
 
-      <figure class="reveal">
-        <div class="art art-local"></div>
-        <figcaption class="mt-4 u-caps text-dim-l">
-          แนวชายฝั่งจอมเทียนในรูปแบบแผนที่
-        </figcaption>
+      <figure class="hero-figure reveal">
+        <picture>
+          <source type="image/avif" sizes="(min-width: 768px) 46vw, 100vw"
+                  srcset="/public/images/local-jomtien-800.avif 800w,
+                          /public/images/local-jomtien-1200.avif 1200w,
+                          /public/images/local-jomtien-1600.avif 1600w" />
+          <source type="image/webp" sizes="(min-width: 768px) 46vw, 100vw"
+                  srcset="/public/images/local-jomtien-800.webp 800w,
+                          /public/images/local-jomtien-1200.webp 1200w,
+                          /public/images/local-jomtien-1600.webp 1600w" />
+          <img src="/public/images/local-jomtien-1200.jpg" alt="หาดจอมเทียน พัทยา"
+               width="1600" height="830" loading="lazy" decoding="async"
+               class="w-full h-full object-cover" />
+        </picture>
+        <figcaption class="mt-3 u-caps text-dim-l">หาดจอมเทียน พัทยา</figcaption>
       </figure>
     </div>
   </div>
@@ -902,7 +931,6 @@
     <div class="mt-12 border-t border-line-d pt-6 flex flex-wrap items-center justify-between gap-4">
       <p class="text-sm text-dim-d">
         &copy; <span class="u-num">2026</span> Jomtien Network.
-        <span class="slot !border-0 !p-0 !inline">Legal entity name pending owner confirmation.</span>
       </p>
       <span class="text-sm text-dim-d">
         Built by

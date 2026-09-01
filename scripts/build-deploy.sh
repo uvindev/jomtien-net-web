@@ -49,7 +49,8 @@ for f in index.html 404.html .htaccess humans.txt robots.txt sitemap.xml favicon
          en/privacy/index.html th/privacy/index.html \
          dist/styles.css dist/main.js \
          public/fonts/plex-sans-latin-var.woff2 public/fonts/OFL-IBM-Plex.txt \
-         public/images/og-en.png public/images/hero-field.avif \
+         public/images/og-en.png public/images/hero-jomtien-1200.avif \
+         public/images/local-jomtien-1200.avif public/images/hero-jomtien-1200.jpg \
          public/brand/favicon.svg public/brand/apple-touch-icon.png; do
   need "$f"
 done
